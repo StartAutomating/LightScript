@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<!-- Generated with EZOut 1.8.5: Install-Module EZOut or https://github.com/StartAutomating/EZOut -->
+<Types>
+  <Type>
+    <Name>Hue.Sensor</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>Manufacturer</Name>
+        <GetScriptBlock>
+                        try { 
+    [Convert]::FromBase64String($this.ManufacturerName) 
+} catch {
+    if ($this.ManufacturerName) {
+        $this.ManufacturerName
+    } else {
+        ''
+    }
+}
+
+                    </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>LightScript.Color</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>Darken</Name>
+        <Script>
+                        param(
+[int]
+$Amount,
+
+[switch]
+$Absolute
+)
+$o = 
+if ($this.Hue -or $this.Saturation -or $this.Luminance) {
+    $this    
+} 
+else 
+{
+    $this.RGBToHSL($this.Red, $this.Green, $this.Blue)
+}
+
+if ($o.luminance -eq $null) { return }
+$l = $o.luminance
+if (-not $Absolute) {
+    
+    $l -=  $l  * ($Amount / 100)
+    if ($l -le 0) { $l = 0 }
+}
+else {
+    $l = ((100 -$Amount) / 100)
+    if ($l -le 0) { $l = 0 }
+}
+
+$rgb = $this.HSLToRGB($o.Hue, $o.Saturation, $l)
+
+
+[PSCustomObject]@{
+    PSTypeName='LightScript.Color'
+    Hue=$o.Hue
+    Saturation=$o.Saturation
+    Luminance=$l
+    Red=$rgb.Red
+    Green=$rgb.Green
+    Blue=$rgb.Blue
+}
+
+                    </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>FromColorTemperature</Name>
+        <Script>
+                        param(
+[int]
+$ColorTemperature
+)
+
+
+if ($ColorTemperature -lt 1200) {
+    $ColorTemperature = (1000000/$ColorTemperature)
+}
+
+$ct100 = $ColorTemperature / 100
+
+$red, $green = 
+    if ($ct100 -le 66) {
+        255 # red
+        [Math]::Min([Math]::Max(
+            (99.4708025861 * [Math]::Log($ct100)) - 161.1195681661,
+            0
+        ), 255)
+    } else {    
+        # red
+        [Math]::Min([Math]::Max(
+            329.698727446 * [Math]::Pow($ct100 - 60,-0.1332047592),
+            0
+        ), 255)
+        # green
+        [Math]::Min([Math]::Max(
+            288.1221695283 * [Math]::Pow($ct100 - 60,-0.0755148492),
+            0
+        ), 255)        
+    }
+
+$blue =
+    if ($ct100 -ge 66) {
+        255
+    } elseif ($ct100 -le 19) {
+        0
+    } else {
+        [Math]::Min([Math]::Max(
+            (138.5177312231 * [Math]::Log($ct100 - 10)) - 305.0447927307,
+            0
+        ), 255)
+    }
+
+
+
+$hslVal = $this.RGBToHSL($red, $green, $blue)
+
+[PSCustomObject]@{
+    PSTypeName='LightScript.Color'
+    Hue=$hslVal.Hue
+    Saturation=$hslVal.Saturation
+    Luminance=$hslVal.Luminance
+    Red=$red
+    Green=$green
+    Blue=$blue
+}
+
+
+&lt;#
+If Temperature &lt;= 66 Then
+	Green = Temperature
+	Green = 99.4708025861 * Ln(Green) - 161.1195681661
+	If Green &lt; 0 Then Green = 0
+	If Green &gt; 255 Then Green = 255
+Else
+	Green = Temperature - 60
+	Green = 288.1221695283 * (Green ^ -0.0755148492)
+	If Green &lt; 0 Then Green = 0
+	If Green &gt; 255 Then Green = 255
+End If
+
+Calculate Blue:
+
+If Temperature &gt;= 66 Then
+	Blue = 255
+Else
+
+	If Temperature &lt;= 19 Then
+		Blue = 0
+	Else
+		Blue = Temperature - 10
+		Blue = 138.5177312231 * Ln(Blue) - 305.0447927307
+		If Blue &lt; 0 Then Blue = 0
+		If Blue &gt; 255 Then Blue = 255
+	End If
+
+End If
+#&gt;
+                    </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>FromRGB</Name>
+        <Script>
+                        param(
+[string]
+$HexColor
+)
+
+$hc = $HexColor
+$r,$g,$b = 
+    if ($hc.Length -eq 7) {
+        [int]::Parse($hc[1..2]-join'', 'HexNumber')
+        [int]::Parse($hc[3..4]-join '', 'HexNumber')
+        [int]::Parse($hc[5..6] -join'', 'HexNumber')
+    }elseif ($hc.Length -eq 4) {
+        [int]::Parse($hc[1], 'HexNumber') * 16
+        [int]::Parse($hc[2], 'HexNumber') * 16
+        [int]::Parse($hc[3], 'HexNumber') * 16
+    }
+
+$hslVal = $this.RGBToHSL($r, $g, $b)
+
+[PSCustomObject]@{
+    PSTypeName='LightScript.Color'
+    Hue=$hslVal.Hue
+    Saturation=$hslVal.Saturation
+    Luminance=$hslVal.Luminance
+    Red=$r
+    Green=$g
+    Blue=$b
+}
+
+
+                    </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>HSLToRGB</Name>
+        <Script>
+                        param(
+# The hue
+[Parameter(Mandatory=$true,Position=0)]
+[Alias('H')]
+[ValidateRange(0,360)]
+[float]
+$Hue,
+
+# The saturation
+[Parameter(Mandatory=$true,Position=1)]
+[Alias('S')]
+[ValidateRange(0,1)]
+[float]
+$Saturation,
+
+# The luminance
+[Parameter(Mandatory=$true,Position=2)]
+[Alias('L')]
+[ValidateRange(0,1)]
+[float]
+$Luminance
+)
+
+$hueRgb = {
+    param($p,$q,$t)
+    if ($t -lt 0) { $t += 1 }
+    if ($t -gt 1) { $t -= 1 }
+    if ($t -lt 1/6) {  return $P + ($q -$p) * 6 * $t }
+    if ($t -lt 1/2) {  return $q }
+    if ($t -lt 2/3) {  return $P + ($q -$p) * 6 * (2/3 * $t) }
+    return $p
+}
+
+
+$C = (1 - [Math]::Abs((2 * $Luminance) - 1)) * $Saturation
+$hh = $hue / 60
+$X = $c * (1 - [Math]::Abs($hh % 2 -1))
+$m  = $Luminance - $c /2 
+$red = $green = $blue = 0 
+
+if ($hh -ge 0 -and $hh -lt 1) {
+    $red = $C
+    $green = $X
+} 
+elseif ($hh -ge 1 -and $hh -lt 2) {
+    $red = $x
+    $green = $c
+} 
+elseif ($hh -ge 2 -and $hh -lt 3) {
+    $green = $c
+    $blue = $x 
+} 
+elseif ($hh -ge 3 -and $hh -lt 4) {
+    $green = $x 
+    $blue = $c 
+} 
+elseif ($hh -ge 4 -and $hh -lt 5) {
+    $red = $x
+    $blue = $c
+} else {
+    $red = $c
+    $blue = $x
+}
+
+$red += $m
+$blue += $m
+$green += $m
+ 
+
+[PSCustomObject][Ordered]@{
+    Red = [Byte][Math]::Round($red * 255)
+    Green = [Byte][Math]::Round($green * 255)
+    Blue = [Byte][Math]::Round($blue * 255)
+}
+
+    
+
+                    </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>Lighten</Name>
+        <Script>
+                        param(
+[int]
+$Amount,
+
+[switch]
+$Absolute
+)
+$o = 
+    if ($this.Hue -or $this.Saturation -or $this.Luminance) {
+        $this
+    } 
+    else
+    {
+        $this.RgbToHSL($this.Red, $this.Green, $this.Blue)
+    }
+
+if ($o.luminance -eq $null) { return }
+$l = $o.luminance
+if (-not $Absolute) {    
+    $l +=  $l  * ($Amount / 100)
+    if ($l -ge 1) { $l = 1 }
+}
+else {
+    $l = ($Amount / 100)
+    if ($l -ge 1) { $l = 1 }
+}
+
+$rgb = $this.HSLToRGB($o.Hue, $o.Saturation, $l)
+
+
+[PSCustomObject]@{
+    PSTypeName='LightScript.Color'
+    Hue=$o.Hue
+    Saturation=$o.Saturation
+    Luminance=$l
+    Red=$rgb.Red
+    Green=$rgb.Green
+    Blue=$rgb.Blue
+}
+
+                    </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>RGBToHSL</Name>
+        <Script>
+                        param(
+# The red part
+[Parameter(Mandatory=$true,Position=0)]
+[Alias('R')]
+[Byte]
+$Red,
+
+# The green part
+[Parameter(Mandatory=$true,Position=1)]
+[Alias('G')]
+[Byte]
+$Green,
+
+# The blue part
+[Parameter(Mandatory=$true,Position=2)]
+[Alias('B')]
+[Byte]
+$Blue
+)
+
+[float]$PercentRed = $Red / 255
+[float]$PercentGreen = $Green / 255
+[float]$PercentBlue = $Blue / 255
+
+$min = $max = $PercentRed
+foreach ($_ in $PercentGreen, $PercentBlue) {
+    if ($_ -lt $min) { $min = $_ }
+    if ($_ -ge $max) { $max = $_ }
+}
+
+$Luminance = ($min + $max)  / 2
+$delta = $max - $min
+    
+if (-not $delta) {
+    $hue = $saturation = 0                 
+} else {
+    $saturation = $delta
+    $saturation /= (1 - [Math]::Abs(((2 * $Luminance) -1)))
+      
+    $hue =  
+        if ($Max -eq $PercentRed){
+            ($PercentGreen - $PercentBlue)/$delta % 6      
+        } elseif ($max -eq $PercentGreen) {
+            (($PercentBlue - $PercentRed)/ $delta) + 2
+        } else {                
+            (($PercentRed - $PercentGreen)/ $delta) + 4
+        }
+}
+$hue*=60
+if ($hue -gt 360) { $hue -= 360 } 
+if ($hue -lt 0) { $hue = 360 + $hue } 
+[PSCustomObject][Ordered]@{Hue = $hue;Saturation = $saturation;Luminance = $Luminance}
+
+                    </Script>
+      </ScriptMethod>
+      <ScriptProperty>
+        <Name>HSL</Name>
+        <GetScriptBlock>
+                        if ($this.Hue -or $this.Saturation -or $this.Luminance) {
+    "H{0}°S{1}%L{2}%" -f $this.Hue, $this.Saturation, $this.Luminance
+} elseif ($this.Red -or $this.Green -or $this.Blue) {
+    $o = $this.RgbToHSL($this.Red, $this.Green, $this.Blue)
+    "H{0}°S{1}%L{2:}%" -f [Math]::Round($o.Hue), [Math]::Round($o.Saturation * 100), [Math]::Round($o.Luminance * 100)
+}
+
+                    </GetScriptBlock>
+      </ScriptProperty>
+      <ScriptProperty>
+        <Name>RGB</Name>
+        <GetScriptBlock>
+                        if ($this.Red -or $this.Green -or $this.Blue) {
+    "#{0:x2}{1:x2}{2:x2}" -f $this.Red, $this.Green, $this.Blue
+} elseif ($this.Hue -or $this.Saturation -or $this.Luminance) {
+    $o = $this.HSLToRgb($this.Hue, $this.Saturation, $this.Luminance)
+    "#{0:x2}{1:x2}{2:x2}" -f $o.Red, $o.Green, $o.Blue
+}
+                    </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+</Types>
