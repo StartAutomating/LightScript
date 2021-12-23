@@ -1,4 +1,8 @@
-﻿LightScript is a PowerShell module to control smart lights.
+﻿<div align='center'>
+<img src='Assets/LightScript.png' />
+<h2>Smarter Lighting with PowerShell</h2>
+</div>
+LightScript is a PowerShell module to control smart lights.
 
 It currently can control:
 
