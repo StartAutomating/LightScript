@@ -1,0 +1,925 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<!-- Generated with EZOut 1.8.5: Install-Module EZOut or https://github.com/StartAutomating/EZOut -->
+<Configuration>
+  <ViewDefinitions>
+    <View>
+      <Name>Hue.Capabilities</Name>
+      <ViewSelectedBy>
+        <TypeName>Hue.Capabilities</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>Lights</Label>
+                <ScriptBlock> '' + ($_.lights.total - $_.lights.available) + '/' + $_.lights.total </ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>Sensors</Label>
+                <ScriptBlock> '' + ($_.sensors.total - $_.Sensors.available) + '/' + $_.Sensors.total </ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>Groups</Label>
+                <ScriptBlock> '' + ($_.groups.total - $_.groups.available) + '/' + $_.groups.total </ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <PropertyName>Scenes</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>schedules</Label>
+                <ScriptBlock> '' + ($_.schedules.total - $_.schedules.available) + '/' + $_.schedules.total </ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <PropertyName>Rules</PropertyName>
+              </ListItem>
+              <ListItem>
+                <PropertyName>ResourceLinks</PropertyName>
+              </ListItem>
+              <ListItem>
+                <PropertyName>Streaming</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
+      <Name>Hue.Group</Name>
+      <ViewSelectedBy>
+        <TypeName>Hue.Group</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>4</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>20</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>15</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Lights</Label>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <Wrap />
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>ID</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Type</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock> 
+        $group = $_
+        $lightlist = $_.Lights -join ',' 
+        if (-not $script:CachedLightNames) {
+            $script:CachedLightNames = @{}
+            
+        }
+        if (-not $script:CachedLightNames[$lightlist]) {
+            $script:CachedLightNames[$lightlist] = $group.Lights | Get-HueLight -LightID { $_ } | Select-Object -ExpandProperty Name
+        }        
+        $script:CachedLightNames[$lightlist] -join [Environment]::NewLine
+    </ScriptBlock>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>Master</Name>
+      <ViewSelectedBy>
+        <TypeName>Hue.Light</TypeName>
+      </ViewSelectedBy>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <PropertyName>Name</PropertyName>
+              </ExpressionBinding>
+              <ExpressionBinding>
+                <ItemSelectionCondition>
+                  <ScriptBlock> $_.State.On </ScriptBlock>
+                </ItemSelectionCondition>
+                <ScriptBlock> ' * ' </ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </View>
+    <View>
+      <Name>Detail</Name>
+      <ViewSelectedBy>
+        <TypeName>Hue.Light</TypeName>
+      </ViewSelectedBy>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <PropertyName>Name</PropertyName>
+              </ExpressionBinding>
+              <ExpressionBinding>
+                <ItemSelectionCondition>
+                  <ScriptBlock> $_.State.On </ScriptBlock>
+                </ItemSelectionCondition>
+                <ScriptBlock>
+        $_.State | ConvertTo-Json | Out-String
+    </ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </View>
+    <View>
+      <Name>Hue.Rule</Name>
+      <ViewSelectedBy>
+        <TypeName>Hue.Rule</TypeName>
+      </ViewSelectedBy>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <ScriptBlock>
+    $rule = $_
+    if ($request -and $response) {
+        
+    } else {
+        $NameLength = $rule.Name.Length + 2
+        $nameLeft = [Math]::Floor(($NameLength - 4) /2)
+        if ($NameLength %2) {
+            $nameRight = $nameLeft + 1
+        } else {
+            $nameRight = $nameLeft
+        }
+        $maxConditionLength = 0 
+        $MaxActionLength = 0 
+
+        $wholeLength = $NameLength + 4 + 10 + 20 + 20 + 4
+        $extraLength = 0 
+
+        $conditionLines = ($rule.Conditions | ConvertTo-Json).ToString() -split ([Environment]::NewLine)
+        $actionLines = ($rule.Actions | ConvertTo-Json).ToString() -split ([Environment]::NewLine)
+        foreach ($_ in $conditionLines + $actionLines) {
+            if ($_.Length -gt $wholeLength) {
+                $extraLength+=($_.Length - $wholeLength)
+                $wholeLength = $_.Length
+            }
+        }
+
+        Write-Host @"
+
++$('-' * $NameLength)+$('-' * 4)+$('-' * 10)+$('-' * 20)+$('-'*20)$('-' * $extraLength)+
+|$(' ' * $nameLeft)Name$(' ' * $nameRight)| ID |  Status  |      Created       |     Last Triggered$(' ' * $extraLength) |
++$('-' * $NameLength)+$('-' * 4)+$('-' * 10)+$('-' * 20)+$('-'*20)$('-' * $extraLength)+
+| $($rule.Name) | $($rule.ID.ToString().PadRight(3))| $($rule.Status.PadRight(8, ' ')) |$($rule.Created -as [DateTime]) |$($rule.LastTriggered -as [DateTime]) $('-' * $extraLength)|
++$('-' * $NameLength)+$('-' * 4)+$('-' * 10)+$('-' * 20)+$('-'*20)$('-' * $extraLength)+
+| Conditions$(' ' * ($wholeLength - 'Conditions'.Length -1 ))|
++$('-' * $wholelength)+
+$(@(foreach ($_ in $conditionLines) {        
+        '|' + $_.PadRight($wholeLength, ' ') + '|'
+}) -join ([Environment]::NewLine))
++$('-' * $wholelength)+
+| Actions$(' ' * ($wholeLength - 'Actions'.Length -1 ))|
++$('-' * $wholelength)+
+$(@(foreach ($_ in $actionLines) {        
+        '|' + $_.PadRight($wholeLength, ' ') + '|'
+}) -join ([Environment]::NewLine))
++$('-' * $wholelength)+
+
+"@
+
+    }
+</ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </View>
+    <View>
+      <Name>Hue.Schedule</Name>
+      <ViewSelectedBy>
+        <TypeName>Hue.Schedule</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>4</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>40</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Status</Label>
+            <Alignment>left</Alignment>
+            <Width>15</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>20</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Command</Label>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <Wrap />
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>ID</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <!-- {ConditionalColor:"
+    if ($_.Status -eq &apos;Enabled&apos;) {
+        &apos;#00ff00&apos;
+    } else {
+        &apos;#ff0000&apos;
+    }
+"}-->
+              <TableColumnItem>
+                <ScriptBlock>$moduleName = 'LightScript'
+do {
+    $lm = Get-Module -Name $moduleName -ErrorAction Ignore
+    if (-not $lm) { continue } 
+    if ($lm.FormatPartsLoaded) { break }
+    $wholeScript = @(foreach ($formatFilePath in $lm.exportedFormatFiles) {         
+        foreach ($partNodeName in Select-Xml -LiteralPath $formatFilePath -XPath "/Configuration/Controls/Control/Name[starts-with(., '$')]") {
+            $ParentNode = $partNodeName.Node.ParentNode
+            "$($ParentNode.Name)={
+$($ParentNode.CustomControl.CustomEntries.CustomEntry.CustomItem.ExpressionBinding.ScriptBlock)}"
+        }
+    }) -join [Environment]::NewLine
+    New-Module -Name "${ModuleName}.format.ps1xml" -ScriptBlock ([ScriptBlock]::Create(($wholeScript + ';Export-ModuleMember -Variable *'))) |
+        Import-Module -Global
+    $onRemove = [ScriptBlock]::Create("Remove-Module '${ModuleName}.format.ps1xml'")
+    
+    if (-not $lm.OnRemove) {
+        $lm.OnRemove = $onRemove
+    } else {
+        $lm.OnRemove = [ScriptBlock]::Create($onRemove.ToString() + ''  + [Environment]::NewLine + $lm.OnRemove)
+    }
+    $lm | Add-Member NoteProperty FormatPartsLoaded $true -Force
+
+} while ($false)
+
+
+                $__ = $_
+                $ci = . {
+    if ($_.Status -eq 'Enabled') {
+        '#00ff00'
+    } else {
+        '#ff0000'
+    }
+}
+                $_ = $__
+                if ($ci -is [string]) {
+                    $ci = . ${LightScript_setOutputStyle} $ci
+                } else {
+                    $ci = . ${LightScript_setOutputStyle} @ci
+                }
+                $output = . {$_.'Status'}
+                @($ci; $output; . ${LightScript_ClearOutputStyle}) -join ""
+                </ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Time</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>
+        $_.Command.Body | ConvertTo-Json
+    </ScriptBlock>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>Hue.Schedule</Name>
+      <ViewSelectedBy>
+        <TypeName>Hue.Schedule</TypeName>
+      </ViewSelectedBy>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <ScriptBlock>
+    $schedule = $_
+    if ($request -and $response) {
+New-Object PSObject -Property ([Ordered]@{
+    Name = $schedule.Name
+    ID = $schedule.ID
+    Created = ($schedule.Created -as [DateTime])
+    Schedule = $schedule.Time
+}) | Out-HTML
+"&lt;pre&gt;$($schedule.Command | ConvertTo-Json)&lt;/pre&gt;"
+    } else {
+        $NameLength = $Schedule.Name.Length + 2
+        $TimeLength = $Schedule.LocalTime.Length + 2
+
+        $nameLeft = [Math]::Floor(($NameLength - 4) /2)
+        if ($NameLength %2) {
+            $nameRight = $nameLeft + 1
+        } else {
+            $nameRight = $nameLeft
+        }        
+        
+        $maxConditionLength = 0 
+        $MaxActionLength = 0 
+
+        $wholeLength = $NameLength + 4 + 10 + 20 + $TimeLength + 4
+        $extraLength = 0
+        $commandLines = ($schedule.Command | ConvertTo-Json).ToString() -split [Environment]::NewLine
+        foreach ($_ in $commandLines) {
+            if ($_.Length -gt $wholeLength) {
+                $extraLength += ($_.Length - $wholeLength)
+                $wholeLength = $_.Length
+            }
+        }
+
+        $timeAreaLength = $TimeLength + $extraLength
+        $timeLeft = [Math]::Floor(($timeAreaLength - 6)/2)
+        $timeRight  = if ($timeAreaLength %2) {
+            $timeLeft + 1 
+        } else {
+            $timeLeft
+        }
+
+        $timeValueLeft = [Math]::Floor(($timeAreaLength - $schedule.LocalTime.Length)/2)
+        $timeValueRight = if ($TimeLength % 2) {
+            $timeValueLeft + 1
+        } else {
+            $timeValueLeft
+        }
+
+        $timeOccupiedLength = ($timeValueLeft + $Schedule.LocalTime.Length + $timeValueRight)
+        if ($timeOccupiedLength -lt $timeAreaLength) {
+            $timeValueRight += $timeAreaLength - $timeOccupiedLength
+        }
+
+        
+
+        Write-Host "+$('-' * $NameLength)+$('-' * 4)+$('-' * 10)+$('-' * 20)+$('-'*$TimeLength)$('-' * $extraLength)+" -ForegroundColor Cyan
+
+        #region Table Header
+        Write-Host "|" -NoNewline -ForegroundColor Cyan
+        Write-Host "$(' ' * $nameLeft)Name$(' ' * $nameRight)" -NoNewline -ForegroundColor Green
+        Write-Host "|" -NoNewline -ForegroundColor Cyan
+        Write-Host " ID " -NoNewline -ForegroundColor Green
+        Write-Host "|" -NoNewline -ForegroundColor Cyan
+        Write-Host " Status   " -NoNewline -ForegroundColor Green
+        Write-Host "|" -NoNewline -ForegroundColor Cyan
+        Write-Host "      Created       " -NoNewline -ForegroundColor Green
+        Write-Host "|" -NoNewline -ForegroundColor Cyan
+        Write-Host "$(' ' * $timeLeft)@ Time$(' ' * $timeRight)" -ForegroundColor Green -NoNewline        
+        Write-Host "|" -ForegroundColor Cyan
+        #endregion Table Header
+        Write-Host "+$('-' * $NameLength)+$('-' * 4)+$('-' * 10)+$('-' * 20)+$('-'*$TimeLength)$('-' * $extraLength)+" -ForegroundColor Cyan
+
+        #region Table Values
+        Write-Host "|" -NoNewline -ForegroundColor Cyan
+        Write-Host " $($Schedule.Name) " -NoNewline -ForegroundColor Green
+        Write-Host "|" -NoNewline -ForegroundColor Cyan
+        Write-Host " $($Schedule.ID.ToString().PadRight(2)) " -NoNewline -ForegroundColor Green
+        Write-Host "|" -NoNewline -ForegroundColor Cyan
+        Write-Host " $($Schedule.Status.PadRight(8, ' ')) " -NoNewline -ForegroundColor $(if ($Schedule.status -eq 'disabled') {'Red' } else { 'Green' })
+        Write-Host "|" -NoNewline -ForegroundColor Cyan
+        Write-Host "$(($Schedule.Created -as [DateTime]).ToString('s')) " -NoNewline -ForegroundColor Green
+        Write-Host "|" -NoNewline -ForegroundColor Cyan
+        Write-Host "$(' ' * $timeValueLeft)$($Schedule.localtime)$(' ' * $timeValueRight)" -ForegroundColor Green -NoNewline        
+        Write-Host "|" -ForegroundColor Cyan
+
+        #endregion Table Values
+        Write-Host "+$('-' * $NameLength)+$('-' * 4)+$('-' * 10)+$('-' * 20)+$('-'*$TimeLength)$('-' * $extraLength)+" -ForegroundColor Cyan
+
+        Write-Host '|' -NoNewline -ForegroundColor Cyan
+        Write-Host " Command$(' ' * ($wholeLength - 'Command'.Length - 1))" -ForegroundColor Green -NoNewline 
+        Write-Host '|' -ForegroundColor Cyan
+        Write-Host "+$('-' * $wholelength)+" -ForegroundColor Cyan
+        foreach ($_ in $commandLines) {    
+            Write-Host '|' -NoNewline -ForegroundColor Cyan 
+            Write-Host $_.PadRight($wholeLength, ' ') -foregroundColor Green -nonewline 
+            Write-host '|' -ForegroundColor Cyan
+        }
+        
+
+        Write-Host "+$('-' * $wholelength)+" -ForegroundColor Cyan
+    }
+</ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </View>
+    <View>
+      <Name>Hue.Sensor</Name>
+      <ViewSelectedBy>
+        <TypeName>Hue.Sensor</TypeName>
+      </ViewSelectedBy>
+      <GroupBy>
+        <PropertyName>Manufacturer</PropertyName>
+      </GroupBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>4</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>20</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>10</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Config</Label>
+            <Alignment>left</Alignment>
+            <Width>40</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>State</Label>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <Wrap />
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>ID</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>ModelID</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock> ($_.Config | Out-String -Width 40).Trim()</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock> ($_.State | Out-String -Width 40).Trim()</ScriptBlock>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>Hue.Sensor</Name>
+      <ViewSelectedBy>
+        <TypeName>Hue.Sensor</TypeName>
+      </ViewSelectedBy>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <ScriptBlock>
+    $sensor = $_ 
+    $mfgName = try { 
+        $null =[Convert]::FromBase64String($sensor.ManufacturerName) 
+    } catch {
+        $sensor.ManufacturerName
+    }
+    $sensorNameString = $mfgName, $sensor.ModelId, $sensor.Name, "[ID: $($sensor.ID)]" -ne $null -join ' ' 
+    @($sensorNameString
+    ""
+    $sensorState = ($sensor.State | Out-String).Trim()
+    $sensorConfig = if ($sensor.config) { ($sensor.Config | Out-String).Trim() } 
+    "State:"
+    $sensorState = $sensorState -replace "($([Environment]::NewLine)|`n)", '$1    '
+    $sensorState
+    
+    if ($sensorConfig) {
+        "Config:"
+        $($sensorConfig -replace "($([Environment]::NewLine)|`n)", '$1    ')        
+    }) -join [Environment]::NewLine
+    
+</ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </View>
+    <View>
+      <Name>NanoLeaf.Effect</Name>
+      <ViewSelectedBy>
+        <TypeName>NanoLeaf.Effect</TypeName>
+      </ViewSelectedBy>
+      <GroupBy>
+        <PropertyName>pluginType</PropertyName>
+      </GroupBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>animName</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>animType</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>pluginUuid</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>palette</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>NanoLeaf.Effect.Plugin</Name>
+      <ViewSelectedBy>
+        <TypeName>NanoLeaf.Effect.Plugin</TypeName>
+      </ViewSelectedBy>
+      <GroupBy>
+        <PropertyName>type</PropertyName>
+      </GroupBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <Wrap />
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>author</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>uuid</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>description</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>NanoLeaf.Panel</Name>
+      <ViewSelectedBy>
+        <TypeName>NanoLeaf.Panel</TypeName>
+      </ViewSelectedBy>
+      <GroupBy>
+        <ScriptBlock>
+        $_.ControllerName + ' [ ' + $_.IPAddress + ' ] '
+    </ScriptBlock>
+        <Label>Controller</Label>
+      </GroupBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>PanelID</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>X</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Y</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>O</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>ShapeType</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+  </ViewDefinitions>
+  <Controls>
+    <Control>
+      <Name>${LightScript_setOutputStyle}</Name>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <ScriptBlock>&lt;#
+.Synopsis
+    Adds style to a format output
+.Description
+    Adds style information to a format output, including:
+
+    * ForegroundColor
+    * BackgroundColor
+    * Bold
+    * Underline
+.Notes
+    Stylized Output works in two contexts at present:
+    * Rich consoles (Windows Terminal, PowerShell.exe, Pwsh.exe) (when $host.UI.SupportsVirtualTerminal)
+    * Web pages (Based off the presence of a $Request variable, or when $host.UI.SupportsHTML (you must add this property to $host.UI))
+
+    IsFormatPart: true
+#&gt;
+param(
+[string]$ForegroundColor,
+[string]$BackgroundColor,
+[switch]$Bold,
+[switch]$Underline,
+[switch]$Invert
+)
+
+$canUseANSI = $host.UI.SupportsVirtualTerminal
+$canUseHTML = $Request -or $host.UI.SupportsHTML
+if (-not ($canUseANSI -or $canUseHTML)) { return }
+
+$knownStreams = @{
+    Output='';Error='BrightRed';Warning='BrightYellow';
+    Verbose='BrightCyan';Debug='Yellow';Progress='Cyan';
+    Success='BrightGreen';Failure='Red';Default=''}
+$standardColors = 'Black', 'Red', 'Green', 'Yellow', 'Blue','Magenta', 'Cyan', 'White'
+$brightColors   = 'BrightBlack', 'BrightRed', 'BrightGreen', 'BrightYellow', 'BrightBlue','BrightMagenta', 'BrightCyan', 'BrightWhite'
+$n =0
+$cssClasses = @()
+$styleAttributes =
+    @(:nextColor foreach ($hc in $ForegroundColor,$BackgroundColor) {
+        $n++
+        if (-not $hc) { continue }
+        if ($hc[0] -eq [char]0x1b) {
+            if ($canUseANSI) { 
+                $hc; continue
+            }
+        }
+
+        $ansiStartPoint = if ($n -eq 1) { 30 } else { 40 } 
+        if ($knownStreams.ContainsKey($hc)) {
+            $i = $brightColors.IndexOf($knownStreams[$hc])
+            if ($canUseHTML) {
+                $cssClasses += $hc
+            } else {
+                if ($i -ge 0 -and $canUseANSI) {
+                    '' + [char]0x1b + "[1;$($ansiStartPoint + $i)m"
+                } else {
+                    $i = $standardColors.IndexOf($knownStreams[$hc])
+                    if ($i -ge 0 -and $canUseANSI) {
+                        '' + [char]0x1b + "[1;$($ansiStartPoint + $i)m"
+                    } elseif ($i -le 0 -and $canUseANSI) {                        
+                        '' + [char]0x1b + "[$($ansistartpoint + 8):5m"
+                    }
+                }
+            }
+            continue nextColor
+        }
+        elseif ($standardColors -contains $hc) {
+            for ($i = 0; $i -lt $standardColors.Count;$i++) {
+                if ($standardColors[$i] -eq $hc) {
+                    if ($canUseANSI -and -not $canUseHTML) {
+                        '' + [char]0x1b + "[$($ansiStartPoint + $i)m"
+                    } else {
+                        $cssClasses += $standardColors[$i]
+                    }
+                    continue nextColor
+                }
+            }
+        } elseif ($brightColors -contains $hc) {
+            for ($i = 0; $i -lt $brightColors.Count;$i++) {
+                if ($brightColors[$i] -eq $hc) {
+                    if ($canUseANSI -and -not $canUseHTML) {
+                        '' + [char]0x1b + "[1;$($ansiStartPoint + $i)m"
+                    } else {
+                        $cssClasses += $standardColors[$i]
+                    }
+                    continue nextColor
+                }
+            }
+        }
+
+
+        if ($hc -and -not $hc.StartsWith('#')) { 
+            $placesToLook=
+                @(if ($hc.Contains('.')) {
+                    $module, $setting = $hc -split '\.', 2
+                    $theModule = Get-Module $module
+                    $theModule.PrivateData.Color,
+                        $theModule.PrivateData.Colors,
+                        $theModule.PrivateData.Colour,
+                        $theModule.PrivateData.Colours,
+                        $theModule.PrivateData.EZOut,
+                        $global:PSColors,
+                        $global:PSColours
+                } else {
+                    $setting = $hc
+                    $moduleColorSetting = $theModule.PrivateData.PSColors.$setting
+                })
+
+            foreach ($place in $placesToLook) {
+                if (-not $place) { continue }
+                foreach ($propName in $setting -split '\.') {
+                    $place = $place.$propName
+                    if (-not $place) { break }
+                }
+                if ($place -and "$place".StartsWith('#') -and 4,7 -contains "$place".Length) {
+                    $hc = $place
+                    continue
+                }
+            }
+            if (-not $hc.StartsWith -or -not $hc.StartsWith('#')) {
+                continue
+            }
+        }
+        $r,$g,$b = if ($hc.Length -eq 7) {
+            [int]::Parse($hc[1..2]-join'', 'HexNumber')
+            [int]::Parse($hc[3..4]-join '', 'HexNumber')
+            [int]::Parse($hc[5..6] -join'', 'HexNumber')
+        }elseif ($hc.Length -eq 4) {
+            [int]::Parse($hc[1], 'HexNumber') * 16
+            [int]::Parse($hc[2], 'HexNumber') * 16
+            [int]::Parse($hc[3], 'HexNumber') * 16
+        }
+
+        if ($canUseHTML) {
+            if ($n -eq 1) { "color:$hc" }
+            elseif ($n -eq 2) { "background-color:$hc"} 
+        }
+        elseif ($canUseANSI) {
+            if ($n -eq 1) { [char]0x1b+"[38;2;$r;$g;${b}m" }
+            elseif ($n -eq 2) { [char]0x1b+"[48;2;$r;$g;${b}m" }
+        }
+        
+    })
+
+
+if ($Bold) {
+    $styleAttributes += 
+        if ($canUseHTML) {
+            "font-weight:bold"
+        }
+        elseif ($canUseANSI) 
+        {
+            [char]0x1b + "[1m"
+        }
+}
+
+if ($Underline) {
+    $styleAttributes += 
+        if ($canUseHTML) {
+            "text-decoration:underline"
+        } elseif ($canUseANSI) {
+            [char]0x1b + "[4m"
+        }
+}
+
+if ($Invert) {
+    $styleAttributes += 
+        if ($canUseHTML) {
+            "filter:invert(100%)"
+        } elseif ($canUseANSI) {
+            [char]0x1b + "[7m"            
+        }
+}
+
+if ($canUseHTML) {
+   
+    "&lt;span$(
+        if ($styleAttributes) { " style='$($styleAttributes -join ';')'"}
+    )$(
+        if ($cssClasses) { " class='$($cssClasses -join ' ')'"}
+    )&gt;"
+} elseif ($canUseANSI) {
+    $styleAttributes -join ''
+}</ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </Control>
+    <Control>
+      <Name>${LightScript_ClearOutputStyle}</Name>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <ScriptBlock>&lt;#
+.Synopsis
+    Clears the output style
+.Description
+    Clears ANSI output style or closes the most recent span element.
+
+    ANSI stylization can be toggled off individually (for instance, to stop applying an -Underline but leave the color unchanged)
+.Notes
+    IsFormatPart: true
+#&gt;
+param(
+# If set, will explicitly clear ANSI Bold
+[switch]
+$Bold,
+# If set, will explicitly clear ANSI Underline
+[switch]
+$Underline,
+# If set, will explicitly clear ANSI Invert
+[switch]
+$Invert,
+# If set, will explicitly clear ANSI Foreground Color
+[switch]
+$ForegroundColor,
+# If set, will explicitly clear ANSI Background Color
+[switch]
+$BackgroundColor
+)
+@(if ($request -or $host.UI.SupportsHTML) {
+    "&lt;/span&gt;"
+} elseif ($Host.UI.SupportsVirtualTerminal) {
+    if ($Underline) {
+        [char]0x1b + "[24m"
+    }
+    if ($Bold) {        
+        [char]0x1b + "[21m"
+    }
+    if ($Invert) {
+        [char]0x1b + '[27m'
+    }
+    if ($ForegroundColor) {
+        [char]0x1b + '[39m'
+    }
+    if ($BackgroundColor) {
+        [char]0x1b + '[49m'
+    }
+
+    if (-not ($Underline -or $Bold -or $Invert -or $ForegroundColor -or $BackgroundColor)) {
+        [char]0x1b + '[0m'
+    }
+    
+}) -join ''</ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </Control>
+  </Controls>
+</Configuration>
