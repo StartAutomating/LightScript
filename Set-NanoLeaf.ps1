@@ -259,7 +259,7 @@
 
         if ($Brightness) {
             $sendData.brightness = @{value=[Math]::Round($Brightness * 100)}
-            if ($Duration) {
+            if ($Duration.TotalSeconds) {
                 $sendData.brightness.duration = [int][Math]::Round($Duration.TotalSeconds)
             }
         }

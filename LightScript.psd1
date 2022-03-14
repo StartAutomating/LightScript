@@ -1,5 +1,5 @@
 @{
-    ModuleVersion = '0.1'
+    ModuleVersion = '0.2'
     RootModule = 'LightScript.psm1'
     Description = 'Smarter Lighting with PowerShell'
     FormatsToProcess = 'LightScript.format.ps1xml'
@@ -14,8 +14,12 @@
             LicenseURI = 'https://github.com/StartAutomating/LightScript/blob/main/LICENSE'
             IconURI    = 'https://github.com/StartAutomating/LightScript/blob/main/Assets/LightScript.png'
             ReleaseNotes = @'
-0.1
-----
+## 0.2:
+Adding: Disconnect-HueBridge, Disconnect-NanoLeaf, Disconnect-Twinkly (#2)
+Adding Pixoo commands: Connect/Disconnect/Get/Set-Pixoo (#4)
+
+---
+## 0.1:
 Initial Release of LightScript:  Smarter Lighting with PowerShell
 
 Script your Hue Bridge, NanoLeaf, or Twinkly lights.

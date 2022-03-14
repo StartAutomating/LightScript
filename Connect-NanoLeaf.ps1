@@ -51,7 +51,7 @@
 
                 $nanoLeafDataFile = Join-Path $lightScriptRoot ".$($nanoLeafInfo.serialNo).nanoleaf.clixml"
 
-                [PSCustomObject]@{IPAddress=$NanoLeafIP;NanoLeafToken=$authToken} |
+                [PSCustomObject]@{IPAddress=$NanoLeafIP;NanoLeafToken=$authToken;DeviceName=$nanoLeafInfo.DeviceName} |
                     Export-Clixml -Path $nanoLeafDataFile
             }
 
