@@ -9,6 +9,7 @@ It currently can control:
 * [Philips Hue Bridges](https://www.philips-hue.com/)
 * [NanoLeaf](https://nanoleaf.me/)
 * [Twinkly](https://www.twinkly.com/)
+* [Divoom Pixoo64](https://www.divoom.com/products/pixoo-64)
 
 
 The goal of LightScript is to let you control every light in your house, and do more than what most applications will let you.
@@ -228,4 +229,34 @@ Get-Twinkly | Connect-Twinkly
 ~~~
 
 
+## Pixoo64
 
+The Pixoo App will let you know the device's IP address.  From there, you can:
+
+~~~PowerShell
+Connect-Pixoo -IPAddress 1.2.3.4
+~~~
+
+To list connected devices, use:
+
+~~~PowerShell
+Get-Pixoo
+~~~
+
+Here are a few things you can do with your Pixoo:
+
+~~~PowerShell
+Set-Pixoo -Channel Cloud # Switch to the cloud Channel
+
+Set-Pixoo -Channel Visualizer # Switch to the visualizer
+
+Set-Pixoo -Visualizer 20 # Switch to a hidden visualizer
+
+Set-Pixoo -Stopwatch Start # Start a Stopwatch
+
+Set-Pixoo -Stopwatch Reset # Reset a Stopwatch
+
+Set-Pixoo -Timer "00:01:00" # Set a timer for one minute
+
+Set-Pixoo -RedScore 1 -BlueScore 0 # Keep a scoreboard
+~~~
