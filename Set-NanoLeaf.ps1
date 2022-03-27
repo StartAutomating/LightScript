@@ -11,6 +11,14 @@
         Set-NanoLeaf -Hue (Get-Random -Min 0 -Max 360) -Saturation ((Get-Random -Min 0 -Max 1)/100) -Brightness ((Get-Random -Min 0 -Max 1)/100)
     .Example
         Set-NanoLeaf -EffectName Blaze
+    .Example
+        Set-NanoLeaf -Palette "#fedcba", "#abcdef"  # Fade between two colors
+    .Example
+        Set-NanoLeaf -Palette "#fedcba", "#abcdef" -PluginName Flow
+    .Example
+        Set-NanoLeaf -Palette "#012345", "#543210" -PluginName Wheel
+    .Example
+        Set-NanoLeaf -Palette "#ff0000", "#000000", "#00ff00", "#000000", "#0000ff", "#000000" -PluginName Fireworks -PluginType Rhythm
     .Link
         Get-NanoLeaf
     .Link
@@ -88,6 +96,21 @@
     $ColorTemperature,
 
     # The name of the effect.
+    [ArgumentCompleter({
+        param ( $commandName,
+            $parameterName,
+            $wordToComplete,
+            $commandAst,
+            $fakeBoundParameters )
+        $effectNames = @(Get-NanoLeaf -ListEffectName | 
+            Select-Object -Unique) 
+        if ($wordToComplete) {        
+            $toComplete = $wordToComplete -replace "^'" -replace "'$"
+            return @($effectNames -like "$toComplete*" -replace '^', "'" -replace '$',"'")
+        } else {
+            return @($effectNames -replace '^', "'" -replace '$',"'")
+        }
+    })]
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('animName')]
     [string]
@@ -104,6 +127,21 @@
     $ExternalControl,
 
     # The name of the effect plugin.
+    [ArgumentCompleter({
+        param ( $commandName,
+            $parameterName,
+            $wordToComplete,
+            $commandAst,
+            $fakeBoundParameters )
+        $pluginNames = @(Get-NanoLeaf -ListPlugin | 
+            Select-Object -Unique -ExpandProperty name)
+        if ($wordToComplete) {        
+            $toComplete = $wordToComplete -replace "^'" -replace "'$"
+            return @($pluginNames -like "$toComplete*" -replace '^', "'" -replace '$',"'")
+        } else {
+            return @($pluginNames -replace '^', "'" -replace '$',"'")
+        }
+    })]
     [Parameter(ValueFromPipelineByPropertyName)]
     [string]
     $PluginName,
@@ -258,9 +296,11 @@
 
 
         if ($Brightness) {
-            $sendData.brightness = @{value=[Math]::Round($Brightness * 100)}
+            $sendData.brightness = [Ordered]@{value=[int][Math]::Round($Brightness * 100)}
             if ($Duration.TotalSeconds) {
                 $sendData.brightness.duration = [int][Math]::Round($Duration.TotalSeconds)
+            } else {
+                $sendData.brightness.duration = 0
             }
         }
 
