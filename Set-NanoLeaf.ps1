@@ -11,6 +11,29 @@
         Set-NanoLeaf -Hue (Get-Random -Min 0 -Max 360) -Saturation ((Get-Random -Min 0 -Max 1)/100) -Brightness ((Get-Random -Min 0 -Max 1)/100)
     .Example
         Set-NanoLeaf -EffectName Blaze
+    .Example
+        Set-NanoLeaf -Palette "#fedcba", "#abcdef"  # Fade between two colors
+    .Example
+        # Flow between two colors
+        Set-NanoLeaf -Palette "#fedcba", "#abcdef" -PluginName Flow
+    .EXAMPLE
+        # Flow downward between two colors
+        Set-NanoLeaf -Palette "#abcdef", "#890aef" -PluginName Flow -PluginOption @{linDirection="down"}
+    .Example
+        # Make a color wheel
+        Set-NanoLeaf -Palette "#012345", "#543210" -PluginName Wheel
+    .EXAMPLE
+        # Make a color wheel that rotates as slowly as it can, counter clockwise
+        Set-NanoLeaf -Palette "#012345", "#543210" -PluginName Wheel -PluginOption @{rotDirection="ccw";delayTime=600;transTime=600}
+    .Example
+        # Set up a Rhythm based RGB Fireworks
+        Set-NanoLeaf -Palette "#ff0000", "#000000", "#00ff00", "#000000", "#0000ff", "#000000" -PluginName Fireworks -PluginType Rhythm
+    .Example
+        # Set up a Rhythm based RGB Fireworks, with a very short flash
+        Set-NanoLeaf -Palette "#ff0000", "#00ff00", "#0000ff", "#000000" -PluginName Fireworks -PluginType Rhythm -PluginOption @{
+            delayTime = 1
+            transTime = 1
+        }
     .Link
         Get-NanoLeaf
     .Link
@@ -19,6 +42,7 @@
     [CmdletBinding(SupportsShouldProcess,ConfirmImpact='Low',DefaultParameterSetName='SimpleSet')]
     [OutputType([PSObject])]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidAssignmentToAutomaticVariable", "", Justification=" Side-Effects Desired ")]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSShouldProcess", "", Justification=" Handled by underlying function")]
     param(
     # If set, will turn the nanoleaf off
     [Parameter(ValueFromPipelineByPropertyName)]
@@ -88,6 +112,21 @@
     $ColorTemperature,
 
     # The name of the effect.
+    [ArgumentCompleter({
+        param ( $commandName,
+            $parameterName,
+            $wordToComplete,
+            $commandAst,
+            $fakeBoundParameters )
+        $effectNames = @(Get-NanoLeaf -ListEffectName | 
+            Select-Object -Unique) 
+        if ($wordToComplete) {        
+            $toComplete = $wordToComplete -replace "^'" -replace "'$"
+            return @($effectNames -like "$toComplete*" -replace '^', "'" -replace '$',"'")
+        } else {
+            return @($effectNames -replace '^', "'" -replace '$',"'")
+        }
+    })]
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('animName')]
     [string]
@@ -104,6 +143,21 @@
     $ExternalControl,
 
     # The name of the effect plugin.
+    [ArgumentCompleter({
+        param ( $commandName,
+            $parameterName,
+            $wordToComplete,
+            $commandAst,
+            $fakeBoundParameters )
+        $pluginNames = @(Get-NanoLeaf -ListPlugin | 
+            Select-Object -Unique -ExpandProperty name)
+        if ($wordToComplete) {        
+            $toComplete = $wordToComplete -replace "^'" -replace "'$"
+            return @($pluginNames -like "$toComplete*" -replace '^', "'" -replace '$',"'")
+        } else {
+            return @($pluginNames -replace '^', "'" -replace '$',"'")
+        }
+    })]
     [Parameter(ValueFromPipelineByPropertyName)]
     [string]
     $PluginName,
@@ -171,7 +225,23 @@
     [Collections.IDictionary]
     $Panel = @{},
 
-    # The effect options
+    <#
+    
+    The effect options.
+
+    Plugins can use any of the Nanoleaf-approved option types to further control how panels render light.
+
+    |Option         | type  | limits               | description                                                               | 
+    |---------------|-------|----------------------|---------------------------------------------------------------------------|
+    |transTime      | int   |1-600                 |The time it takes to go from one palette colour to another (tenths/second).|
+    |loop           | bool  |                      | Indicates whether an animation should loop or not                         |
+    |linDirection   |string |left, right, up, down | Linear direction, based on user's global orientation                      |
+    |radDirection   |string |in, out               | Radial direction, based on layout center                                  |
+    |rotDirection   |string |cw, ccw               | Circular Direction, around the layout center                              |
+    |delayTime      | int   |0-600                 | How long the plugin will dwell on a palette colour (tenths/second).       |
+    |nColorsPerFrame|int    |1-50                  | Modifier that indicates how much of a palette is shown on the layout.     |
+    |mainColorProb  |double |0.0-100.0             | Probability of background colour being used                               |
+    #>
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('PluginOption','PluginOptions','EffectOptions')]
     [Collections.IDictionary]
@@ -258,9 +328,11 @@
 
 
         if ($Brightness) {
-            $sendData.brightness = @{value=[Math]::Round($Brightness * 100)}
+            $sendData.brightness = [Ordered]@{value=[int][Math]::Round($Brightness * 100)}
             if ($Duration.TotalSeconds) {
                 $sendData.brightness.duration = [int][Math]::Round($Duration.TotalSeconds)
+            } else {
+                $sendData.brightness.duration = 0
             }
         }
 
