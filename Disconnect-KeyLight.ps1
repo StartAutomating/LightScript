@@ -30,7 +30,7 @@ function Disconnect-KeyLight {
         Foreach-Object {
             $file = $_
             $fileInfo = Import-Clixml -LiteralPath $file.FullName
-            if ($fileInfo.IPAddress -eq $IPAddress -and $PSCmdlet.ShouldProcess("Remove $($fileInfo.MACAddress)")) {
+            if ($fileInfo.IPAddress -eq $IPAddress -and $PSCmdlet.ShouldProcess("Remove $($fileInfo.serialNumber)")) {
                 Remove-Item -LiteralPath $file.FullName -Force
             }
         }

@@ -62,7 +62,7 @@ function Connect-KeyLight {
                 $keyLightLightsConf = Invoke-RestMethod -Method Get -Uri "http://$($IpAddress):9123/elgato/lights"
                 $keyLightSettingsConf = Invoke-RestMethod -Method Get -Uri "http://$($IpAddress):9123/elgato/lights/settings" |
                 Select-Object powerOnBehavior, powerOnBrightness, powerOnTemperature
-                $keyLightDataFile = Join-Path $lightScriptRoot ".$($macAddress).keylight.clixml"
+                $keyLightDataFile = Join-Path $lightScriptRoot ".$($keyLightConf.serialNumber).keylight.clixml"
                 $keyLightConf.pstypenames.clear()
                 $keyLightConf.pstypenames.add('KeyLight')
                 $keyLightConf |
