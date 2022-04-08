@@ -1,19 +1,19 @@
-function Set-Elgato {
+function Set-KeyLight {
     <#
     .Synopsis
-        Sets Elgato Lighting
+        Sets Elgato Key Lighting
     .Description
-        Changes Elgato Lighting
+        Changes Elgato Key Lighting
     .Example
-        Set-Elgato -Brightness .5
+        Set-KeyLight -Brightness .5
     .LINK
-        Get-Elgato
+        Get-KeyLight
     #>
     [CmdletBinding(SupportsShouldProcess)]
     param(
-        # One or more IP Addresses of Elgato Lighting devices.
+        # One or more IP Addresses of Elgato Key Lighting devices.
         [Parameter(ValueFromPipelineByPropertyName)]
-        [Alias('ElgatoIPAddress')]
+        [Alias('KeyLightIPAddress')]
         [IPAddress[]]
         $IPAddress,
 
@@ -26,12 +26,12 @@ function Set-Elgato {
         [float]
         $Brightness,
 
-        # If set, will turn a Elgato screen on.
+        # If set, will turn the light on.
         [Parameter(ValueFromPipelineByPropertyName)]
         [switch]
         $On,
 
-        # If set, will turn a Elgato screen off.
+        # If set, will turn the light on.
         [Parameter(ValueFromPipelineByPropertyName)]
         [switch]
         $Off,
@@ -49,8 +49,8 @@ function Set-Elgato {
         $PSDefaultParameterValues = @{
             "Invoke-RestMethod:ContentType" = "application/json"
         }
-        if (-not $script:ElgatoCache) {
-            $script:ElgatoCache = @{}
+        if (-not $script:KeyLightCache) {
+            $script:KeyLightCache = @{}
         }
         if ($home) {
             $lightScriptRoot = Join-Path $home -ChildPath LightScript
@@ -62,20 +62,20 @@ function Set-Elgato {
         #region Default to All Devices
         if (-not $IPAddress) {
             # If no -IPAddress was passed
-            if ($home -and -not $script:ElgatoCache.Count) {
-                # Read all .twinkly.clixml files beneath your LightScript directory.
-                Get-ChildItem -Path $lightScriptRoot -ErrorAction SilentlyContinue -Filter *.elgato.clixml -Force |
+            if ($home -and -not $script:KeyLightCache.Count) {
+                # Read all .keylight.clixml files beneath your LightScript directory.
+                Get-ChildItem -Path $lightScriptRoot -ErrorAction SilentlyContinue -Filter *.keylight.clixml -Force |
                 Import-Clixml |
                 ForEach-Object {
                     if (-not $_) { return }
-                    $ElgatoConnection = $_                        
-                    $script:ElgatoCache["$($ElgatoConnection.IPAddress)"] = $ElgatoConnection
+                    $KeyLightConnection = $_                        
+                    $script:KeyLightCache["$($KeyLightConnection.IPAddress)"] = $KeyLightConnection
                 }
 
-                $IPAddress = $script:ElgatoCache.Keys # The keys of the device cache become the -IPAddress.
+                $IPAddress = $script:KeyLightCache.Keys # The keys of the device cache become the -IPAddress.
             }
-            elseif ($script:ElgatoCache.Count) {
-                $IPAddress = $script:ElgatoCache.Keys # The keys of the device cache become the -IPAddress.
+            elseif ($script:KeyLightCache.Count) {
+                $IPAddress = $script:KeyLightCache.Keys # The keys of the device cache become the -IPAddress.
             }
             if (-not $IPAddress) {
                 # If we still have no -IPAddress                

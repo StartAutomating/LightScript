@@ -1,20 +1,20 @@
-function Disconnect-Elgato {
+function Disconnect-KeyLight {
     <#
     .Synopsis
-        Disconnects a Elgato Lighting
+        Disconnects a Elgato Key Lighting
     .Description
-        Disconnects a Elgato Lighting, removing stored device info
+        Disconnects a Elgato Key Lighting, removing stored device info
     .Example
-        Disconnect-Elgato 1.2.3.4
+        Disconnect-KeyLight 1.2.3.4
     .Link
-        Connect-Elgato
+        Connect-KeyLight
     #>
     [OutputType([Nullable], [PSObject])]
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     param(
         # The IP Address for the Twinkly device.  This can be discovered thru the phone user interface.
         [Parameter(Mandatory, Position = 0, ValueFromPipelineByPropertyName)]
-        [Alias('ElgatoIPAddress')]
+        [Alias('KeyLightIPAddress')]
         [IPAddress]
         $IPAddress
     )
@@ -26,7 +26,7 @@ function Disconnect-Elgato {
     }
 
     process {
-        @(Get-ChildItem -Filter *.elgato.clixml -Path $lightScriptRoot) |
+        @(Get-ChildItem -Filter *.keylight.clixml -Path $lightScriptRoot) |
         Foreach-Object {
             $file = $_
             $fileInfo = Import-Clixml -LiteralPath $file.FullName

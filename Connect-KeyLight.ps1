@@ -1,19 +1,19 @@
-function Connect-Elgato {
+function Connect-KeyLight {
     <#
     .Synopsis
-        Connects to a Elgato Lighting
+        Connects to a Elgato Key Lighting
     .Description
-        Connects to a Elgato Lighting over Wifi
+        Connects to a Elgato Key Lighting over Wifi
     .Example
-        Connect-Elgato 1.2.3.4 -PassThru
+        Connect-KeyLight 1.2.3.4 -PassThru
     .Link
-        Get-Elgato
+        Get-KeyLight
     #>
     [OutputType([Nullable], [PSObject])]
     param(
         # The IP Address for the Twinkly device.  This can be discovered thru the phone user interface.
         [Parameter(Mandatory, Position = 0, ValueFromPipelineByPropertyName)]
-        [Alias('ElgatoIPAddress')]
+        [Alias('KeyLightIPAddress')]
         [IPAddress]
         $IPAddress,
 
@@ -33,11 +33,11 @@ function Connect-Elgato {
 
     process {
         #region Attempt to Contact the Device
-        $elgatoConf = Invoke-RestMethod -Method Get -Uri "http://$($IpAddress):9123/elgato/accessory-info"
+        $keyLightConf = Invoke-RestMethod -Method Get -Uri "http://$($IpAddress):9123/elgato/accessory-info"
         #endregion Attempt to Contact the Device
 
 
-        if ($elgatoConf) {
+        if ($keyLightConf) {
             $macAddress =
             if ($PSVersionTable.Platform -like 'Win*' -or -not $PSVersionTable.Platform) {
                 Get-NetNeighbor | Where-Object IPAddress -eq $IPAddress | Select-Object -ExpandProperty LinkLayerAddress
@@ -59,22 +59,22 @@ function Connect-Elgato {
                     if (-not $createLightScriptDir) { return }
                 }
 
-                $elgatoLightsConf = Invoke-RestMethod -Method Get -Uri "http://$($IpAddress):9123/elgato/lights"
-                $elgatoSettingsConf = Invoke-RestMethod -Method Get -Uri "http://$($IpAddress):9123/elgato/lights/settings" |
+                $keyLightLightsConf = Invoke-RestMethod -Method Get -Uri "http://$($IpAddress):9123/elgato/lights"
+                $keyLightSettingsConf = Invoke-RestMethod -Method Get -Uri "http://$($IpAddress):9123/elgato/lights/settings" |
                 Select-Object powerOnBehavior, powerOnBrightness, powerOnTemperature
-                $elgatoDataFile = Join-Path $lightScriptRoot ".$($macAddress).elgato.clixml"
-                $elgatoConf.pstypenames.clear()
-                $elgatoConf.pstypenames.add('Elgato')
-                $elgatoConf |
+                $keyLightDataFile = Join-Path $lightScriptRoot ".$($macAddress).keylight.clixml"
+                $keyLightConf.pstypenames.clear()
+                $keyLightConf.pstypenames.add('KeyLight')
+                $keyLightConf |
                 Add-Member NoteProperty IPAddress $IPAddress -Force -PassThru |
                 Add-Member NoteProperty MACAddress $macAddress -Force -PassThru |
-                Add-Member NoteProperty Lights $elgatoLightsConf.lights -Force -PassThru |
-                Add-Member NoteProperty Lights $elgatoSettingsConf -Force -PassThru |
-                Export-Clixml -Path $elgatoDataFile
+                Add-Member NoteProperty Lights $keyLightLightsConf.lights -Force -PassThru |
+                Add-Member NoteProperty Lights $keyLightSettingsConf -Force -PassThru |
+                Export-Clixml -Path $keyLightDataFile
             }
             #endregion Save Device Information
             if ($PassThru) {
-                $elgatoConf
+                $keyLightConf
             }
         }
     }

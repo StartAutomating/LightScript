@@ -1,28 +1,28 @@
-function Get-Elgato {
+function Get-KeyLight {
     <#
     .Synopsis
-        Gets Elgato Lighting Devices
+        Gets Elgato Key Lighting Devices
     .Description
-        Gets saved Elgato Lighting Devices
+        Gets saved Elgato Key Lighting Devices
     .Example
-        Get-Elgato
+        Get-KeyLight
     .LINK
-        Connect-Elgato
+        Connect-KeyLight
     .LINK
-        Set-Elgato
+        Set-KeyLight
     #>
     [CmdletBinding(DefaultParameterSetName = "ListDevices")]
     param(
         # The IP Address for the Twinkly device.  This can be discovered thru the phone user interface.
         [Parameter(ValueFromPipelineByPropertyName)]
-        [Alias('ElgatoIPAddress')]
+        [Alias('KeyLightIPAddress')]
         [IPAddress[]]
         $IPAddress
     )
 
     begin {
-        if (-not $script:ElgatoCache) {
-            $script:ElgatoCache = @{}
+        if (-not $script:KeyLightCache) {
+            $script:KeyLightCache = @{}
         }
         if ($home) {
             $lightScriptRoot = Join-Path $home -ChildPath LightScript
@@ -35,15 +35,15 @@ function Get-Elgato {
             # If no -IPAddress was passed
             if ($home) {
                 # Read all .twinkly.clixml files beneath your LightScript directory.
-                Get-ChildItem -Path $lightScriptRoot -ErrorAction SilentlyContinue -Filter *.elgato.clixml -Force |
+                Get-ChildItem -Path $lightScriptRoot -ErrorAction SilentlyContinue -Filter *.keylight.clixml -Force |
                 Import-Clixml |
                 ForEach-Object {
                     if (-not $_) { return }
-                    $ElgatoConnection = $_                        
-                    $script:ElgatoCache["$($ElgatoConnection.IPAddress)"] = $ElgatoConnection
+                    $KeyLightConnection = $_                        
+                    $script:KeyLightCache["$($KeyLightConnection.IPAddress)"] = $KeyLightConnection
                 }
 
-                $IPAddress = $script:ElgatoCache.Keys # The keys of the device cache become the -IPAddress.
+                $IPAddress = $script:KeyLightCache.Keys # The keys of the device cache become the -IPAddress.
             }
             if (-not $IPAddress) {
                 # If we still have no -IPAddress                
@@ -53,7 +53,7 @@ function Get-Elgato {
         #endregion Default to All Devices
 
         if ($PSCmdlet.ParameterSetName -eq 'ListDevices') {
-            return $script:ElgatoCache.Values
+            return $script:KeyLightCache.Values
         }
     }
 }
