@@ -3,7 +3,6 @@ Adding KeyLight: Connect-KeyLight, Get-KeyLight, Set-KeyLight, Disconnect-KeyLig
 
 * Set-NanoLeaf:  Adding -EffectOption parameter help (#9).  Adding examples.
 * Set-NanoLeaf:  Fixing Brightness (#7).  Adding Tab Completion (#8).  Adding Examples
-
 ---
 
 ## 0.2:

@@ -1,5 +1,5 @@
 @{
-    ModuleVersion = '0.2'
+    ModuleVersion = '0.2.1'
     RootModule = 'LightScript.psm1'
     Description = 'Smarter Lighting with PowerShell'
     FormatsToProcess = 'LightScript.format.ps1xml'
@@ -9,11 +9,15 @@
     Copyright = '2021 Start-Automating'
     PrivateData = @{
         PSData = @{
-            Tags = 'IoT','Hue', 'Twinkly', 'NanoLeaf'
+            Tags = 'IoT','Hue', 'Twinkly', 'NanoLeaf', 'Pixoo', 'Divoom'
             ProjectURI = 'https://github.com/StartAutomating/LightScript'
             LicenseURI = 'https://github.com/StartAutomating/LightScript/blob/main/LICENSE'
             IconURI    = 'https://github.com/StartAutomating/LightScript/blob/main/Assets/LightScript.png'
             ReleaseNotes = @'
+## 0.2.1:
+* Set-NanoLeaf:  Adding -EffectOption parameter help (#9).  Adding examples.
+* Set-NanoLeaf:  Fixing Brightness (#7).  Adding Tab Completion (#8).  Adding Examples
+---
 ## 0.2:
 Adding: Disconnect-HueBridge, Disconnect-NanoLeaf, Disconnect-Twinkly (#2)
 Adding Pixoo commands: Connect/Disconnect/Get/Set-Pixoo (#4)
