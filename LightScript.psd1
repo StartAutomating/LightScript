@@ -1,5 +1,5 @@
 @{
-    ModuleVersion = '0.2.1'
+    ModuleVersion = '0.2.2'
     RootModule = 'LightScript.psm1'
     Description = 'Smarter Lighting with PowerShell'
     FormatsToProcess = 'LightScript.format.ps1xml'
@@ -14,7 +14,10 @@
             LicenseURI = 'https://github.com/StartAutomating/LightScript/blob/main/LICENSE'
             IconURI    = 'https://github.com/StartAutomating/LightScript/blob/main/Assets/LightScript.png'
             ReleaseNotes = @'
-## 0.2.1:
+## 0.2.2
+Adding KeyLight: Connect-KeyLight, Get-KeyLight, Set-KeyLight, Disconnect-KeyLight
+---
+## 0.2.1
 * Set-NanoLeaf:  Adding -EffectOption parameter help (#9).  Adding examples.
 * Set-NanoLeaf:  Fixing Brightness (#7).  Adding Tab Completion (#8).  Adding Examples
 ---
