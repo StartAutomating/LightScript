@@ -11,8 +11,8 @@ Gets saved Elgato Key Lighting Devices
 
 ---
 ### Related Links
-* [](Connect-KeyLight.md)
-* [](Set-KeyLight.md)
+* [Connect-KeyLight](Connect-KeyLight.md)
+* [Set-KeyLight](Set-KeyLight.md)
 ---
 ### Examples
 #### EXAMPLE 1
