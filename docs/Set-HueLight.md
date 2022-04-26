@@ -11,7 +11,7 @@ Changes the state of one or more Hue lights
 
 ---
 ### Related Links
-* [](Get-HueLight.md)
+* [Get-HueLight](Get-HueLight.md)
 ---
 ### Examples
 #### EXAMPLE 1
@@ -24,6 +24,36 @@ Set-HueLight -Name *Lightstrip* -Luminance 0.05 # Set any Hue lights named Hue l
 LivingRoom -On -ColorTemperature 500 -Brightness .1
 # Room names and light names are automatically aliased to Set-HueLight.
 # This gives all lights in the living room a warm glow.
+```
+
+#### EXAMPLE 3
+```PowerShell
+Set-HueLight -Alert select       # Make all of the lights blink once
+```
+
+#### EXAMPLE 4
+```PowerShell
+Set-HueLight -Effect colorloop   # Set all lights to color loop
+```
+
+#### EXAMPLE 5
+```PowerShell
+Set-HueLight -Effect none        # Make all of the lights stop looping color
+```
+
+#### EXAMPLE 6
+```PowerShell
+Set-HueLight -RGBColor "#ff0000" # Make all lights red
+```
+
+#### EXAMPLE 7
+```PowerShell
+Set-HueLight -Hue 120 -Saturation .8 -Brightness .6 # Make all lights green
+```
+
+#### EXAMPLE 8
+```PowerShell
+Set-HueLight -HueIncrement 60    # Move the hue of all lights
 ```
 
 ---
