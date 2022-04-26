@@ -11,6 +11,12 @@ function Set-HueLight
         LivingRoom -On -ColorTemperature 500 -Brightness .1
         # Room names and light names are automatically aliased to Set-HueLight.
         # This gives all lights in the living room a warm glow.
+    .EXAMPLE        
+        Set-HueLight -Alert select       # Make all of the lights blink once
+    .EXAMPLE        
+        Set-HueLight -Effect colorloop   # Set all lights to color loop
+    .EXAMPLE
+        Set-HueLight -Effect none        # Make all of the lights stop looping color
     .Link
         Get-HueLight
     #>
