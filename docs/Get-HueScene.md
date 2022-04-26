@@ -11,9 +11,9 @@ Gets Scenes from one or more Hue Bridges
 
 ---
 ### Related Links
-* [](Remove-HueScene.md)
-* [](Get-HueBridge.md)
-* [](Send-HueBridge.md)
+* [Remove-HueScene](Remove-HueScene.md)
+* [Get-HueBridge](Get-HueBridge.md)
+* [Send-HueBridge](Send-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
