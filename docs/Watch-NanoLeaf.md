@@ -22,7 +22,7 @@ These messages are unpacked and translated into PowerShell events:
 
 ---
 ### Related Links
-* [](Get-NanoLeaf.md)
+* [Get-NanoLeaf](Get-NanoLeaf.md)
 ---
 ### Examples
 #### EXAMPLE 1
