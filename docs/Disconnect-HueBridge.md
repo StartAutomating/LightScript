@@ -11,7 +11,7 @@ Disconnects a new Hue Bridge and removes connection information.
 
 ---
 ### Related Links
-* [](Connect-HueBridge.md)
+* [Connect-HueBridge](Connect-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
