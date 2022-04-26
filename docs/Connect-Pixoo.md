@@ -11,7 +11,7 @@ Connects to a Pixoo over Wifi
 
 ---
 ### Related Links
-* [](Get-Pixoo.md)
+* [Get-Pixoo](Get-Pixoo.md)
 ---
 ### Examples
 #### EXAMPLE 1
