@@ -11,8 +11,8 @@ Adds Hue rooms, groups, or entertainment areas to a Hue Bridge.
 
 ---
 ### Related Links
-* [](Get-HueRoom.md)
-* [](Remove-HueRoom.md)
+* [Get-HueRoom](Get-HueRoom.md)
+* [Remove-HueRoom](Remove-HueRoom.md)
 ---
 ### Examples
 #### EXAMPLE 1
