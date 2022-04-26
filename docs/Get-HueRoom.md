@@ -11,9 +11,9 @@ Gets Groups from one or more Hue Bridges
 
 ---
 ### Related Links
-* [](Remove-HueRoom.md)
-* [](Get-HueBridge.md)
-* [](Send-HueBridge.md)
+* [Remove-HueRoom](Remove-HueRoom.md)
+* [Get-HueBridge](Get-HueBridge.md)
+* [Send-HueBridge](Send-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
