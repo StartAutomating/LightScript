@@ -11,9 +11,9 @@ Gets Rules from one or more Hue Bridges
 
 ---
 ### Related Links
-* [](Remove-HueRule.md)
-* [](Get-HueBridge.md)
-* [](Send-HueBridge.md)
+* [Remove-HueRule](Remove-HueRule.md)
+* [Get-HueBridge](Get-HueBridge.md)
+* [Send-HueBridge](Send-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
