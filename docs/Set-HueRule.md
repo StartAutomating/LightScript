@@ -11,8 +11,8 @@ Sets a Hue Rule.  Hue Rules are used to automatically change your Hue Lights and
 
 ---
 ### Related Links
-* [](Get-HueRule.md)
-* [](Remove-HueRule.md)
+* [Get-HueRule](Get-HueRule.md)
+* [Remove-HueRule](Remove-HueRule.md)
 ---
 ### Examples
 #### EXAMPLE 1
