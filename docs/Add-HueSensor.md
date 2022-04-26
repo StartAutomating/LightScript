@@ -12,7 +12,7 @@ Sensors can be physical sensors, such as a motion detector, or virtual sensors, 
 
 ---
 ### Related Links
-* [](Get-HueSensor.md)
+* [Get-HueSensor](Get-HueSensor.md)
 ---
 ### Examples
 #### EXAMPLE 1
