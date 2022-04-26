@@ -11,9 +11,9 @@ Gets ResourceLinks from one or more Hue Bridges
 
 ---
 ### Related Links
-* [](Remove-HueResource.md)
-* [](Get-HueBridge.md)
-* [](Send-HueBridge.md)
+* [Remove-HueResource](Remove-HueResource.md)
+* [Get-HueBridge](Get-HueBridge.md)
+* [Send-HueBridge](Send-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
