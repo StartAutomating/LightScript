@@ -16,8 +16,8 @@ nanoleaf controller lights flash in sequence.  Then run this command within the 
 
 ---
 ### Related Links
-* [](Find-NanoLeaf.md)
-* [](Get-NanoLeaf.md)
+* [Find-NanoLeaf](Find-NanoLeaf.md)
+* [Get-NanoLeaf](Get-NanoLeaf.md)
 ---
 ### Examples
 #### EXAMPLE 1
