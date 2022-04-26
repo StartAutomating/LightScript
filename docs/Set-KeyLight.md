@@ -11,7 +11,7 @@ Changes Elgato Key Lighting
 
 ---
 ### Related Links
-* [](Get-KeyLight.md)
+* [Get-KeyLight](Get-KeyLight.md)
 ---
 ### Examples
 #### EXAMPLE 1
