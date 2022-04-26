@@ -11,8 +11,8 @@ Gets Hue Bridges registered on the system, and gets Hue bridge resources.
 
 ---
 ### Related Links
-* [](Find-HueBridge.md)
-* [](Join-HueBridge.md)
+* [Find-HueBridge](Find-HueBridge.md)
+* [Join-HueBridge](Join-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
