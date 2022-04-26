@@ -11,8 +11,8 @@ Renames one or more Hue lights.
 
 ---
 ### Related Links
-* [](Get-HueBridge.md)
-* [](Get-HueLight.md)
+* [Get-HueBridge](Get-HueBridge.md)
+* [Get-HueLight](Get-HueLight.md)
 ---
 ### Examples
 #### EXAMPLE 1
