@@ -11,7 +11,7 @@ Finds Hue Bridges on the local area network, using https://discovery.meethue.com
 
 ---
 ### Related Links
-* [](Connect-HueBridge.md)
+* [Connect-HueBridge](Connect-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
