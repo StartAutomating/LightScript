@@ -11,9 +11,9 @@ Gets Sensors from one or more Hue Bridges
 
 ---
 ### Related Links
-* [](Remove-HueSensor.md)
-* [](Get-HueBridge.md)
-* [](Send-HueBridge.md)
+* [Remove-HueSensor](Remove-HueSensor.md)
+* [Get-HueBridge](Get-HueBridge.md)
+* [Send-HueBridge](Send-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
