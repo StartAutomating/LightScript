@@ -11,9 +11,9 @@ Removes Schedules from one or more Hue Bridges
 
 ---
 ### Related Links
-* [](Get-HueSchedule.md)
-* [](Get-HueBridge.md)
-* [](Send-HueBridge.md)
+* [Get-HueSchedule](Get-HueSchedule.md)
+* [Get-HueBridge](Get-HueBridge.md)
+* [Send-HueBridge](Send-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
