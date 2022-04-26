@@ -11,7 +11,7 @@ Disconnects a Twinkly light controller
 
 ---
 ### Related Links
-* [](Connect-Twinkly.md)
+* [Connect-Twinkly](Connect-Twinkly.md)
 ---
 ### Examples
 #### EXAMPLE 1
