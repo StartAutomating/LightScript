@@ -11,7 +11,7 @@ Disconnects a Pixoo, removing stored device info
 
 ---
 ### Related Links
-* [](Connect-Pixoo.md)
+* [Connect-Pixoo](Connect-Pixoo.md)
 ---
 ### Examples
 #### EXAMPLE 1
