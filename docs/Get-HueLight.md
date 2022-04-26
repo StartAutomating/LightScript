@@ -11,7 +11,7 @@ Gets Hue lights from the Hue Bridge.
 
 ---
 ### Related Links
-* [](Get-HueBridge.md)
+* [Get-HueBridge](Get-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
