@@ -18,8 +18,8 @@ Then run this command within the next 30 seconds.
 
 ---
 ### Related Links
-* [](Find-HueBridge.md)
-* [](Get-HueBridge.md)
+* [Find-HueBridge](Find-HueBridge.md)
+* [Get-HueBridge](Get-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
