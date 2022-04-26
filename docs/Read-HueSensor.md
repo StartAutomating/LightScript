@@ -11,11 +11,11 @@ Reads Sensors values from the Hue Bridge
 
 ---
 ### Related Links
-* [](Write-HueSensor.md)
-* [](Get-HueSensor.md)
-* [](Get-HueBridge.md)
-* [](Add-HueSensor.md)
-* [](Remove-HueSensor.md)
+* [Write-HueSensor](Write-HueSensor.md)
+* [Get-HueSensor](Get-HueSensor.md)
+* [Get-HueBridge](Get-HueBridge.md)
+* [Add-HueSensor](Add-HueSensor.md)
+* [Remove-HueSensor](Remove-HueSensor.md)
 ---
 ### Examples
 #### EXAMPLE 1
