@@ -1,7 +1,15 @@
+## 0.2.3
+* Set-NanoLeaf:  Fixing #17
+* Send-HueBridge:  Adding logging
+* Automatically documentating module (#13)
+* Set-HueLight:
+  * Fixing Transition Time (#12)
+  * Adding examples
+  * Fixing -Hue/-HueIncrement (#15)   
+---
+
 ## 0.2.2
-
 Adding KeyLight: Connect-KeyLight, Get-KeyLight, Set-KeyLight, Disconnect-KeyLight
-
 ---
 
 ## 0.2.1

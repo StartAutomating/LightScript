@@ -1,4 +1,4 @@
-﻿
+
 name: Analyze, Test, Tag, and Publish
 on: 
   push: 
@@ -410,8 +410,6 @@ jobs:
         run: |
           $Parameters = @{}
           $Parameters.ModulePath = ${env:ModulePath}
-          $Parameters.Exclude = ${env:Exclude}
-          $Parameters.Exclude = $parameters.Exclude -split ';' -replace '^[''"]' -replace  '[''"]$'
           foreach ($k in @($parameters.Keys)) {
               if ([String]::IsNullOrEmpty($parameters[$k])) {
                   $parameters.Remove($k)
@@ -420,10 +418,7 @@ jobs:
           Write-Host "::debug:: PublishPowerShellGallery $(@(foreach ($p in $Parameters.GetEnumerator()) {'-' + $p.Key + ' ' + $p.Value}) -join ' ')"
           & {param(
           [string]
-          $ModulePath,
-          
-          [string[]]
-          $Exclude = @('.gif', '.mp4', '.jpg', '.png')
+          $ModulePath
           )
           $gitHubEvent = if ($env:GITHUB_EVENT_PATH) {
               [IO.File]::ReadAllText($env:GITHUB_EVENT_PATH) | ConvertFrom-Json
@@ -481,10 +476,7 @@ jobs:
               Write-Host "Module Files:"
               Get-ChildItem $moduleTempPath -Recurse
               Write-Host "Publishing $moduleName [$($imported.Version)] to Gallery"
-              $publishModuleCommand = Get-Command Publish-Module    
               Publish-Module -Path $moduleTempPath -NuGetApiKey $gk
-              
-              
               if ($?) {
                   Write-Host "Published to Gallery"
               } else {
