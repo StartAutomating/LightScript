@@ -73,7 +73,7 @@
     # The saturation of the NanoLeaf light color.
     [ComponentModel.DefaultBindingProperty('sat')]
     [ComponentModel.AmbientValue({
-        [PSCustomObject]@{value=[Math]::Round($_ * 100)}
+        [PSCustomObject]@{value=[int][Math]::Round($_ * 100)}
     })]
     [ValidateRange(0,1)]
     [double]
@@ -334,7 +334,7 @@
             } else {
                 $sendData.brightness.duration = 0
             }
-        }
+        } 
 
         if ($on) {
             $sendData.on = @{value=$true}
@@ -351,7 +351,7 @@
                     version = '1.0'
                     animType = "solid"
                     palette = @(
-                        [Ordered]@{hue=$Hue%360;saturation=$Saturation*100;brightness=$Brightness*100}
+                        [Ordered]@{hue=$Hue%360;saturation=[int]($Saturation*100);brightness=[int]($Brightness*100)}
                     )
                     colorType="HSB"
                 }
