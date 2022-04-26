@@ -1,5 +1,5 @@
 @{
-    ModuleVersion = '0.2.2'
+    ModuleVersion = '0.2.3'
     RootModule = 'LightScript.psm1'
     Description = 'Smarter Lighting with PowerShell'
     FormatsToProcess = 'LightScript.format.ps1xml'
