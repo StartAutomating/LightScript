@@ -11,7 +11,7 @@ Sends HTTP messages to a NanoLeaf
 
 ---
 ### Related Links
-* [](Get-NanoLeaf.md)
+* [Get-NanoLeaf](Get-NanoLeaf.md)
 ---
 ### Examples
 #### EXAMPLE 1
