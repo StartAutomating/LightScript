@@ -11,7 +11,7 @@ Connects to a Elgato Key Lighting over Wifi
 
 ---
 ### Related Links
-* [](Get-KeyLight.md)
+* [Get-KeyLight](Get-KeyLight.md)
 ---
 ### Examples
 #### EXAMPLE 1
