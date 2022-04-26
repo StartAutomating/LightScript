@@ -17,6 +17,12 @@ function Set-HueLight
         Set-HueLight -Effect colorloop   # Set all lights to color loop
     .EXAMPLE
         Set-HueLight -Effect none        # Make all of the lights stop looping color
+    .EXAMPLE
+        Set-HueLight -RGBColor "#ff0000" # Make all lights red
+    .EXAMPLE
+        Set-HueLight -Hue 120 -Saturation .8 -Brightness .6 # Make all lights green
+    .EXAMPLE
+        Set-HueLight -HueIncrement 60    # Move the hue of all lights
     .Link
         Get-HueLight
     #>
