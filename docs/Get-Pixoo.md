@@ -11,8 +11,8 @@ Gets saved Pixoo Devices
 
 ---
 ### Related Links
-* [](Connect-Pixoo.md)
-* [](Set-Pixoo.md)
+* [Connect-Pixoo](Connect-Pixoo.md)
+* [Set-Pixoo](Set-Pixoo.md)
 ---
 ### Examples
 #### EXAMPLE 1
