@@ -11,7 +11,7 @@ Gets Twinkly lights.
 
 ---
 ### Related Links
-* [](Connect-Twinkly.md)
+* [Connect-Twinkly](Connect-Twinkly.md)
 ---
 ### Examples
 #### EXAMPLE 1
