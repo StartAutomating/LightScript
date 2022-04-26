@@ -11,7 +11,7 @@ Sends messages to a Hue Bridge
 
 ---
 ### Related Links
-* [](Get-HueBridge.md)
+* [Get-HueBridge](Get-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
