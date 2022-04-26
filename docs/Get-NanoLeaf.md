@@ -13,8 +13,8 @@ Can also get effects
 
 ---
 ### Related Links
-* [](Connect-NanoLeaf.md)
-* [](Set-NanoLeaf.md)
+* [Connect-NanoLeaf](Connect-NanoLeaf.md)
+* [Set-NanoLeaf](Set-NanoLeaf.md)
 ---
 ### Examples
 #### EXAMPLE 1
