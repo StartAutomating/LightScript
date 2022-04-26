@@ -74,7 +74,7 @@ Set-HueLight -Effect none
 
 
 Bridges also coordinate schedules, read and write sensors, and process rules.
-~~~
+~~~PowerShell
 # Get all of the sensors
 Get-HueSensor 
 
