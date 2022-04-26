@@ -11,7 +11,7 @@ Finds NanoLeaf controllers on your local area network, using SSDP.
 
 ---
 ### Related Links
-* [](Connect-NanoLeaf.md)
+* [Connect-NanoLeaf](Connect-NanoLeaf.md)
 ---
 ### Examples
 #### EXAMPLE 1
