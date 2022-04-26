@@ -11,8 +11,8 @@ Changes settings on one or more NanoLeaf controllers.
 
 ---
 ### Related Links
-* [](Get-NanoLeaf.md)
-* [](Send-NanoLeaf.md)
+* [Get-NanoLeaf](Get-NanoLeaf.md)
+* [Send-NanoLeaf](Send-NanoLeaf.md)
 ---
 ### Examples
 #### EXAMPLE 1
