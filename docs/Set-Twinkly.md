@@ -11,8 +11,8 @@ Sets Twinkly Lights.  Changes colors, mode of operation
 
 ---
 ### Related Links
-* [](Get-Twinkly.md)
-* [](Connect-Twinkly.md)
+* [Get-Twinkly](Get-Twinkly.md)
+* [Connect-Twinkly](Connect-Twinkly.md)
 ---
 ### Examples
 #### EXAMPLE 1
