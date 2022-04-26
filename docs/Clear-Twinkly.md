@@ -13,7 +13,7 @@ This clears the stored movies and playlists
 
 ---
 ### Related Links
-* [](Get-Twinkly.md)
+* [Get-Twinkly](Get-Twinkly.md)
 ---
 ### Examples
 #### EXAMPLE 1
