@@ -63,7 +63,7 @@ Set-HueLight -RoomName Kitchen -RGBColor "#1245ab"
 Set-HueLight -Name Nightstand1 -Off
 
 # Make all of the lights blink once
-Set-HueLight -Effect select
+Set-HueLight -Alert select
 
 # Make all of the lights loop color
 Set-HueLight -Effect colorloop
