@@ -11,7 +11,7 @@ Connects to a Twinkly light controller
 
 ---
 ### Related Links
-* [](Get-Twinkly.md)
+* [Get-Twinkly](Get-Twinkly.md)
 ---
 ### Examples
 #### EXAMPLE 1
