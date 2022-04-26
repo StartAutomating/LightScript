@@ -11,9 +11,9 @@ Removes Groups from one or more Hue Bridges
 
 ---
 ### Related Links
-* [](Get-HueRoom.md)
-* [](Get-HueBridge.md)
-* [](Send-HueBridge.md)
+* [Get-HueRoom](Get-HueRoom.md)
+* [Get-HueBridge](Get-HueBridge.md)
+* [Send-HueBridge](Send-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
