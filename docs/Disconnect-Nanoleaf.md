@@ -11,7 +11,7 @@ Disconnnects a new Nanoleaf controller and removes connection information.
 
 ---
 ### Related Links
-* [](Connect-NanoLeaf.md)
+* [Connect-NanoLeaf](Connect-NanoLeaf.md)
 ---
 ### Examples
 #### EXAMPLE 1
