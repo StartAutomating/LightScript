@@ -11,7 +11,7 @@ Disconnects a Elgato Key Lighting, removing stored device info
 
 ---
 ### Related Links
-* [](Connect-KeyLight.md)
+* [Connect-KeyLight](Connect-KeyLight.md)
 ---
 ### Examples
 #### EXAMPLE 1
