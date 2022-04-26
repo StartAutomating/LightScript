@@ -11,8 +11,8 @@ Adds a new schedule to a Hue Bridge
 
 ---
 ### Related Links
-* [](Get-HueSchedule.md)
-* [](Get-HueBridge.md)
+* [Get-HueSchedule](Get-HueSchedule.md)
+* [Get-HueBridge](Get-HueBridge.md)
 ---
 ### Examples
 #### EXAMPLE 1
