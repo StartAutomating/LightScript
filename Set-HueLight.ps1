@@ -62,9 +62,9 @@ function Set-HueLight
     [ComponentModel.AmbientValue({
         $fromRgb = ([PSCustomObject]@{PSTypeName='LightScript.Color'}).FromRGB($_)
         @{
-            hue=[Math]::Floor(($fromRgb.Hue / 360) * [Uint16]::maxValue)
-            sat=[byte](255 * $fromRgb.Saturation)
-            bri=[byte]$(255 * $fromRgb.Luminance)
+            hue=[uint16][Math]::Floor(($fromRgb.Hue / 360) * [Uint16]::maxValue)
+            sat=[byte][Math]::min([Math]::Max($(255 * $fromRgb.Saturation), 1), 254)
+            bri=[byte][Math]::min([Math]::Max($(255 * $fromRgb.Luminance), 1), 254)
         }
     })]
     [string]
@@ -74,7 +74,9 @@ function Set-HueLight
     [ValidateRange(0,360)]
     [Parameter(ValueFromPipelineByPropertyName)]
     [ComponentModel.DefaultBindingProperty('hue')]
-    [ComponentModel.AmbientValue({ [Math]::Floor(($_ / 360) * [Uint16]::maxValue) })]
+    [ComponentModel.AmbientValue({ 
+        [uint16][Math]::Floor(($_ / 360) * [Uint16]::maxValue)
+    })]
     [Alias('H')]
     [float]
     $Hue,
@@ -134,7 +136,6 @@ function Set-HueLight
     })]
     [ValidateRange(0,1)]
     [ComponentModel.DefaultBindingProperty('xy')]
-    [Xml.Serialization.XmlElement('xy')]
     [float[]]
     $XY,
 
@@ -156,8 +157,11 @@ function Set-HueLight
     # An increment in hue.  This will adjust the hue
     [Parameter(ValueFromPipelineByPropertyName)]
     [ComponentModel.DefaultBindingProperty('hue_inc')]
+    [ComponentModel.AmbientValue({
+        [int][Math]::Floor(($_ / 360) * [Uint16]::maxValue)
+    })]
     [ValidateRange(-360,360)]
-    [float]
+    [int]
     $HueIncrement,
 
     # A change in the color temperature.
@@ -216,6 +220,9 @@ function Set-HueLight
             }
             $RestInput
         }
+
+        $invocatonName = $MyInvocation.InvocationName
+        $invocationCommand = $MyInvocation.MyCommand
     }
 
 
@@ -235,6 +242,8 @@ function Set-HueLight
             Method = if ($restIn.Count) { 'PUT' } else { 'GET' }
             Data = $restIn
         }
+        
+
         if (-not $restIn.Count) {
             $sendSplat.Remove('Data')
         }
@@ -248,10 +257,10 @@ function Set-HueLight
         switch ($paramSet) {
             All {
 
-                if ($MyInvocation.InvocationName -ne $MyInvocation.MyCommand.Name) {
+                if ($invocatonName -ne $invocationCommand.Name) {
                     foreach ($potentialResource in $script:KnownResources) {
-                        if ($potentialResource.Name -eq $MyInvocation.InvocationName -or
-                            (($potentialResource.Name -replace '\s') -eq $MyInvocation.InvocationName)
+                        if ($potentialResource.Name -eq $invocatonName -or
+                            (($potentialResource.Name -replace '\s') -eq $invocatonName)
                         ) {
                             if ($potentialResource.action) { #If there's an action, it's a group
                                 if ($restIn.Count) {
