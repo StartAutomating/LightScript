@@ -49,6 +49,16 @@ Sensors can be:
 
 
 
+Valid Values:
+
+* Switch
+* OpenClose
+* Presence
+* Temperature
+* Humidity
+* LightLevel
+* GenericFlag
+* GenericStatus
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|true    |2      |true (ByPropertyName)|
