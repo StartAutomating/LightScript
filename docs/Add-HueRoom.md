@@ -68,6 +68,27 @@ The type of the room
 
 
 
+Valid Values:
+
+* Bathroom
+* Bedroom
+* Carport
+* Driveway
+* Dining
+* Front door
+* Garage
+* Garden
+* Gym
+* Hallway
+* Kids bedroom
+* Kitchen
+* Living room
+* Office
+* Other
+* Nursery
+* Recreation
+* Terrace
+* Toilet
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |named  |true (ByPropertyName)|
@@ -79,6 +100,12 @@ Rooms cannot share lights with other rooms, while light groups can contain light
 
 
 
+Valid Values:
+
+* Room
+* LightGroup
+* Entertainment
+* Zone
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |named  |true (ByPropertyName)|
