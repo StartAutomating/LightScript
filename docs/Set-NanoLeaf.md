@@ -215,6 +215,16 @@ The type of effect.
 
 
 
+Valid Values:
+
+* Plugin
+* Random
+* Flow
+* Wheel
+* Fade
+* Highlight
+* Custom
+* Static
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |11     |true (ByPropertyName)|
@@ -235,6 +245,10 @@ The plugin type.
 
 
 
+Valid Values:
+
+* Rhythm
+* Color
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |13     |true (ByPropertyName)|
