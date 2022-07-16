@@ -119,6 +119,12 @@ If provided, will switch the Pixoo channel.
 
 
 
+Valid Values:
+
+* Clock
+* Cloud
+* Visualizer
+* Custom
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |8      |true (ByPropertyName)|
@@ -129,6 +135,11 @@ If provided, will switch the Pixoo into Stopwatch mode, and Stop, Reset, or Star
 
 
 
+Valid Values:
+
+* Stop
+* Start
+* Reset
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |9      |true (ByPropertyName)|
