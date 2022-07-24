@@ -1,6 +1,7 @@
 ## 0.2.4
 * Adding Add-HueLight (#18)
 * Adding Get-HueLight -New (#21)
+* Fixing Rename-HueLight (#19)
 * Building LightScript with PipeScript (#20)
 ---
 
