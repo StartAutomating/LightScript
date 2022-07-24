@@ -71,6 +71,16 @@ The light ID.
 |-------------|--------|-------|---------------------|
 |```[Int32]```|true    |named  |true (ByPropertyName)|
 ---
+#### **New**
+
+If set, will get recently added lights.
+
+
+
+|Type          |Requried|Postion|PipelineInput        |
+|--------------|--------|-------|---------------------|
+|```[Switch]```|true    |named  |true (ByPropertyName)|
+---
 ### Outputs
 System.Management.Automation.PSObject
 
@@ -88,6 +98,9 @@ Get-HueLight [-RegularExpression] [-ExactMatch] -Room <String[]> [<CommonParamet
 ```
 ```PowerShell
 Get-HueLight [-RegularExpression] [-ExactMatch] -LightID <Int32> [<CommonParameters>]
+```
+```PowerShell
+Get-HueLight [-RegularExpression] [-ExactMatch] -New [<CommonParameters>]
 ```
 ---
 
