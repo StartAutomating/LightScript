@@ -1,3 +1,9 @@
+## 0.2.4
+* Adding Add-HueLight (#18)
+* Adding Get-HueLight -New (#21)
+* Building LightScript with PipeScript (#20)
+---
+
 ## 0.2.3
 * Set-NanoLeaf:  Fixing #17
 * Send-HueBridge:  Adding logging
