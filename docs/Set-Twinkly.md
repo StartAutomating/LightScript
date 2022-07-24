@@ -125,6 +125,15 @@ For instance, if you use -RGBColor, you will not see the changes if the mode is 
 
 
 
+Valid Values:
+
+* off
+* color
+* demo
+* effect
+* movie
+* playlist
+* rt
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |9      |true (ByPropertyName)|
