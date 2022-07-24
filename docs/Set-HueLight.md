@@ -174,6 +174,10 @@ The effect
 
 
 
+Valid Values:
+
+* colorloop
+* none
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |named  |true (ByPropertyName)|
@@ -184,6 +188,11 @@ The alert
 
 
 
+Valid Values:
+
+* select
+* lselect
+* none
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |named  |true (ByPropertyName)|
