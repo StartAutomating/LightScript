@@ -34,6 +34,8 @@
             delayTime = 1
             transTime = 1
         }
+    .Example
+        Set-NanoLeaf -Palette "#123456", "#654321", "#abcdef", "#fedcba" -PluginType Rhythm -PluginName 'Dancing Duo'
     .Link
         Get-NanoLeaf
     .Link
