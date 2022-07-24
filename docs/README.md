@@ -177,8 +177,6 @@ Register-EngineEvent -SourceIdentifier NanoLeaf.Touch.Down -Action {
     $event.MessageData | Out-Host 
 }
 
-~~~
-
 ## Twinkly
 
 Twinkly makes smart lights with per-LED control.
