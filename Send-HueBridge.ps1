@@ -11,7 +11,7 @@ function Send-HueBridge
         Get-HueBridge
     #>
     [OutputType([PSObject])]
-    [CmdletBinding(SupportsShouldProcess=$true,ConfirmImpact='Low')]
+    [CmdletBinding(SupportsShouldProcess,ConfirmImpact='Low')]
     param(
     # The IP address of the hue bridge.
     [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -26,14 +26,16 @@ function Send-HueBridge
 
     # The command being sent to the bridge.  This is a partial URI.
     [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('Uri','Url')]
     [string]
     $Command,
 
     # The data being sent to the Hue Bridge.
     # If this data is not a string, it will be converted to JSON.
     [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('Data')]
     [PSObject]
-    $Data,
+    $Body,
 
     # The HTTP method.  By default, Get.
     [Parameter(ValueFromPipelineByPropertyName)]
@@ -67,17 +69,17 @@ function Send-HueBridge
             method = $Method
         }
 
-        if ($Data) {
-            if ($data -is [string]){
-                $splat.body = $data
+        if ($Body) {
+            if ($Body -is [string]){
+                $splat.body = $Body
             } else {
-                $splat.body = ConvertTo-Json -Compress -Depth 100 -InputObject $Data
+                $splat.body = ConvertTo-Json -Compress -Depth 100 -InputObject $Body
             }
         }
         #endregion Construct the Message Body
 
         if ($OutputInput -or $WhatIfPreference) { # If -OutputInput or -WhatIf was passed
-            if ($Data) { $splat.body = $Data }
+            if ($Body) { $splat.body = $Body }
             $splat.address = ([uri]$splat.uri).LocalPath # Make an address property with a relative URI
             $splat.Remove('uri') # and remove URI
             $splat

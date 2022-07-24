@@ -74,6 +74,11 @@ Set-NanoLeaf -Palette "#ff0000", "#00ff00", "#0000ff", "#000000" -PluginName Fir
 }
 ```
 
+#### EXAMPLE 11
+```PowerShell
+Set-NanoLeaf -Palette "#123456", "#654321", "#abcdef", "#fedcba" -PluginType Rhythm -PluginName 'Dancing Duo'
+```
+
 ---
 ### Parameters
 #### **Off**

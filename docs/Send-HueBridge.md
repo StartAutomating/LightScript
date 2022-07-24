@@ -51,7 +51,7 @@ The command being sent to the bridge.  This is a partial URI.
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |3      |true (ByPropertyName)|
 ---
-#### **Data**
+#### **Body**
 
 The data being sent to the Hue Bridge.
 If this data is not a string, it will be converted to JSON.
@@ -114,7 +114,7 @@ System.Management.Automation.PSObject
 ---
 ### Syntax
 ```PowerShell
-Send-HueBridge [-IPAddress] <IPAddress> [-HueUserName] <String> [[-Command] <String>] [[-Data] <PSObject>] [[-Method] <String>] [-OutputInput] [[-PSTypeName] <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Send-HueBridge [-IPAddress] <IPAddress> [-HueUserName] <String> [[-Command] <String>] [[-Body] <PSObject>] [[-Method] <String>] [-OutputInput] [[-PSTypeName] <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
 

@@ -87,6 +87,14 @@ Add-HueSchedule -In '00:10:00' -Command (Set-HueLight -Alert lselect -OutputInpu
 ~~~
 
 
+You can also add new lights to a bridge:
+
+~~~PowerShell
+Add-HueLight
+
+Get-HueLight -New
+~~~
+
 ### Hue Devices and Smart Aliases
 
 Set-HueLight supports smart aliasing.
