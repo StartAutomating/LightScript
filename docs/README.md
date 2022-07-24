@@ -63,7 +63,7 @@ Set-HueLight -RoomName Kitchen -RGBColor "#1245ab"
 Set-HueLight -Name Nightstand1 -Off
 
 # Make all of the lights blink once
-Set-HueLight -Effect select
+Set-HueLight -Alert select
 
 # Make all of the lights loop color
 Set-HueLight -Effect colorloop
@@ -74,7 +74,7 @@ Set-HueLight -Effect none
 
 
 Bridges also coordinate schedules, read and write sensors, and process rules.
-~~~
+~~~PowerShell
 # Get all of the sensors
 Get-HueSensor 
 
@@ -177,7 +177,7 @@ Register-EngineEvent -SourceIdentifier NanoLeaf.Touch.Down -Action {
     $event.MessageData | Out-Host 
 }
 
-~~~PowerShell
+~~~
 
 ## Twinkly
 
@@ -259,4 +259,32 @@ Set-Pixoo -Stopwatch Reset # Reset a Stopwatch
 Set-Pixoo -Timer "00:01:00" # Set a timer for one minute
 
 Set-Pixoo -RedScore 1 -BlueScore 0 # Keep a scoreboard
+~~~
+
+## Elgato Key Lighting
+
+Elgato makes Key Lighting for video recording and streaming.
+
+The Elgato Control Center will show you the IP Address of your Key Lights from the Accessories' settings.
+
+Once you know this, run:
+
+~~~PowerShell
+Connect-KeyLight -IPAddress $TheKeyLightIPAddress
+~~~
+
+Once authenticated, you can:
+
+~~~PowerShell
+# Get information about your lights
+Get-KeyLight
+
+# Turn on your Key Light:
+Set-KeyLight -On
+
+# Change the brightness and ColorTemperature:
+Set-KeyLight -ColorTemperature 270 -Brightness 0.25
+
+# Turn on and change the brightness at the same time:
+Set-KeyLight -On -Brightness 0.25
 ~~~
