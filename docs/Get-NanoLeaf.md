@@ -91,6 +91,10 @@ Valid for plugins and effects.
 
 
 
+Valid Values:
+
+* Rhythm
+* Color
 |Type          |Requried|Postion|PipelineInput|
 |--------------|--------|-------|-------------|
 |```[String]```|false   |named  |false        |
