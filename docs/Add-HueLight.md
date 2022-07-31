@@ -7,7 +7,7 @@ Adds lights to Hue
 ---
 ### Description
 
-Adds lights to a Hue Bridge.
+Adds new lights to a Hue Bridge.
 
 ---
 ### Related Links
