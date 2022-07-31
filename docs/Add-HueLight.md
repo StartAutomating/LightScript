@@ -12,6 +12,7 @@ Adds lights to a Hue Bridge.
 ---
 ### Related Links
 * [Get-HueLight](Get-HueLight.md)
+* [Set-HueLight](Set-HueLight.md)
 ---
 ### Examples
 #### EXAMPLE 1
