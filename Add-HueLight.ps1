@@ -1,4 +1,16 @@
 function Add-HueLight {
+    <#
+    .SYNOPSIS
+        Adds lights to Hue
+    .DESCRIPTION
+        Adds lights to a Hue Bridge.
+    .EXAMPLE
+        Add-HueLight # Search for new lights
+    .EXAMPLE
+        Add-HueLight -DeviceID $serialNumber # Add a new light by serial number.
+    .LINK
+        Get-HueLight
+    #>
     
     [CmdletBinding(SupportsShouldProcess)]
     
