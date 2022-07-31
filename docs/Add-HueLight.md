@@ -25,6 +25,12 @@ Add-HueLight # Search for new lights
 Add-HueLight -DeviceID $serialNumber # Add a new light by serial number.
 ```
 
+#### EXAMPLE 3
+```PowerShell
+Add-HueLight        # Search for new lights
+Get-HueLight -New   # Get-HueLight -New will return the new lights
+```
+
 ---
 ### Parameters
 #### **DeviceID**
