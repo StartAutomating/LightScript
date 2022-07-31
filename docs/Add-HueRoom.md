@@ -89,6 +89,9 @@ Valid Values:
 * Recreation
 * Terrace
 * Toilet
+
+
+
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |named  |true (ByPropertyName)|
@@ -106,6 +109,9 @@ Valid Values:
 * LightGroup
 * Entertainment
 * Zone
+
+
+
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |named  |true (ByPropertyName)|
