@@ -11,6 +11,8 @@ function Add-HueLight
         Add-HueLight -DeviceID $serialNumber # Add a new light by serial number.
     .LINK
         Get-HueLight
+    .LINK
+        Set-HueLight
     #>
     [Rest("lights",
         Invoker="Send-HueBridge",
