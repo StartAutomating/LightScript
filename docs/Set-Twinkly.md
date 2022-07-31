@@ -134,6 +134,9 @@ Valid Values:
 * movie
 * playlist
 * rt
+
+
+
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |9      |true (ByPropertyName)|
