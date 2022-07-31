@@ -230,6 +230,9 @@ Valid Values:
 * Highlight
 * Custom
 * Static
+
+
+
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |11     |true (ByPropertyName)|
@@ -254,6 +257,9 @@ Valid Values:
 
 * Rhythm
 * Color
+
+
+
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |13     |true (ByPropertyName)|
