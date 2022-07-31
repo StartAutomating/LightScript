@@ -178,6 +178,9 @@ Valid Values:
 
 * colorloop
 * none
+
+
+
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |named  |true (ByPropertyName)|
@@ -193,6 +196,9 @@ Valid Values:
 * select
 * lselect
 * none
+
+
+
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |named  |true (ByPropertyName)|

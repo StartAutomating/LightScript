@@ -8,6 +8,5 @@ if ($LightScriptLoaded) {
     "::error:: LightScript not loaded" |Out-Host
 }
 if ($LightScriptLoaded) {
-    Save-MarkdownHelp -Module $LightScriptLoaded.Name -PassThru |
-        Add-Member ScriptProperty CommitMessage { "Updating $($this.Name)" } -Force -PassThru
+    Save-MarkdownHelp -Module $LightScriptLoaded.Name -PassThru
 }

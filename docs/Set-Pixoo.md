@@ -125,6 +125,9 @@ Valid Values:
 * Cloud
 * Visualizer
 * Custom
+
+
+
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |8      |true (ByPropertyName)|
@@ -140,6 +143,9 @@ Valid Values:
 * Stop
 * Start
 * Reset
+
+
+
 |Type          |Requried|Postion|PipelineInput        |
 |--------------|--------|-------|---------------------|
 |```[String]```|false   |9      |true (ByPropertyName)|

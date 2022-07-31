@@ -1,5 +1,5 @@
 @{
-    ModuleVersion = '0.2.4'
+    ModuleVersion = '0.2.4.1'
     RootModule = 'LightScript.psm1'
     Description = 'Smarter Lighting with PowerShell'
     FormatsToProcess = 'LightScript.format.ps1xml'
@@ -14,6 +14,11 @@
             LicenseURI = 'https://github.com/StartAutomating/LightScript/blob/main/LICENSE'
             IconURI    = 'https://github.com/StartAutomating/LightScript/blob/main/Assets/LightScript.png'
             ReleaseNotes = @'
+## 0.2.4.1
+* Adding help for Add-HueLight (#23)
+* Fixing other markdown documentation layout issues
+---
+
 ## 0.2.4
 * Adding Add-HueLight (#18)
 * Adding Get-HueLight -New (#21)

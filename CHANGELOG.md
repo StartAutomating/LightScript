@@ -1,3 +1,9 @@
+## 0.2.4.1
+* Adding help for Add-HueLight (#23)
+* Fixing other markdown documentation layout issues
+---
+
+
 ## 0.2.4
 * Adding Add-HueLight (#18)
 * Adding Get-HueLight -New (#21)
