@@ -14,6 +14,9 @@ This clears the stored movies and playlists
 ---
 ### Related Links
 * [Get-Twinkly](Get-Twinkly.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -29,9 +32,16 @@ One or more IP Addresses of Twinkly devices.
 
 
 
-|Type               |Requried|Postion|PipelineInput        |
-|-------------------|--------|-------|---------------------|
-|```[IPAddress[]]```|false   |1      |true (ByPropertyName)|
+> **Type**: ```[IPAddress[]]```
+
+> **Required**: false
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
@@ -47,10 +57,12 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 
 ---
 ### Outputs
-System.Nullable
+* [Nullable](https://learn.microsoft.com/en-us/dotnet/api/System.Nullable)
 
 
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---
