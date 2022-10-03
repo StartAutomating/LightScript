@@ -12,6 +12,9 @@ Finds Hue Bridges on the local area network, using https://discovery.meethue.com
 ---
 ### Related Links
 * [Connect-HueBridge](Connect-HueBridge.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -21,7 +24,9 @@ Find-HueBridge
 
 ---
 ### Outputs
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---
