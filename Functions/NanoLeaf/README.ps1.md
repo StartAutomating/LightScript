@@ -1,7 +1,7 @@
 This directory contains LightScript's functions for [NanoLeaf](https://nanoleaf.me/).
 
 ~~~PipeScript {
-    Import-Module ../LightScript.psd1
+    Import-Module ../../LightScript.psd1 -Global
     [PSCustomObject]@{
         Table = Get-Command -Module LightScript | 
             Where-Object { $_.ScriptBlock.File -like "$pwd*" } |

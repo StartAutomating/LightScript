@@ -1,7 +1,7 @@
 This directory and it's subdirectories contain the functions defined in LightScript.
 
 ~~~PipeScript {
-    Import-Module ../LightScript.psd1
+    Import-Module ../LightScript.psd1 -Global
     [PSCustomObject]@{
         Table = Get-Command -Module LightScript | 
             Where-Object { $_.ScriptBlock.File -like "$pwd*" } |
