@@ -12,7 +12,13 @@ Renames one or more Hue lights.
 ---
 ### Related Links
 * [Get-HueBridge](Get-HueBridge.md)
+
+
+
 * [Get-HueLight](Get-HueLight.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -28,9 +34,16 @@ The old name of the light.  This can be a wildcard or regular expression.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|true    |1      |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **NewName**
 
@@ -38,12 +51,21 @@ The new name of the light.  A number sign will be replaced with the match number
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|true    |2      |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: true
+
+> **Position**: 2
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 ### Outputs
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---
