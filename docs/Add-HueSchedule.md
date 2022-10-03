@@ -12,7 +12,13 @@ Adds a new schedule to a Hue Bridge
 ---
 ### Related Links
 * [Get-HueSchedule](Get-HueSchedule.md)
+
+
+
 * [Get-HueBridge](Get-HueBridge.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -28,9 +34,16 @@ The name of the schedule
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Description**
 
@@ -38,9 +51,16 @@ A description for the schedule
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Command**
 
@@ -48,9 +68,16 @@ The command that will be run
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[PSObject]```|true    |named  |true (ByPropertyName)|
+> **Type**: ```[PSObject]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **LocalTime**
 
@@ -58,9 +85,16 @@ The time of the command
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[DateTime]```|true    |1      |true (ByPropertyName)|
+> **Type**: ```[DateTime]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Daily**
 
@@ -68,9 +102,16 @@ If set, will run daily
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |2      |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: 2
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **DayOfWeek**
 
@@ -78,9 +119,16 @@ The days of the week the schedule will be executed (1 is Sunday, 7 is Saturday).
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Byte[]]```|false   |3      |true (ByPropertyName)|
+> **Type**: ```[Byte[]]```
+
+> **Required**: false
+
+> **Position**: 3
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **For**
 
@@ -88,9 +136,16 @@ The time the schedule should last
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[TimeSpan]```|false   |4      |true (ByPropertyName)|
+> **Type**: ```[TimeSpan]```
+
+> **Required**: false
+
+> **Position**: 4
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **In**
 
@@ -98,9 +153,16 @@ Sets a countdown timer.  This timer will occur once, in a given timespan.
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[TimeSpan]```|true    |1      |true (ByPropertyName)|
+> **Type**: ```[TimeSpan]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Every**
 
@@ -108,9 +170,16 @@ If set, will repeat every N timeframe
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[TimeSpan]```|true    |1      |true (ByPropertyName)|
+> **Type**: ```[TimeSpan]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Within**
 
@@ -118,9 +187,16 @@ If provided, the schedule will execute at a random time within the provided time
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[TimeSpan]```|false   |5      |true (ByPropertyName)|
+> **Type**: ```[TimeSpan]```
+
+> **Required**: false
+
+> **Position**: 5
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **DeviceID**
 
@@ -128,9 +204,16 @@ If provided, the schedule will only run on the bridge with a particular device I
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **IPAddress**
 
@@ -138,12 +221,21 @@ If provided, the schedule will only run on the bridge found at the provided IP a
 
 
 
-|Type             |Requried|Postion|PipelineInput        |
-|-----------------|--------|-------|---------------------|
-|```[IPAddress]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[IPAddress]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 ### Outputs
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---
