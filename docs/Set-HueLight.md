@@ -333,7 +333,7 @@ The color, in XY coordinates.
 ---
 #### **SaturationIncrement**
 
-The increment in saturation.  This will adjust the intensity of the color
+The increment in saturation.  This will adjust the intensity of the color.
 
 
 
@@ -350,7 +350,7 @@ The increment in saturation.  This will adjust the intensity of the color
 ---
 #### **BrightnessIncrement**
 
-An increment in luminance.  This will adjust the brightness of the light
+An increment in luminance.  This will adjust the brightness of the light.
 
 
 
