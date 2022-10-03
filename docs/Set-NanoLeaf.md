@@ -12,7 +12,13 @@ Changes settings on one or more NanoLeaf controllers.
 ---
 ### Related Links
 * [Get-NanoLeaf](Get-NanoLeaf.md)
+
+
+
 * [Send-NanoLeaf](Send-NanoLeaf.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -87,9 +93,16 @@ If set, will turn the nanoleaf off
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **On**
 
@@ -97,9 +110,16 @@ If set, will turn the nanoleaf on
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Hue**
 
@@ -107,9 +127,16 @@ The hue of the NanoLeaf light color.
 
 
 
-|Type         |Requried|Postion|PipelineInput|
-|-------------|--------|-------|-------------|
-|```[Int32]```|false   |1      |false        |
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 1
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **HueIncrement**
 
@@ -117,9 +144,16 @@ Increments the hue of the NanoLeaf light color.
 
 
 
-|Type         |Requried|Postion|PipelineInput|
-|-------------|--------|-------|-------------|
-|```[Int32]```|false   |2      |false        |
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 2
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **Saturation**
 
@@ -127,9 +161,16 @@ The saturation of the NanoLeaf light color.
 
 
 
-|Type          |Requried|Postion|PipelineInput|
-|--------------|--------|-------|-------------|
-|```[Double]```|false   |3      |false        |
+> **Type**: ```[Double]```
+
+> **Required**: false
+
+> **Position**: 3
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **SaturationIncrement**
 
@@ -137,9 +178,16 @@ Increments the saturation of the NanoLeaf light color.
 
 
 
-|Type         |Requried|Postion|PipelineInput|
-|-------------|--------|-------|-------------|
-|```[Int32]```|false   |4      |false        |
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 4
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **Brightness**
 
@@ -149,9 +197,16 @@ If provided with -Hue and -Saturation, sets the color of all panels.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Double]```|false   |5      |true (ByPropertyName)|
+> **Type**: ```[Double]```
+
+> **Required**: false
+
+> **Position**: 5
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **ColorTemperature**
 
@@ -159,9 +214,16 @@ If set, will change all panels on the nanoleaf to a given color temperature.
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|false   |6      |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 6
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **EffectName**
 
@@ -169,9 +231,16 @@ The name of the effect.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |7      |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 7
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Duration**
 
@@ -179,9 +248,16 @@ The duration to display.  In most contexts, this will be rounded to the nearest 
 
 
 
-|Type            |Requried|Postion|PipelineInput|
-|----------------|--------|-------|-------------|
-|```[TimeSpan]```|false   |8      |false        |
+> **Type**: ```[TimeSpan]```
+
+> **Required**: false
+
+> **Position**: 8
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **ExternalControl**
 
@@ -190,9 +266,16 @@ If provided with -Panel, will set panels via UDP.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **PluginName**
 
@@ -200,9 +283,16 @@ The name of the effect plugin.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |9      |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 9
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Palette**
 
@@ -210,9 +300,16 @@ The palette used for an effect.
 
 
 
-|Type              |Requried|Postion|PipelineInput        |
-|------------------|--------|-------|---------------------|
-|```[PSObject[]]```|false   |10     |true (ByPropertyName)|
+> **Type**: ```[PSObject[]]```
+
+> **Required**: false
+
+> **Position**: 10
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **EffectType**
 
@@ -233,9 +330,16 @@ Valid Values:
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |11     |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 11
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **PluginUuid**
 
@@ -243,9 +347,16 @@ The plugin UUID.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |12     |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 12
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **PluginType**
 
@@ -260,9 +371,16 @@ Valid Values:
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |13     |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 13
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Panel**
 
@@ -273,9 +391,16 @@ Timespans will be ignored when sending colors via UDP.
 
 
 
-|Type               |Requried|Postion|PipelineInput        |
-|-------------------|--------|-------|---------------------|
-|```[IDictionary]```|false   |14     |true (ByPropertyName)|
+> **Type**: ```[IDictionary]```
+
+> **Required**: false
+
+> **Position**: 14
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **EffectOption**
 
@@ -296,9 +421,16 @@ Plugins can use any of the Nanoleaf-approved option types to further control how
 
 
 
-|Type               |Requried|Postion|PipelineInput        |
-|-------------------|--------|-------|---------------------|
-|```[IDictionary]```|false   |15     |true (ByPropertyName)|
+> **Type**: ```[IDictionary]```
+
+> **Required**: false
+
+> **Position**: 15
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Loop**
 
@@ -306,9 +438,16 @@ If set, will mark the effect to loop.
 
 
 
-|Type          |Requried|Postion|PipelineInput|
-|--------------|--------|-------|-------------|
-|```[Switch]```|false   |named  |false        |
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **AsByteStream**
 
@@ -316,9 +455,16 @@ If set, will set panels using UDP.
 
 
 
-|Type          |Requried|Postion|PipelineInput|
-|--------------|--------|-------|-------------|
-|```[Switch]```|false   |named  |false        |
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **IPAddress**
 
@@ -326,9 +472,16 @@ The IP Address of the NanoLeaf.
 
 
 
-|Type             |Requried|Postion|PipelineInput        |
-|-----------------|--------|-------|---------------------|
-|```[IPAddress]```|false   |16     |true (ByPropertyName)|
+> **Type**: ```[IPAddress]```
+
+> **Required**: false
+
+> **Position**: 16
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **NanoLeafToken**
 
@@ -336,9 +489,16 @@ The nanoleaf token
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |17     |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 17
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
@@ -354,7 +514,9 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 
 ---
 ### Outputs
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---
