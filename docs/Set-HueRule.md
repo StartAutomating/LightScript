@@ -12,7 +12,13 @@ Sets a Hue Rule.  Hue Rules are used to automatically change your Hue Lights and
 ---
 ### Related Links
 * [Get-HueRule](Get-HueRule.md)
+
+
+
 * [Remove-HueRule](Remove-HueRule.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -32,9 +38,16 @@ The name of the rule.
 
 
 
-|Type          |Requried|Postion|PipelineInput|
-|--------------|--------|-------|-------------|
-|```[String]```|true    |1      |false        |
+> **Type**: ```[String]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **Condition**
 
@@ -43,9 +56,16 @@ If the value is a ScriptBlock, only operators and their surrounding conext will 
 
 
 
-|Type              |Requried|Postion|PipelineInput|
-|------------------|--------|-------|-------------|
-|```[PSObject[]]```|true    |2      |false        |
+> **Type**: ```[PSObject[]]```
+
+> **Required**: true
+
+> **Position**: 2
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **Action**
 
@@ -61,9 +81,16 @@ Otherwise, check for the required properties.
 
 
 
-|Type              |Requried|Postion|PipelineInput|
-|------------------|--------|-------|-------------|
-|```[PSObject[]]```|true    |3      |false        |
+> **Type**: ```[PSObject[]]```
+
+> **Required**: true
+
+> **Position**: 3
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **DeviceID**
 
@@ -71,9 +98,16 @@ If provided, the schedule will only run on the bridge with a particular device I
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **IPAddress**
 
@@ -81,9 +115,16 @@ If provided, the schedule will only run on the bridge found at the provided IP a
 
 
 
-|Type             |Requried|Postion|PipelineInput        |
-|-----------------|--------|-------|---------------------|
-|```[IPAddress]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[IPAddress]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Disable**
 
@@ -91,12 +132,21 @@ If set, will disable the rule.
 
 
 
-|Type          |Requried|Postion|PipelineInput|
-|--------------|--------|-------|-------------|
-|```[Switch]```|false   |named  |false        |
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
 ---
 ### Outputs
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---
