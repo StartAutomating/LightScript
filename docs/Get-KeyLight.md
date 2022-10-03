@@ -12,7 +12,13 @@ Gets saved Elgato Key Lighting Devices
 ---
 ### Related Links
 * [Connect-KeyLight](Connect-KeyLight.md)
+
+
+
 * [Set-KeyLight](Set-KeyLight.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -28,9 +34,16 @@ The IP Address for the Twinkly device.  This can be discovered thru the phone us
 
 
 
-|Type               |Requried|Postion|PipelineInput        |
-|-------------------|--------|-------|---------------------|
-|```[IPAddress[]]```|false   |1      |true (ByPropertyName)|
+> **Type**: ```[IPAddress[]]```
+
+> **Required**: false
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 ### Syntax
 ```PowerShell
