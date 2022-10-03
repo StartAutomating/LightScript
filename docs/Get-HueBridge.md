@@ -266,6 +266,19 @@ If set, will requery each returned resource to retreive additional information.
 
 
 ---
+#### **WhatIf**
+-WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
+-WhatIf is used to see what would happen, or return operations without executing them
+#### **Confirm**
+-Confirm is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
+-Confirm is used to -Confirm each operation.
+    
+If you pass ```-Confirm:$false``` you will not be prompted.
+    
+    
+If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$confirmImpactPreference```, you will not be prompted unless -Confirm is passed.
+
+---
 ### Outputs
 * [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
 
@@ -275,34 +288,34 @@ If set, will requery each returned resource to retreive additional information.
 ---
 ### Syntax
 ```PowerShell
-Get-HueBridge [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
+Get-HueBridge [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ```PowerShell
-Get-HueBridge -Schedule [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
+Get-HueBridge -Schedule [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ```PowerShell
-Get-HueBridge -Rule [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
+Get-HueBridge -Rule [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ```PowerShell
-Get-HueBridge -Scene [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
+Get-HueBridge -Scene [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ```PowerShell
-Get-HueBridge -Sensor [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
+Get-HueBridge -Sensor [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ```PowerShell
-Get-HueBridge -Group [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
+Get-HueBridge -Group [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ```PowerShell
-Get-HueBridge -Configuration [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
+Get-HueBridge -Configuration [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ```PowerShell
-Get-HueBridge -Capability [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
+Get-HueBridge -Capability [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ```PowerShell
-Get-HueBridge -Resource [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
+Get-HueBridge -Resource [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ```PowerShell
-Get-HueBridge -Light [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
+Get-HueBridge -Light [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
 
