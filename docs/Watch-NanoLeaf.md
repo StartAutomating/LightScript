@@ -23,6 +23,9 @@ These messages are unpacked and translated into PowerShell events:
 ---
 ### Related Links
 * [Get-NanoLeaf](Get-NanoLeaf.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -38,9 +41,16 @@ The IP Address of the NanoLeaf.
 
 
 
-|Type             |Requried|Postion|PipelineInput        |
-|-----------------|--------|-------|---------------------|
-|```[IPAddress]```|false   |1      |true (ByPropertyName)|
+> **Type**: ```[IPAddress]```
+
+> **Required**: false
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **NanoLeafToken**
 
@@ -48,9 +58,16 @@ The nanoleaf token
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |2      |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 2
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **TouchEventsPort**
 
@@ -58,12 +75,21 @@ The UDP port used for TouchStreamData
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |3      |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 3
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 ### Outputs
-System.Management.Automation.Job
+* [Management.Automation.Job](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.Job)
+
+
 
 
 ---

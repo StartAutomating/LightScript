@@ -12,6 +12,9 @@ Changes Elgato Key Lighting
 ---
 ### Related Links
 * [Get-KeyLight](Get-KeyLight.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -27,9 +30,16 @@ One or more IP Addresses of Elgato Key Lighting devices.
 
 
 
-|Type               |Requried|Postion|PipelineInput        |
-|-------------------|--------|-------|---------------------|
-|```[IPAddress[]]```|false   |1      |true (ByPropertyName)|
+> **Type**: ```[IPAddress[]]```
+
+> **Required**: false
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Brightness**
 
@@ -39,9 +49,16 @@ When passed with no other parameters, adjusts the absolute brightness
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Single]```|false   |2      |true (ByPropertyName)|
+> **Type**: ```[Single]```
+
+> **Required**: false
+
+> **Position**: 2
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **On**
 
@@ -49,9 +66,16 @@ If set, will turn the light on.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Off**
 
@@ -59,9 +83,16 @@ If set, will turn the light on.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **ColorTemperature**
 
@@ -69,9 +100,16 @@ The color temperature as a Mired value.
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|false   |3      |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 3
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.

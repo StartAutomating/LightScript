@@ -1,5 +1,5 @@
 function Add-HueLight {
-    <#
+<#
     .SYNOPSIS
         Adds lights to Hue
     .DESCRIPTION
@@ -15,12 +15,10 @@ function Add-HueLight {
         Get-HueLight
     .LINK
         Set-HueLight
-    #>
+    
+#>
     
     [CmdletBinding(SupportsShouldProcess)]
-    
-    
-    
     param(
 # One or more Device Identifiers (serial numbers ).
         # Use this parameter when adding lights that have already been assigned to another bridge.

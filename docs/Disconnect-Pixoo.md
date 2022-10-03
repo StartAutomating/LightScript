@@ -12,6 +12,9 @@ Disconnects a Pixoo, removing stored device info
 ---
 ### Related Links
 * [Connect-Pixoo](Connect-Pixoo.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -27,9 +30,16 @@ The IP Address for the Twinkly device.  This can be discovered thru the phone us
 
 
 
-|Type             |Requried|Postion|PipelineInput        |
-|-----------------|--------|-------|---------------------|
-|```[IPAddress]```|true    |1      |true (ByPropertyName)|
+> **Type**: ```[IPAddress]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
@@ -45,10 +55,12 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 
 ---
 ### Outputs
-System.Nullable
+* [Nullable](https://learn.microsoft.com/en-us/dotnet/api/System.Nullable)
 
 
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---

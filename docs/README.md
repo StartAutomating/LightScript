@@ -1,4 +1,4 @@
-﻿<div align='center'>
+<div align='center'>
 <img src='Assets/LightScript.png' />
 <h2>Smarter Lighting with PowerShell</h2>
 </div>
@@ -296,3 +296,6 @@ Set-KeyLight -ColorTemperature 270 -Brightness 0.25
 # Turn on and change the brightness at the same time:
 Set-KeyLight -On -Brightness 0.25
 ~~~
+
+
+

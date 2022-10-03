@@ -15,8 +15,58 @@
         } -Action {
             Set-HueLight -Name "Sunroom*" -ColorTemperature 420
         } -Name BrightenRoom
+    .EXAMPLE
+        # Set a rule that when 
+        Set-HueRule -Condition {
+            "/sensors/61/state/buttonevent" -eq "4002"
+        } -Action {
+            Set-HueLight -RoomName "Sunroom" -Brightness 0.01
+        } -Name SunroomDimmerTap
+    .EXAMPLE
+        Set-HueRule -Condition {
+            "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "4003"
+        } -Action {
+            Set-HueLight -RoomName "Sunroom" -Off
+        } -Name SunroomDimmerHoldDownToTurnOff
+    .EXAMPLE
+        Set-HueRule -Condition {
+            "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "1003"
+        } -Action {
+            Set-HueLight -RoomName "Sunroom" -On
+        } -Name SunroomDimmerHoldUpToTurnOn
+    .EXAMPLE
+        Set-HueRule -Condition {
+            "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "1002"
+        } -Action {
+            Set-HueLight -RoomName "Sunroom" -On -Brightness .8
+        } -Name SunroomDimmerTapOn
+    .EXAMPLE
+        Set-HueRule -Condition {
+            "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "2003"
+        } -Action {
+            Set-HueLight -RoomName "Sunroom" -BrightnessIncrement .1
+        } -Name SunroomDimmerHoldBright
+    .EXAMPLE
+        Set-HueRule -Condition {
+            "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "2002"
+        } -Action {
+            Set-HueLight -RoomName "Sunroom" -BrightnessIncrement .05
+        } -Name SunroomDimmerTapBright
+    .EXAMPLE
+        Set-HueRule -Condition {
+            "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "3002"
+        } -Action {
+            Set-HueLight -RoomName "Sunroom" -BrightnessIncrement -.05
+        } -Name SunroomDimmerTapDarken
+    .EXAMPLE
+        Set-HueRule -Condition {
+            "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "3003"
+        } -Action {
+            Set-HueLight -RoomName "Sunroom" -BrightnessIncrement -.1
+        } -Name SunroomDimmerHoldDarken
     #>
     [OutputType([PSObject])]
+    [CmdletBinding(SupportsShouldProcess)]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("Test-ForSlowScript", "", Justification="Impact Incidental")]
     param(
     # The name of the rule.
@@ -26,7 +76,11 @@
 
     # The condition.
     # If the value is a ScriptBlock, only operators and their surrounding conext will be accepted.
-    [Parameter(Mandatory=$true,Position=1)]
+    # Each condition should take the form: `"/resource/id/restOfAddress" -operator "value"`.
+    # Rules may have more than one condition.
+    # If the address is not a resource followed by a digit, the resource will be looked up by name.
+    [Parameter(Mandatory,Position=1)]
+    [Alias('Conditions')]
     [PSObject[]]
     $Condition,
 
@@ -64,17 +118,18 @@
         }
         return $true
     })]
-    [Parameter(Mandatory=$true,Position=2)]
+    [Parameter(Mandatory,Position=2)]
+    [Alias('Actions')]
     [PSObject[]]
     $Action,
 
     # If provided, the schedule will only run on the bridge with a particular device ID
-    [Parameter(ValueFromPipelineByPropertyName=$true)]
+    [Parameter(ValueFromPipelineByPropertyName)]
     [string]
     $DeviceID,
 
     # If provided, the schedule will only run on the bridge found at the provided IP address
-    [Parameter(ValueFromPipelineByPropertyName=$true)]
+    [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('IP')]
     [IPAddress]
     $IPAddress,
@@ -85,7 +140,8 @@
     )
 
     begin {
-        $myCmd = $MyInvocation.MyCommand
+        $myCmd          = $MyInvocation.MyCommand
+        $camelCaseSpace = [Regex]::new("(?<=[a-z])(?=[A-Z])")
     }
 
     process {
@@ -127,23 +183,39 @@
                             $value = $value.ToString().ToLower()
                         }
 
-                        [PSCustomObject][Ordered]@{
-                            address =$address
-                            operator = $tokens[$i].Content.TrimStart('-')
-                            value = $value
+                        if ($address -match '^/(?<R>[^/]+)/(?<N>\D[^/]+)/(?<M>.+)$') {
+                            $matchInfo = @{} + $matches
+                            $getResourceSplat = @{
+                                "$($matches.R)" = $true
+                                Name = $matches.N, $camelCaseSpace.Replace($matches.N, '?')
+                            }
+                            Get-HueBridge @getResourceSplat -WhatIf:$false |
+                                ForEach-Object {
+                                    [PSCustomObject][Ordered]@{
+                                        address = "/$($matchInfo.R)/$($_.Id)/$($matchInfo.M)"
+                                        operator = $tokens[$i].Content.TrimStart('-')
+                                        value = $value
+                                    }    
+                                }
+                        } else {
+                            [PSCustomObject][Ordered]@{
+                                address =$address
+                                operator = $tokens[$i].Content.TrimStart('-')
+                                value = $value
+                            }
                         }
                     }
                 }
             } else {
                 foreach ($_ in $c) {
-                    $ht = @{
+                    $ht = [Ordered]@{
                         address = $_.Address
                         operator =  $_.operator
                     }
                     if ($_.Value) {
                         $ht.value = $_.value
                     }
-                    $ht
+                    [PSCustomObject]$ht
                 }
             }
         })
@@ -165,6 +237,9 @@
                     if ($func.Parameters.OutputInput) {
                         $global:PSDefaultParameterValues["${func}:OutputInput"] = $true
                     }
+                    if ($func.Parameters.WhatIf) {
+                        $global:PSDefaultParameterValues["${func}:WhatIf"] = $false
+                    }
                 }
                 & $a | Select-Object @{
                     Name='address';Expression={
@@ -176,6 +251,9 @@
                 foreach ($func in $myCmd.Module.ExportedFunctions.Values) {
                     if ($func.Parameters.OutputInput) {
                         $global:PSDefaultParameterValues.Remove("${func}:OutputInput")
+                    }
+                    if ($func.Parameters.WhatIf) {
+                        $global:PSDefaultParameterValues.Remove("${func}:WhatIf")
                     }
                 }
             } else {
@@ -206,7 +284,7 @@
                     $true
                 } |
                 Send-HueBridge -Command "rules/$($RuleExists.ID)" -Method PUT -Data $restIn
-
+            Get-HueRule -ID $RuleExists.ID
         }
         #endregion Create or Update Rule
     }

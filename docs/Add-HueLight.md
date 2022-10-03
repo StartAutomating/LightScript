@@ -12,7 +12,13 @@ Adds new lights to a Hue Bridge.
 ---
 ### Related Links
 * [Get-HueLight](Get-HueLight.md)
+
+
+
 * [Set-HueLight](Set-HueLight.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -40,9 +46,16 @@ Use this parameter when adding lights that have already been assigned to another
 
 
 
-|Type            |Requried|Postion|PipelineInput|
-|----------------|--------|-------|-------------|
-|```[String[]]```|false   |1      |false        |
+> **Type**: ```[String[]]```
+
+> **Required**: false
+
+> **Position**: 1
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.

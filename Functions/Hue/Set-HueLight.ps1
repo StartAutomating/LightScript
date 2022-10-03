@@ -151,16 +151,42 @@ function Set-HueLight
     [float[]]
     $XY,
 
-    # The increment in saturation.  This will adjust the intensity of the color
+    # The increment in saturation.  This will adjust the intensity of the color.
     [Parameter(ValueFromPipelineByPropertyName)]
     [ComponentModel.DefaultBindingProperty('sat_inc')]
     [ValidateRange(-1,1)]
+    [ComponentModel.AmbientValue({
+        if ($_ -lt 0) {
+            [Math]::max(-254,
+                ([int][Math]::Floor(([Math]::Abs($_) / 1) * [byte]::maxValue)) * -1
+            )
+        } elseif ($_ -gt 0) {
+            [Math]::min(254,
+                [int][Math]::Floor(($_ / 1) * [byte]::maxValue)
+            )
+        } else {
+            0
+        }        
+    })]
     [float]
     $SaturationIncrement,
 
-    # An increment in luminance.  This will adjust the brightness of the light
+    # An increment in luminance.  This will adjust the brightness of the light.
     [Parameter(ValueFromPipelineByPropertyName)]
     [ComponentModel.DefaultBindingProperty('bri_inc')]
+    [ComponentModel.AmbientValue({
+        if ($_ -lt 0) {
+            [Math]::max(-254,
+                ([int][Math]::Floor(([Math]::Abs($_) / 1) * [byte]::maxValue)) * -1
+            )
+        } elseif ($_ -gt 0) {
+            [Math]::min(254,
+                [int][Math]::Floor(($_ / 1) * [byte]::maxValue)
+            )
+        } else {
+            0
+        }        
+    })]
     [Alias('LuminanceIncrement')]
     [ValidateRange(-1,1)]
     [float]

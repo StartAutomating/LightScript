@@ -12,10 +12,25 @@ Writes data to sensors on the Hue Bridge
 ---
 ### Related Links
 * [Read-HueSensor](Read-HueSensor.md)
+
+
+
 * [Get-HueSensor](Get-HueSensor.md)
+
+
+
 * [Get-HueBridge](Get-HueBridge.md)
+
+
+
 * [Add-HueSensor](Add-HueSensor.md)
+
+
+
 * [Remove-HueSensor](Remove-HueSensor.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -31,9 +46,16 @@ If provided, will filter returned items by name
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[String[]]```|false   |1      |true (ByPropertyName)|
+> **Type**: ```[String[]]```
+
+> **Required**: false
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **RegularExpression**
 
@@ -41,9 +63,16 @@ If set, will treat the Name parameter as a regular expression pattern.  By defau
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **ExactMatch**
 
@@ -51,9 +80,16 @@ If set, will treat the Name parameter as a specific match
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **ID**
 
@@ -61,9 +97,16 @@ If provided, will filter returned items by ID
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[String[]]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[String[]]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Config**
 
@@ -71,9 +114,16 @@ If set, will write values from to configuration.  By default, values are written
 
 
 
-|Type          |Requried|Postion|PipelineInput|
-|--------------|--------|-------|-------------|
-|```[Switch]```|false   |named  |false        |
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **Data**
 
@@ -81,9 +131,16 @@ The data that will be written to the sensor
 
 
 
-|Type            |Requried|Postion|PipelineInput |
-|----------------|--------|-------|--------------|
-|```[PSObject]```|true    |named  |true (ByValue)|
+> **Type**: ```[PSObject]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:true (ByValue)
+
+
+
 ---
 #### **OutputInput**
 
@@ -91,12 +148,21 @@ If set, will output the data that would be sent to the bridge.  This is useful f
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 ### Outputs
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---

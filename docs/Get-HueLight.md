@@ -12,6 +12,9 @@ Gets Hue lights from the Hue Bridge.
 ---
 ### Related Links
 * [Get-HueBridge](Get-HueBridge.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -27,9 +30,16 @@ The name of the light
 
 
 
-|Type            |Requried|Postion|PipelineInput|
-|----------------|--------|-------|-------------|
-|```[String[]]```|true    |1      |false        |
+> **Type**: ```[String[]]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **RegularExpression**
 
@@ -37,9 +47,16 @@ If set, will match patterns as regular expressions
 
 
 
-|Type          |Requried|Postion|PipelineInput|
-|--------------|--------|-------|-------------|
-|```[Switch]```|false   |named  |false        |
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **ExactMatch**
 
@@ -47,9 +64,16 @@ If set, will only match exact text
 
 
 
-|Type          |Requried|Postion|PipelineInput|
-|--------------|--------|-------|-------------|
-|```[Switch]```|false   |named  |false        |
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **Room**
 
@@ -57,9 +81,16 @@ The name of the room.
 
 
 
-|Type            |Requried|Postion|PipelineInput|
-|----------------|--------|-------|-------------|
-|```[String[]]```|true    |named  |false        |
+> **Type**: ```[String[]]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **LightID**
 
@@ -67,9 +98,16 @@ The light ID.
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|true    |named  |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **New**
 
@@ -77,12 +115,21 @@ If set, will get recently added lights.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|true    |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 ### Outputs
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---

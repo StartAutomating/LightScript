@@ -12,7 +12,13 @@ Sets a Hue Rule.  Hue Rules are used to automatically change your Hue Lights and
 ---
 ### Related Links
 * [Get-HueRule](Get-HueRule.md)
+
+
+
 * [Remove-HueRule](Remove-HueRule.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -24,6 +30,79 @@ Set-HueRule -Condition {
 } -Name BrightenRoom
 ```
 
+#### EXAMPLE 2
+```PowerShell
+# Set a rule that when 
+Set-HueRule -Condition {
+    "/sensors/61/state/buttonevent" -eq "4002"
+} -Action {
+    Set-HueLight -RoomName "Sunroom" -Brightness 0.01
+} -Name SunroomDimmerTap
+```
+
+#### EXAMPLE 3
+```PowerShell
+Set-HueRule -Condition {
+    "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "4003"
+} -Action {
+    Set-HueLight -RoomName "Sunroom" -Off
+} -Name SunroomDimmerHoldDownToTurnOff
+```
+
+#### EXAMPLE 4
+```PowerShell
+Set-HueRule -Condition {
+    "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "1003"
+} -Action {
+    Set-HueLight -RoomName "Sunroom" -On
+} -Name SunroomDimmerHoldUpToTurnOn
+```
+
+#### EXAMPLE 5
+```PowerShell
+Set-HueRule -Condition {
+    "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "1002"
+} -Action {
+    Set-HueLight -RoomName "Sunroom" -On -Brightness .8
+} -Name SunroomDimmerTapOn
+```
+
+#### EXAMPLE 6
+```PowerShell
+Set-HueRule -Condition {
+    "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "2003"
+} -Action {
+    Set-HueLight -RoomName "Sunroom" -BrightnessIncrement .1
+} -Name SunroomDimmerHoldBright
+```
+
+#### EXAMPLE 7
+```PowerShell
+Set-HueRule -Condition {
+    "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "2002"
+} -Action {
+    Set-HueLight -RoomName "Sunroom" -BrightnessIncrement .05
+} -Name SunroomDimmerTapBright
+```
+
+#### EXAMPLE 8
+```PowerShell
+Set-HueRule -Condition {
+    "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "3002"
+} -Action {
+    Set-HueLight -RoomName "Sunroom" -BrightnessIncrement -.05
+} -Name SunroomDimmerTapDarken
+```
+
+#### EXAMPLE 9
+```PowerShell
+Set-HueRule -Condition {
+    "/sensors/SunroomDimmerSwitch/state/buttonevent" -eq "3003"
+} -Action {
+    Set-HueLight -RoomName "Sunroom" -BrightnessIncrement -.1
+} -Name SunroomDimmerHoldDarken
+```
+
 ---
 ### Parameters
 #### **Name**
@@ -32,20 +111,37 @@ The name of the rule.
 
 
 
-|Type          |Requried|Postion|PipelineInput|
-|--------------|--------|-------|-------------|
-|```[String]```|true    |1      |false        |
+> **Type**: ```[String]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **Condition**
 
 The condition.
 If the value is a ScriptBlock, only operators and their surrounding conext will be accepted.
+Each condition should take the form: `"/resource/id/restOfAddress" -operator "value"`.
+Rules may have more than one condition.
+If the address is not a resource followed by a digit, the resource will be looked up by name.
 
 
 
-|Type              |Requried|Postion|PipelineInput|
-|------------------|--------|-------|-------------|
-|```[PSObject[]]```|true    |2      |false        |
+> **Type**: ```[PSObject[]]```
+
+> **Required**: true
+
+> **Position**: 2
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **Action**
 
@@ -61,9 +157,16 @@ Otherwise, check for the required properties.
 
 
 
-|Type              |Requried|Postion|PipelineInput|
-|------------------|--------|-------|-------------|
-|```[PSObject[]]```|true    |3      |false        |
+> **Type**: ```[PSObject[]]```
+
+> **Required**: true
+
+> **Position**: 3
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **DeviceID**
 
@@ -71,9 +174,16 @@ If provided, the schedule will only run on the bridge with a particular device I
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **IPAddress**
 
@@ -81,9 +191,16 @@ If provided, the schedule will only run on the bridge found at the provided IP a
 
 
 
-|Type             |Requried|Postion|PipelineInput        |
-|-----------------|--------|-------|---------------------|
-|```[IPAddress]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[IPAddress]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Disable**
 
@@ -91,18 +208,40 @@ If set, will disable the rule.
 
 
 
-|Type          |Requried|Postion|PipelineInput|
-|--------------|--------|-------|-------------|
-|```[Switch]```|false   |named  |false        |
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
+---
+#### **WhatIf**
+-WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
+-WhatIf is used to see what would happen, or return operations without executing them
+#### **Confirm**
+-Confirm is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
+-Confirm is used to -Confirm each operation.
+    
+If you pass ```-Confirm:$false``` you will not be prompted.
+    
+    
+If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$confirmImpactPreference```, you will not be prompted unless -Confirm is passed.
+
 ---
 ### Outputs
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---
 ### Syntax
 ```PowerShell
-Set-HueRule [-Name] <String> [-Condition] <PSObject[]> [-Action] <PSObject[]> [-DeviceID <String>] [-IPAddress <IPAddress>] [-Disable] [<CommonParameters>]
+Set-HueRule [-Name] <String> [-Condition] <PSObject[]> [-Action] <PSObject[]> [-DeviceID <String>] [-IPAddress <IPAddress>] [-Disable] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
 

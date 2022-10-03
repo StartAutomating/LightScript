@@ -12,6 +12,9 @@ Changes the state of one or more Hue lights
 ---
 ### Related Links
 * [Get-HueLight](Get-HueLight.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -64,9 +67,16 @@ The name of the Hue light
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[String[]]```|true    |1      |true (ByPropertyName)|
+> **Type**: ```[String[]]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **RoomName**
 
@@ -74,9 +84,16 @@ The name of the Hue room
 
 
 
-|Type            |Requried|Postion|PipelineInput|
-|----------------|--------|-------|-------------|
-|```[String[]]```|true    |1      |false        |
+> **Type**: ```[String[]]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **LightID**
 
@@ -84,9 +101,16 @@ The identifier of the Hue light
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|true    |1      |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **GroupID**
 
@@ -94,9 +118,16 @@ The identifier of the Hue group
 
 
 
-|Type          |Requried|Postion|PipelineInput|
-|--------------|--------|-------|-------------|
-|```[String]```|true    |1      |false        |
+> **Type**: ```[String]```
+
+> **Required**: true
+
+> **Position**: 1
+
+> **PipelineInput**:false
+
+
+
 ---
 #### **TransitionTime**
 
@@ -104,9 +135,16 @@ The transition time.  This is how long it will take light to change from it's cu
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[TimeSpan]```|false   |2      |true (ByPropertyName)|
+> **Type**: ```[TimeSpan]```
+
+> **Required**: false
+
+> **Position**: 2
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **On**
 
@@ -114,9 +152,16 @@ If set, will switch the light on
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Off**
 
@@ -124,9 +169,16 @@ If set, will switch the light off
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **RGBColor**
 
@@ -134,9 +186,16 @@ Sets lights to an RGB color
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Hue**
 
@@ -144,9 +203,16 @@ The desired hue (ranged 0-360)
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Single]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Single]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Saturation**
 
@@ -154,9 +220,16 @@ The desired saturation (ranged 0-1)
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Single]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Single]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Brightness**
 
@@ -164,9 +237,16 @@ The desired brightness (ranged 0-1)
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Single]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Single]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Effect**
 
@@ -181,9 +261,16 @@ Valid Values:
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Alert**
 
@@ -199,9 +286,16 @@ Valid Values:
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **ColorTemperature**
 
@@ -209,9 +303,16 @@ The color temperature as a Mired value.
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **XY**
 
@@ -219,29 +320,50 @@ The color, in XY coordinates.
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[Single[]]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Single[]]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **SaturationIncrement**
 
-The increment in saturation.  This will adjust the intensity of the color
+The increment in saturation.  This will adjust the intensity of the color.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Single]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Single]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **BrightnessIncrement**
 
-An increment in luminance.  This will adjust the brightness of the light
+An increment in luminance.  This will adjust the brightness of the light.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Single]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Single]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **HueIncrement**
 
@@ -249,9 +371,16 @@ An increment in hue.  This will adjust the hue
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **ColorTemperatureIncrement**
 
@@ -259,9 +388,16 @@ A change in the color temperature.
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **OutputInput**
 
@@ -269,9 +405,16 @@ If set, will output the data that would be sent to the bridge.  This is useful f
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
@@ -287,7 +430,9 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 
 ---
 ### Outputs
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---

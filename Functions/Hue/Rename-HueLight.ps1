@@ -15,12 +15,13 @@ function Rename-HueLight
     [OutputType([PSObject])]
     param(
     # The old name of the light.  This can be a wildcard or regular expression.
-    [Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)]
+    [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+    [Alias('ID')]
     [string]
     $OldName,
 
     # The new name of the light.  A number sign will be replaced with the match number.
-    [Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)]
+    [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
     [string]
     $NewName
     )

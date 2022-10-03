@@ -1,5 +1,5 @@
 @{
-    ModuleVersion = '0.2.4.1'
+    ModuleVersion = '0.2.5'
     RootModule = 'LightScript.psm1'
     Description = 'Smarter Lighting with PowerShell'
     FormatsToProcess = 'LightScript.format.ps1xml'
@@ -14,19 +14,29 @@
             LicenseURI = 'https://github.com/StartAutomating/LightScript/blob/main/LICENSE'
             IconURI    = 'https://github.com/StartAutomating/LightScript/blob/main/Assets/LightScript.png'
             ReleaseNotes = @'
-## 0.2.4.1
+## 0.2.5:
+* Set-HueRule:  Easier conditions (Fixes #28) and plural aliases (Fixes #31)
+* Adding Rename-HueSensor (Fixes #26).
+* Rename-HueLight: Adding [Alias('ID')] to -OldName (Fixes #27)
+* Get-HueBridge:  SupportShouldProcess (Fixes #30)
+* Set-HueLight:  Fixing -Brightness/SaturationIncrement (Fixes #29)
+* Add-HueSensor:  Adding -New (Fixes #25)
+* Improved Repository Organization (Fixes #32)
+---
+
+## 0.2.4.1:
 * Adding help for Add-HueLight (#23)
 * Fixing other markdown documentation layout issues
 ---
 
-## 0.2.4
+## 0.2.4:
 * Adding Add-HueLight (#18)
 * Adding Get-HueLight -New (#21)
 * Fixing Rename-HueLight (#19)
 * Building LightScript with PipeScript (#20)
 ---
 
-## 0.2.3
+## 0.2.3:
 * Set-NanoLeaf:  Fixing #17
 * Send-HueBridge:  Adding logging
 * Automatically documentating module (#13)
@@ -36,10 +46,10 @@
   * Fixing -Hue/-HueIncrement (#15)   
 ---
 
-## 0.2.2
+## 0.2.2:
 Adding KeyLight: Connect-KeyLight, Get-KeyLight, Set-KeyLight, Disconnect-KeyLight
 ---
-## 0.2.1
+## 0.2.1:
 * Set-NanoLeaf:  Adding -EffectOption parameter help (#9).  Adding examples.
 * Set-NanoLeaf:  Fixing Brightness (#7).  Adding Tab Completion (#8).  Adding Examples
 ---

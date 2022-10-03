@@ -12,6 +12,9 @@ Disconnects a new Hue Bridge and removes connection information.
 ---
 ### Related Links
 * [Connect-HueBridge](Connect-HueBridge.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -27,15 +30,24 @@ The IP Address of the Hue Bridge
 
 
 
-|Type             |Requried|Postion|PipelineInput        |
-|-----------------|--------|-------|---------------------|
-|```[IPAddress]```|true    |named  |true (ByPropertyName)|
+> **Type**: ```[IPAddress]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 ### Outputs
-System.Nullable
+* [Nullable](https://learn.microsoft.com/en-us/dotnet/api/System.Nullable)
 
 
-System.Management.Automation.PSObject
+* [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
+
+
 
 
 ---

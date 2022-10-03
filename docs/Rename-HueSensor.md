@@ -1,13 +1,13 @@
 
-Rename-HueLight
----------------
+Rename-HueSensor
+----------------
 ### Synopsis
-Renames Hue Lights
+Renames Hue Sensors
 
 ---
 ### Description
 
-Renames one or more Hue lights.
+Renames one or more Hue Sensors.
 
 ---
 ### Related Links
@@ -15,7 +15,7 @@ Renames one or more Hue lights.
 
 
 
-* [Get-HueLight](Get-HueLight.md)
+* [Get-HueSensor](Get-HueSensor.md)
 
 
 
@@ -23,14 +23,14 @@ Renames one or more Hue lights.
 ### Examples
 #### EXAMPLE 1
 ```PowerShell
-Rename-HueLight
+Rename-HueSensor
 ```
 
 ---
 ### Parameters
 #### **OldName**
 
-The old name of the light.  This can be a wildcard or regular expression.
+The old name of the Sensor.  This can be a wildcard or regular expression.
 
 
 
@@ -47,7 +47,7 @@ The old name of the light.  This can be a wildcard or regular expression.
 ---
 #### **NewName**
 
-The new name of the light.  A number sign will be replaced with the match number.
+The new name of the Sensor.  A number sign will be replaced with the match number.
 
 
 
@@ -71,7 +71,7 @@ The new name of the light.  A number sign will be replaced with the match number
 ---
 ### Syntax
 ```PowerShell
-Rename-HueLight [-OldName] <String> [-NewName] <String> [<CommonParameters>]
+Rename-HueSensor [-OldName] <String> [-NewName] <String> [<CommonParameters>]
 ```
 ---
 

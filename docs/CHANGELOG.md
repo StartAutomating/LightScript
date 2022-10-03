@@ -1,8 +1,17 @@
+## 0.2.5:
+* Set-HueRule:  Easier conditions (Fixes #28) and plural aliases (Fixes #31)
+* Adding Rename-HueSensor (Fixes #26).
+* Rename-HueLight: Adding [Alias('ID')] to -OldName (Fixes #27)
+* Get-HueBridge:  SupportShouldProcess (Fixes #30)
+* Set-HueLight:  Fixing -Brightness/SaturationIncrement (Fixes #29)
+* Add-HueSensor:  Adding -New (Fixes #25)
+* Improved Repository Organization (Fixes #32)
+---
+
 ## 0.2.4.1
 * Adding help for Add-HueLight (#23)
 * Fixing other markdown documentation layout issues
 ---
-
 
 ## 0.2.4
 * Adding Add-HueLight (#18)
@@ -40,3 +49,4 @@ Adding Pixoo commands: Connect/Disconnect/Get/Set-Pixoo (#4)
 Initial Release of LightScript:  Smarter Lighting with PowerShell
 
 Script your Hue Bridge, NanoLeaf, or Twinkly lights.
+
