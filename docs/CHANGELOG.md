@@ -40,3 +40,4 @@ Adding Pixoo commands: Connect/Disconnect/Get/Set-Pixoo (#4)
 Initial Release of LightScript:  Smarter Lighting with PowerShell
 
 Script your Hue Bridge, NanoLeaf, or Twinkly lights.
+
