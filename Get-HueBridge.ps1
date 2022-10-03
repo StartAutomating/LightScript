@@ -11,8 +11,8 @@
     .Example
         Get-HueBridge
     #>
-    [CmdletBinding(DefaultParameterSetName='ConnectionInfo')]
-    [OutputType([PSObject])]
+    [CmdletBinding(DefaultParameterSetName='ConnectionInfo',SupportsShouldProcess)]
+    [OutputType([PSObject])]    
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification="Parameters used as hints for Parameter Sets")]
     param(
     # If set, will get the schedules defined on the Hue bridge
@@ -131,6 +131,7 @@
             $bridges | # Get all bridges
                 Send-HueBridge -Command $PSCmdlet.ParameterSetName.ToLower() | # get the set of data we want from the bridge.
                 ForEach-Object {
+                    if ($WhatIfPreference) { return $_ }
                     if ('Config', 'Capabilities' -contains $psCmdlet.ParameterSetName) {
                         return $_ # config and capabilities are directly returned.
                     }
