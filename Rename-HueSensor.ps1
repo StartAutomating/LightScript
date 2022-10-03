@@ -1,54 +1,55 @@
-function Rename-HueLight
+function Rename-HueSensor
 {
     <#
     .Synopsis
-        Renames Hue Lights
+        Renames Hue Sensors
     .Description
-        Renames one or more Hue lights.
+        Renames one or more Hue Sensors.
     .Example
-        Rename-HueLight
+        Rename-HueSensor
     .Link
         Get-HueBridge
     .Link
-        Get-HueLight
+        Get-HueSensor
     #>
     [OutputType([PSObject])]
     param(
-    # The old name of the light.  This can be a wildcard or regular expression.
+    # The old name of the Sensor.  This can be a wildcard or regular expression.
     [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
     [Alias('ID')]
     [string]
     $OldName,
 
-    # The new name of the light.  A number sign will be replaced with the match number.
+    # The new name of the Sensor.  A number sign will be replaced with the match number.
     [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
     [string]
     $NewName
     )
 
     begin {
-        $lights = Get-HueLight
+        $Sensors = Get-HueSensor
         $bridges = Get-HueBridge
     }
 
     process {
-        $lights |
+        $Sensors |
             Where-Object {
-                #region Find matching lights
+                #region Find matching Sensors
                 ($_.Id -eq $oldName) -or
                 ($_.Name -like $OldName) -or 
                 ($oldName -as [regex] -and $_.Name -match $oldName)                
-                #endregion Find matching lights
+                #endregion Find matching Sensors
             } |
             ForEach-Object -Begin {
                 $matchCount = 0
             } -Process {
-                #region Rename the lights
+                #region Rename the Sensors
                 $MatchCount++
                 $realNewName = $NewName -replace '#', $MatchCount
-                $lightToRename = $_
-                $bridges | Send-HueBridge -Command "lights/$($lightToRename.id)" -Method PUT -Data @{name=$realNewName}
-                #endregion Rename the lights
+                $SensorToRename = $_
+                $bridges | Send-HueBridge -Command "sensors/$($SensorToRename.id)" -Method PUT -Data @{name=$realNewName}
+                #endregion Rename the Sensors
             }
     }
 }
+
