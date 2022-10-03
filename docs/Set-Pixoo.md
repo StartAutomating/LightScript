@@ -12,6 +12,9 @@ Changes Pixoo Frames
 ---
 ### Related Links
 * [Get-Pixoo](Get-Pixoo.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -27,9 +30,16 @@ One or more IP Addresses of Twinkly devices.
 
 
 
-|Type               |Requried|Postion|PipelineInput        |
-|-------------------|--------|-------|---------------------|
-|```[IPAddress[]]```|false   |1      |true (ByPropertyName)|
+> **Type**: ```[IPAddress[]]```
+
+> **Required**: false
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Brightness**
 
@@ -39,9 +49,16 @@ When passed with no other parameters, adjusts the absolute brightness
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Single]```|false   |2      |true (ByPropertyName)|
+> **Type**: ```[Single]```
+
+> **Required**: false
+
+> **Position**: 2
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Hue**
 
@@ -49,9 +66,16 @@ Sets the hue of all lights in a fixture
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Double]```|false   |3      |true (ByPropertyName)|
+> **Type**: ```[Double]```
+
+> **Required**: false
+
+> **Position**: 3
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Saturation**
 
@@ -59,9 +83,16 @@ Sets the saturation of all lights in a fixture
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Double]```|false   |4      |true (ByPropertyName)|
+> **Type**: ```[Double]```
+
+> **Required**: false
+
+> **Position**: 4
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **On**
 
@@ -69,9 +100,16 @@ If set, will turn a Pixoo screen on.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Off**
 
@@ -79,9 +117,16 @@ If set, will turn a Pixoo screen off.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Visualizer**
 
@@ -89,9 +134,16 @@ If provided, will switch the Pixoo to a given numbered visualizer
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|false   |5      |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 5
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **CustomPlaylist**
 
@@ -99,9 +151,16 @@ If provided, will switch the Pixoo custom playlist
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|false   |6      |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 6
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **CloudChannel**
 
@@ -109,9 +168,16 @@ If provided, will switch the Pixoo's current Cloud Channel.
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|false   |7      |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 7
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Channel**
 
@@ -128,9 +194,16 @@ Valid Values:
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |8      |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 8
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Stopwatch**
 
@@ -146,9 +219,16 @@ Valid Values:
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |9      |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 9
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Timer**
 
@@ -157,9 +237,16 @@ If provided, will switch the Pixoo into a Timer, with the given timespan.
 
 
 
-|Type            |Requried|Postion|PipelineInput        |
-|----------------|--------|-------|---------------------|
-|```[TimeSpan]```|false   |10     |true (ByPropertyName)|
+> **Type**: ```[TimeSpan]```
+
+> **Required**: false
+
+> **Position**: 10
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **NoiseMeter**
 
@@ -167,9 +254,16 @@ If set, will display a noise meter.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **RedScore**
 
@@ -179,9 +273,16 @@ If provided, will switch the Pixoo into a Scoreboard.
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|false   |11     |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 11
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **BlueScore**
 
@@ -191,9 +292,16 @@ If provided, will switch the Pixoo into a Scoreboard.
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|false   |12     |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 12
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **RGBColor**
 
@@ -201,9 +309,16 @@ If provided, will change the Pixoo into a single RGB color.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |13     |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 13
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
