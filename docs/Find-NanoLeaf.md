@@ -12,6 +12,9 @@ Finds NanoLeaf controllers on your local area network, using SSDP.
 ---
 ### Related Links
 * [Connect-NanoLeaf](Connect-NanoLeaf.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
@@ -27,9 +30,16 @@ The search timeout, in seconds.  Increase this number on slower networks.
 
 
 
-|Type         |Requried|Postion|PipelineInput        |
-|-------------|--------|-------|---------------------|
-|```[Int32]```|false   |1      |true (ByPropertyName)|
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 1
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **Force**
 
@@ -38,9 +48,16 @@ Otherwise, the most recent cached result will be returned.
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[Switch]```|false   |named  |true (ByPropertyName)|
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 #### **DeviceType**
 
@@ -49,12 +66,21 @@ Changing this value is unlikely to find any NanoLeaf controllers, but you can se
 
 
 
-|Type          |Requried|Postion|PipelineInput        |
-|--------------|--------|-------|---------------------|
-|```[String]```|false   |2      |true (ByPropertyName)|
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 2
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
 ---
 ### Outputs
-Roku.BasicInfo
+* Roku.BasicInfo
+
+
 
 
 ---
