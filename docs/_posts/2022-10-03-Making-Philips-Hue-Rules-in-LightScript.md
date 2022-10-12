@@ -5,7 +5,7 @@ author: StartAutomating
 sourceURL: https://github.com/StartAutomating/LightScript/issues/28
 tag: enhancement
 ---
-Hue Rules expressions take the format `/resource/id/...`
+Hue Rule expressions take the format `/resource/id/...`
 
 This isn't exactly the most "user friendly" option.  When was the last time _you_ memorized dozens of numeric ids?
 
@@ -29,6 +29,6 @@ For flexibility, we actually consider two possible names: The literal name, and 
 
 Custom Rules are an incredibly powerful part of the Hue ecosystem, and this makes _much_ easier to set up.
 
-Hope this Helps
+Happy LightScripting
 
 
