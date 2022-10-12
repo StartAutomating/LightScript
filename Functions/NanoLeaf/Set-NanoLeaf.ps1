@@ -356,25 +356,6 @@
             $sendData.on = @{value=$false}
         }
 
-        #region Set HSB/HSL Color for all panels
-        if ($Hue -and $Saturation -and $Brightness) {
-            $hslData = @{
-                write = [Ordered]@{
-                    command = 'display'
-                    version = '1.0'
-                    animType = "solid"
-                    palette = @(
-                        [Ordered]@{hue=$Hue%360;saturation=[int]($Saturation*100);brightness=[int]($Brightness*100)}
-                    )
-                    colorType="HSB"
-                }
-            } | ConvertTo-Json -Depth 5
-
-            Send-NanoLeaf @ipAndToken -Command 'effects' -Data $hslData -Method PUT
-            return
-        }
-        #endregion Set HSB/HSL Color for all panels
-
         $writeCommand = [Ordered]@{}
         if (-not $effectName) {
             $writeCommand.command = "display"
