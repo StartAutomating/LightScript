@@ -61,6 +61,7 @@
     [ComponentModel.AmbientValue({
         [PSCustomObject]@{value=$_ % 360}
     })]
+    [Alias('H')]
     [int]
     $Hue,
 
@@ -77,6 +78,7 @@
     [ComponentModel.AmbientValue({
         [PSCustomObject]@{value=[int][Math]::Round($_ * 100)}
     })]
+    [Alias('S')]
     [ValidateRange(0,1)]
     [double]
     $Saturation,
@@ -94,6 +96,7 @@
     # If provided with -Hue and -Saturation, sets the color of all panels.
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidateRange(0,1)]
+    [Alias('B','L','Luminance','.bri')]
     [double]
     $Brightness,
 
@@ -104,6 +107,7 @@
     [ComponentModel.AmbientValue({
         [PSCustomObject]@{increment=[int][Math]::Round($_ * 100)}
     })]
+    [Alias('LuminanceIncrement')]
     [ValidateRange(-1,1)]
     [double]
     $BrightnessIncrement,
