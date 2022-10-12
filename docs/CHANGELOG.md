@@ -1,3 +1,11 @@
+## 0.2.6:
+* Set-NanoLeaf:
+  * Fixing -SaturationIncrement
+  * Adding -BrightnessIncrement
+  * Fixing -Hue/-Saturation/-Brightness behavior to allow increment parameters to work.
+* Now using [GitPub](https://github.com/StartAutomating/GitPub) to blog.
+---
+
 ## 0.2.5:
 * Set-HueRule:  Easier conditions (Fixes #28) and plural aliases (Fixes #31)
 * Adding Rename-HueSensor (Fixes #26).
