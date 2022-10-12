@@ -84,7 +84,7 @@
     # Increments the saturation of the NanoLeaf light color.
     [ComponentModel.DefaultBindingProperty('sat')]
     [ComponentModel.AmbientValue({
-        [PSCustomObject]@{increment=[int][Math]::Round($_)}
+        [PSCustomObject]@{increment=[int][Math]::Round($_ * 100)}
     })]
     [int]
     $SaturationIncrement,
@@ -96,6 +96,17 @@
     [ValidateRange(0,1)]
     [double]
     $Brightness,
+
+    # The brightness increment.
+    # If no other parameters are provided, adjusts universal brightness.    
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [ComponentModel.DefaultBindingProperty('brightness')]
+    [ComponentModel.AmbientValue({
+        [PSCustomObject]@{increment=[int][Math]::Round($_ * 100)}
+    })]
+    [ValidateRange(-1,1)]
+    [double]
+    $BrightnessIncrement,
 
     # If set, will change all panels on the nanoleaf to a given color temperature.
     [Parameter(ValueFromPipelineByPropertyName)]
@@ -336,8 +347,8 @@
             } else {
                 $sendData.brightness.duration = 0
             }
-        } 
-
+        }
+        
         if ($on) {
             $sendData.on = @{value=$true}
         }
