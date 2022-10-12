@@ -61,6 +61,7 @@
     [ComponentModel.AmbientValue({
         [PSCustomObject]@{value=$_ % 360}
     })]
+    [Alias('H')]
     [int]
     $Hue,
 
@@ -77,6 +78,7 @@
     [ComponentModel.AmbientValue({
         [PSCustomObject]@{value=[int][Math]::Round($_ * 100)}
     })]
+    [Alias('S')]
     [ValidateRange(0,1)]
     [double]
     $Saturation,
@@ -84,7 +86,7 @@
     # Increments the saturation of the NanoLeaf light color.
     [ComponentModel.DefaultBindingProperty('sat')]
     [ComponentModel.AmbientValue({
-        [PSCustomObject]@{increment=[int][Math]::Round($_)}
+        [PSCustomObject]@{increment=[int][Math]::Round($_ * 100)}
     })]
     [int]
     $SaturationIncrement,
@@ -94,8 +96,21 @@
     # If provided with -Hue and -Saturation, sets the color of all panels.
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidateRange(0,1)]
+    [Alias('B','L','Luminance','.bri')]
     [double]
     $Brightness,
+
+    # The brightness increment.
+    # If no other parameters are provided, adjusts universal brightness.    
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [ComponentModel.DefaultBindingProperty('brightness')]
+    [ComponentModel.AmbientValue({
+        [PSCustomObject]@{increment=[int][Math]::Round($_ * 100)}
+    })]
+    [Alias('LuminanceIncrement')]
+    [ValidateRange(-1,1)]
+    [double]
+    $BrightnessIncrement,
 
     # If set, will change all panels on the nanoleaf to a given color temperature.
     [Parameter(ValueFromPipelineByPropertyName)]
@@ -336,33 +351,14 @@
             } else {
                 $sendData.brightness.duration = 0
             }
-        } 
-
+        }
+        
         if ($on) {
             $sendData.on = @{value=$true}
         }
         if ($off) {
             $sendData.on = @{value=$false}
         }
-
-        #region Set HSB/HSL Color for all panels
-        if ($Hue -and $Saturation -and $Brightness) {
-            $hslData = @{
-                write = [Ordered]@{
-                    command = 'display'
-                    version = '1.0'
-                    animType = "solid"
-                    palette = @(
-                        [Ordered]@{hue=$Hue%360;saturation=[int]($Saturation*100);brightness=[int]($Brightness*100)}
-                    )
-                    colorType="HSB"
-                }
-            } | ConvertTo-Json -Depth 5
-
-            Send-NanoLeaf @ipAndToken -Command 'effects' -Data $hslData -Method PUT
-            return
-        }
-        #endregion Set HSB/HSL Color for all panels
 
         $writeCommand = [Ordered]@{}
         if (-not $effectName) {

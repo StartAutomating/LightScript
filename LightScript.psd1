@@ -1,5 +1,5 @@
 @{
-    ModuleVersion = '0.2.5'
+    ModuleVersion = '0.2.6'
     RootModule = 'LightScript.psm1'
     Description = 'Smarter Lighting with PowerShell'
     FormatsToProcess = 'LightScript.format.ps1xml'
@@ -14,6 +14,15 @@
             LicenseURI = 'https://github.com/StartAutomating/LightScript/blob/main/LICENSE'
             IconURI    = 'https://github.com/StartAutomating/LightScript/blob/main/Assets/LightScript.png'
             ReleaseNotes = @'
+## 0.2.6:
+* Set-NanoLeaf:
+    * Fixing -SaturationIncrement (#35)
+    * Adding -BrightnessIncrement (#34)
+    * Fixing -Hue/-Saturation/-Brightness behavior to allow increment parameters to work. (#36)
+    * Making Parameter Aliases consistent with Set-HueLight (#38)
+* Now using [GitPub](https://github.com/StartAutomating/GitPub) to blog (#37).
+---
+
 ## 0.2.5:
 * Set-HueRule:  Easier conditions (Fixes #28) and plural aliases (Fixes #31)
 * Adding Rename-HueSensor (Fixes #26).
