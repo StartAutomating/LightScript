@@ -208,6 +208,24 @@ If provided with -Hue and -Saturation, sets the color of all panels.
 
 
 ---
+#### **BrightnessIncrement**
+
+The brightness increment.
+If no other parameters are provided, adjusts universal brightness.
+
+
+
+> **Type**: ```[Double]```
+
+> **Required**: false
+
+> **Position**: 6
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 #### **ColorTemperature**
 
 If set, will change all panels on the nanoleaf to a given color temperature.
@@ -218,7 +236,7 @@ If set, will change all panels on the nanoleaf to a given color temperature.
 
 > **Required**: false
 
-> **Position**: 6
+> **Position**: 7
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -235,7 +253,7 @@ The name of the effect.
 
 > **Required**: false
 
-> **Position**: 7
+> **Position**: 8
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -252,7 +270,7 @@ The duration to display.  In most contexts, this will be rounded to the nearest 
 
 > **Required**: false
 
-> **Position**: 8
+> **Position**: 9
 
 > **PipelineInput**:false
 
@@ -287,7 +305,7 @@ The name of the effect plugin.
 
 > **Required**: false
 
-> **Position**: 9
+> **Position**: 10
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -304,7 +322,7 @@ The palette used for an effect.
 
 > **Required**: false
 
-> **Position**: 10
+> **Position**: 11
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -334,7 +352,7 @@ Valid Values:
 
 > **Required**: false
 
-> **Position**: 11
+> **Position**: 12
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -351,7 +369,7 @@ The plugin UUID.
 
 > **Required**: false
 
-> **Position**: 12
+> **Position**: 13
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -375,7 +393,7 @@ Valid Values:
 
 > **Required**: false
 
-> **Position**: 13
+> **Position**: 14
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -395,7 +413,7 @@ Timespans will be ignored when sending colors via UDP.
 
 > **Required**: false
 
-> **Position**: 14
+> **Position**: 15
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -425,7 +443,7 @@ Plugins can use any of the Nanoleaf-approved option types to further control how
 
 > **Required**: false
 
-> **Position**: 15
+> **Position**: 16
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -476,7 +494,7 @@ The IP Address of the NanoLeaf.
 
 > **Required**: false
 
-> **Position**: 16
+> **Position**: 17
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -493,7 +511,7 @@ The nanoleaf token
 
 > **Required**: false
 
-> **Position**: 17
+> **Position**: 18
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -522,7 +540,7 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 ---
 ### Syntax
 ```PowerShell
-Set-NanoLeaf [-Off] [-On] [[-Hue] <Int32>] [[-HueIncrement] <Int32>] [[-Saturation] <Double>] [[-SaturationIncrement] <Int32>] [[-Brightness] <Double>] [[-ColorTemperature] <Int32>] [[-EffectName] <String>] [[-Duration] <TimeSpan>] [-ExternalControl] [[-PluginName] <String>] [[-Palette] <PSObject[]>] [[-EffectType] <String>] [[-PluginUuid] <String>] [[-PluginType] <String>] [[-Panel] <IDictionary>] [[-EffectOption] <IDictionary>] [-Loop] [-AsByteStream] [[-IPAddress] <IPAddress>] [[-NanoLeafToken] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-NanoLeaf [-Off] [-On] [[-Hue] <Int32>] [[-HueIncrement] <Int32>] [[-Saturation] <Double>] [[-SaturationIncrement] <Int32>] [[-Brightness] <Double>] [[-BrightnessIncrement] <Double>] [[-ColorTemperature] <Int32>] [[-EffectName] <String>] [[-Duration] <TimeSpan>] [-ExternalControl] [[-PluginName] <String>] [[-Palette] <PSObject[]>] [[-EffectType] <String>] [[-PluginUuid] <String>] [[-PluginType] <String>] [[-Panel] <IDictionary>] [[-EffectOption] <IDictionary>] [-Loop] [-AsByteStream] [[-IPAddress] <IPAddress>] [[-NanoLeafToken] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
 
