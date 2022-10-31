@@ -1,4 +1,3 @@
-
 Get-HueScene
 ------------
 ### Synopsis
@@ -309,5 +308,3 @@ Get-HueScene -Resource [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [
 Get-HueScene -Light [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
 ```
 ---
-
-
