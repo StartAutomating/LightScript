@@ -6,21 +6,27 @@ function Connect-Pixoo
     .Description
         Connects to a Pixoo over Wifi
     .Example
-        Connect-Pixoo 1.2.3.4 -PassThru
+        Find-Pixoo | Connect-Pixoo
     .Link
         Get-Pixoo
     #>
     [OutputType([Nullable], [PSObject])]
     param(
-    # The IP Address for the Twinkly device.  This can be discovered thru the phone user interface.
+    # The IP Address for the Pixoo device.
+    # This can be discovered using Find-Pixoo.
     [Parameter(Mandatory,Position=0,ValueFromPipelineByPropertyName)]
-    [Alias('PixooIPAddress')]
+    [Alias('PixooIPAddress','DevicePrivateIP')]
     [IPAddress]
     $IPAddress,
 
     # If set, will output the connection information.
     [switch]
-    $PassThru
+    $PassThru,
+
+    # The DeviceID.  This can be provided by Find-Pixoo
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [string]
+    $DeviceId
     )
 
     begin {
@@ -64,6 +70,9 @@ function Connect-Pixoo
                 $pixooDataFile = Join-Path $lightScriptRoot ".$($macAddress).pixoo.clixml"
                 $pixooConf.pstypenames.clear()
                 $pixooConf.pstypenames.add('Pixoo')
+                if ($DeviceId) {
+                    $pixooConf | Add-Member NoteProperty DeviceID $DeviceId -Force
+                }
                 $pixooConf |
                     Add-Member NoteProperty IPAddress $IPAddress -Force -PassThru |
                     Add-Member NoteProperty MACAddress $macAddress -Force -PassThru |
