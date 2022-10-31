@@ -29,7 +29,8 @@ Get-Pixoo
 ### Parameters
 #### **IPAddress**
 
-The IP Address for the Twinkly device.  This can be discovered thru the phone user interface.
+The IP Address for the Pixoo device.
+This can be discovered thru the phone user interface or by using Find-Pixoo.
 
 
 
@@ -37,15 +38,35 @@ The IP Address for the Twinkly device.  This can be discovered thru the phone us
 
 > **Required**: false
 
-> **Position**: 1
+> **Position**: named
 
 > **PipelineInput**:true (ByPropertyName)
 
 
 
 ---
+#### **Weather**
+
+If set, will get the local weather.
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
+---
 ### Syntax
 ```PowerShell
-Get-Pixoo [[-IPAddress] <IPAddress[]>] [<CommonParameters>]
+Get-Pixoo [-IPAddress <IPAddress[]>] [<CommonParameters>]
+```
+```PowerShell
+Get-Pixoo [-IPAddress <IPAddress[]>] -Weather [<CommonParameters>]
 ```
 ---
