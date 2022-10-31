@@ -1,4 +1,3 @@
-
 Get-HueSensor
 -------------
 ### Synopsis
@@ -309,5 +308,3 @@ Get-HueSensor -Resource [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] 
 Get-HueSensor -Light [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
 ```
 ---
-
-
