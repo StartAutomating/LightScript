@@ -116,7 +116,13 @@ function Set-Pixoo
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('Long')]
     [double]
-    $Longitude
+    $Longitude,
+
+    # Set the device rotation.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [ValidateSet(0,90,180,270)]
+    [int]
+    $Rotation
     )
 
     begin {
@@ -126,6 +132,7 @@ function Set-Pixoo
         if ($home) {
             $lightScriptRoot = Join-Path $home -ChildPath LightScript
         }
+        $SetPixooCmd = $myInvocation.MyCommand
     }
 
     process {
@@ -314,6 +321,18 @@ function Set-Pixoo
                     }                    
                 }
 
+                if ($PSBoundParameters.ContainsKey("Rotation")) {
+                    $invokeSplat.Body = (@{
+                        Command = "Device/SetScreenRotationAngle"
+                        Mode    = $Rotation / 90
+                    } | ConvertTo-Json -Compress)
+                    if ($whatIfPreference) {
+                        $invokeSplat
+                    } elseif ($psCmdlet.ShouldProcess("$($invokeSplat.Command)")) {
+                        Invoke-RestMethod @invokeSplat
+                    }
+                }
+
                 if ($psBoundParameters.ContainsKey("CustomPlaylist")) {                    
                     $invokeSplat.Body = (@{
                         Command = "Channel/SetCustomPageIndex"
@@ -324,7 +343,7 @@ function Set-Pixoo
                     } elseif ($psCmdlet.ShouldProcess("$($invokeSplat.Command)")) {
                         Invoke-RestMethod @invokeSplat
                     }
-                }
+                }                
 
                 if ($psBoundParameters.ContainsKey("CloudChannel")) {
                     $invokeSplat.Body = (@{
