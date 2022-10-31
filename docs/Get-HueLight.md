@@ -1,4 +1,3 @@
-
 Get-HueLight
 ------------
 ### Synopsis
@@ -150,5 +149,3 @@ Get-HueLight [-RegularExpression] [-ExactMatch] -LightID <Int32> [<CommonParamet
 Get-HueLight [-RegularExpression] [-ExactMatch] -New [<CommonParameters>]
 ```
 ---
-
-
