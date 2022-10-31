@@ -353,6 +353,32 @@ The longitude for the device.  Must be provided with -Latitude
 
 
 ---
+#### **Rotation**
+
+Set the device rotation.
+
+
+
+Valid Values:
+
+* 0
+* 90
+* 180
+* 270
+
+
+
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 16
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
 -WhatIf is used to see what would happen, or return operations without executing them
@@ -368,6 +394,6 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 ---
 ### Syntax
 ```PowerShell
-Set-Pixoo [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-Visualizer] <Int32>] [[-CustomPlaylist] <Int32>] [[-CloudChannel] <Int32>] [[-Channel] <String>] [[-Stopwatch] <String>] [[-Timer] <TimeSpan>] [-NoiseMeter] [[-RedScore] <Int32>] [[-BlueScore] <Int32>] [[-RGBColor] <String>] [[-Latitude] <Double>] [[-Longitude] <Double>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-Pixoo [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-Visualizer] <Int32>] [[-CustomPlaylist] <Int32>] [[-CloudChannel] <Int32>] [[-Channel] <String>] [[-Stopwatch] <String>] [[-Timer] <TimeSpan>] [-NoiseMeter] [[-RedScore] <Int32>] [[-BlueScore] <Int32>] [[-RGBColor] <String>] [[-Latitude] <Double>] [[-Longitude] <Double>] [[-Rotation] <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
