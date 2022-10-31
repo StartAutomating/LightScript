@@ -1,4 +1,3 @@
-
 Get-HueSchedule
 ---------------
 ### Synopsis
@@ -309,5 +308,3 @@ Get-HueSchedule -Resource [[-Name] <String[]>] [-RegularExpression] [-ExactMatch
 Get-HueSchedule -Light [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
 ```
 ---
-
-

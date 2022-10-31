@@ -1,4 +1,3 @@
-
 Add-HueSensor
 -------------
 ### Synopsis
@@ -196,5 +195,3 @@ Add-HueSensor [-Name] <String> [-SensorType] <String> [[-ModelID] <String>] [[-M
 Add-HueSensor -New [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-

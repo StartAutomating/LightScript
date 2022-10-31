@@ -1,4 +1,3 @@
-
 Remove-HueSensor
 ----------------
 ### Synopsis
@@ -125,5 +124,3 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 Remove-HueSensor [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-

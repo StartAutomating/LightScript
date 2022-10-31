@@ -1,4 +1,3 @@
-
 Send-HueBridge
 --------------
 ### Synopsis
@@ -171,5 +170,3 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 Send-HueBridge [-IPAddress] <IPAddress> [-HueUserName] <String> [[-Command] <String>] [[-Body] <PSObject>] [[-Method] <String>] [-OutputInput] [[-PSTypeName] <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-

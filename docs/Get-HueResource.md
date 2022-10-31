@@ -1,4 +1,3 @@
-
 Get-HueResource
 ---------------
 ### Synopsis
@@ -309,5 +308,3 @@ Get-HueResource -Resource [[-Name] <String[]>] [-RegularExpression] [-ExactMatch
 Get-HueResource -Light [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
 ```
 ---
-
-

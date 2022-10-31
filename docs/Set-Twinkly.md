@@ -1,4 +1,3 @@
-
 Set-Twinkly
 -----------
 ### Synopsis
@@ -361,5 +360,3 @@ The size of each block within a movie.  By default, 3.
 Set-Twinkly [[-IPAddress] <IPAddress[]>] [[-Hue] <Double>] [[-Saturation] <Double>] [[-Brightness] <Double>] [[-Red] <Byte>] [[-Green] <Byte>] [[-Blue] <Byte>] [[-RGBColor] <String[]>] [[-Mode] <String>] [[-DeviceName] <String>] [-RestartPlaylist] [[-MovieName] <String>] [[-MovieFramerate] <Int32>] [[-MovieLEDCount] <Int32>] [[-MovieFrameCount] <Int32>] [[-MovieData] <Byte[]>] [[-MovieBlockSize] <Byte>] [<CommonParameters>]
 ```
 ---
-
-

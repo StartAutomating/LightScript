@@ -1,4 +1,3 @@
-
 Disconnect-Pixoo
 ----------------
 ### Synopsis
@@ -69,5 +68,3 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 Disconnect-Pixoo [-IPAddress] <IPAddress> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-

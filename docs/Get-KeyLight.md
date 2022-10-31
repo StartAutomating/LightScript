@@ -1,4 +1,3 @@
-
 Get-KeyLight
 ------------
 ### Synopsis
@@ -50,5 +49,3 @@ The IP Address for the Twinkly device.  This can be discovered thru the phone us
 Get-KeyLight [[-IPAddress] <IPAddress[]>] [<CommonParameters>]
 ```
 ---
-
-

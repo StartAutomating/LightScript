@@ -1,4 +1,3 @@
-
 Connect-Pixoo
 -------------
 ### Synopsis
@@ -73,5 +72,3 @@ If set, will output the connection information.
 Connect-Pixoo [-IPAddress] <IPAddress> [-PassThru] [<CommonParameters>]
 ```
 ---
-
-

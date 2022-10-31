@@ -1,4 +1,3 @@
-
 Write-HueSensor
 ---------------
 ### Synopsis
@@ -171,5 +170,3 @@ If set, will output the data that would be sent to the bridge.  This is useful f
 Write-HueSensor [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Config] -Data <PSObject> [-OutputInput] [<CommonParameters>]
 ```
 ---
-
-

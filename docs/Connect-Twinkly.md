@@ -1,4 +1,3 @@
-
 Connect-Twinkly
 ---------------
 ### Synopsis
@@ -73,5 +72,3 @@ If set, will output the connection information.
 Connect-Twinkly [-IPAddress] <IPAddress> [-PassThru] [<CommonParameters>]
 ```
 ---
-
-

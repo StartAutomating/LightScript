@@ -1,4 +1,3 @@
-
 Connect-HueBridge
 -----------------
 ### Synopsis
@@ -70,5 +69,3 @@ Connect-HueBridge [<CommonParameters>]
 Connect-HueBridge -HueBridgeIP <IPAddress> [<CommonParameters>]
 ```
 ---
-
-

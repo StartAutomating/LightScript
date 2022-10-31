@@ -1,4 +1,3 @@
-
 Find-NanoLeaf
 -------------
 ### Synopsis
@@ -89,5 +88,3 @@ Changing this value is unlikely to find any NanoLeaf controllers, but you can se
 Find-NanoLeaf [[-SearchTimeout] <Int32>] [-Force] [[-DeviceType] <String>] [<CommonParameters>]
 ```
 ---
-
-
