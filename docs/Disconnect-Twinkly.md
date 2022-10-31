@@ -1,4 +1,3 @@
-
 Disconnect-Twinkly
 ------------------
 ### Synopsis
@@ -73,5 +72,3 @@ If set, will output the connection information.
 Disconnect-Twinkly [-IPAddress] <IPAddress> [-PassThru] [<CommonParameters>]
 ```
 ---
-
-
