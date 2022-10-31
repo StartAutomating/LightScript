@@ -1,4 +1,3 @@
-
 Get-HueBridge
 -------------
 ### Synopsis
@@ -318,5 +317,3 @@ Get-HueBridge -Resource [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] 
 Get-HueBridge -Light [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-

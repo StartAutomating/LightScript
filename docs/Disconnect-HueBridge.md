@@ -1,4 +1,3 @@
-
 Disconnect-HueBridge
 --------------------
 ### Synopsis
@@ -59,5 +58,3 @@ Disconnect-HueBridge [<CommonParameters>]
 Disconnect-HueBridge -HueBridgeIP <IPAddress> [<CommonParameters>]
 ```
 ---
-
-

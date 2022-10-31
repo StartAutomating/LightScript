@@ -1,4 +1,3 @@
-
 Connect-Nanoleaf
 ----------------
 ### Synopsis
@@ -68,5 +67,3 @@ Connect-Nanoleaf [<CommonParameters>]
 Connect-Nanoleaf -NanoLeafIP <IPAddress> [<CommonParameters>]
 ```
 ---
-
-

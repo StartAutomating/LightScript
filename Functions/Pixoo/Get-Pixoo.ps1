@@ -14,11 +14,17 @@ function Get-Pixoo
     #>
     [CmdletBinding(DefaultParameterSetName="ListDevices")]
     param(
-    # The IP Address for the Twinkly device.  This can be discovered thru the phone user interface.
+    # The IP Address for the Pixoo device.
+    # This can be discovered thru the phone user interface or by using Find-Pixoo.
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('PixooIPAddress')]
     [IPAddress[]]
-    $IPAddress
+    $IPAddress,
+
+    # If set, will get the local weather.
+    [Parameter(Mandatory,ParameterSetName='Weather')]
+    [switch]
+    $Weather
     )
 
     begin {
@@ -34,7 +40,7 @@ function Get-Pixoo
         #region Default to All Devices
         if (-not $IPAddress) { # If no -IPAddress was passed
             if ($home) {
-                # Read all .twinkly.clixml files beneath your LightScript directory.
+                # Read all .pixoo.clixml files beneath your LightScript directory.
                 Get-ChildItem -Path $lightScriptRoot -ErrorAction SilentlyContinue -Filter *.pixoo.clixml -Force |
                     Import-Clixml |
                     ForEach-Object {
@@ -53,6 +59,17 @@ function Get-Pixoo
 
         if ($PSCmdlet.ParameterSetName -eq 'ListDevices') {
             return $script:PixooCache.Values
+        }
+        if ($PSCmdlet.ParameterSetName -eq 'Weather') {
+            foreach ($ip in $script:PixooCache.Keys) {
+                Invoke-RestMethod -uri "http://$ip/post" -Method Post -Body (
+                    @{Command="Device/GetWeatherInfo"} | ConvertTo-Json
+                ) |
+                & { process {
+                    $_.pstypenames.insert(0,'Pixoo.Weather')
+                    $_
+                } }
+            }
         }
     }
 }

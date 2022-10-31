@@ -1,4 +1,3 @@
-
 Set-NanoLeaf
 ------------
 ### Synopsis
@@ -543,5 +542,3 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 Set-NanoLeaf [-Off] [-On] [[-Hue] <Int32>] [[-HueIncrement] <Int32>] [[-Saturation] <Double>] [[-SaturationIncrement] <Int32>] [[-Brightness] <Double>] [[-BrightnessIncrement] <Double>] [[-ColorTemperature] <Int32>] [[-EffectName] <String>] [[-Duration] <TimeSpan>] [-ExternalControl] [[-PluginName] <String>] [[-Palette] <PSObject[]>] [[-EffectType] <String>] [[-PluginUuid] <String>] [[-PluginType] <String>] [[-Panel] <IDictionary>] [[-EffectOption] <IDictionary>] [-Loop] [-AsByteStream] [[-IPAddress] <IPAddress>] [[-NanoLeafToken] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-

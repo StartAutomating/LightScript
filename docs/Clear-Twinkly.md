@@ -1,4 +1,3 @@
-
 Clear-Twinkly
 -------------
 ### Synopsis
@@ -71,5 +70,3 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 Clear-Twinkly [[-IPAddress] <IPAddress[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-

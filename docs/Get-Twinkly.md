@@ -1,4 +1,3 @@
-
 Get-Twinkly
 -----------
 ### Synopsis
@@ -413,5 +412,3 @@ Get-Twinkly [-IPAddress <IPAddress[]>] -FirmwareVersion [<CommonParameters>]
 Get-Twinkly [-IPAddress <IPAddress[]>] -Timer [<CommonParameters>]
 ```
 ---
-
-

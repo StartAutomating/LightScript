@@ -1,4 +1,3 @@
-
 Set-HueLight
 ------------
 ### Synopsis
@@ -453,5 +452,3 @@ Set-HueLight [-LightID] <String> [[-TransitionTime] <TimeSpan>] [-On] [-Off] [-R
 Set-HueLight [-GroupID] <String> [[-TransitionTime] <TimeSpan>] [-On] [-Off] [-RGBColor <String>] [-Hue <Single>] [-Saturation <Single>] [-Brightness <Single>] [-Effect <String>] [-Alert <String>] [-ColorTemperature <Int32>] [-XY <Single[]>] [-SaturationIncrement <Single>] [-BrightnessIncrement <Single>] [-HueIncrement <Int32>] [-ColorTemperatureIncrement <Int32>] [-OutputInput] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-

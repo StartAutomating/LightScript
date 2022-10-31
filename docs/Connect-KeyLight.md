@@ -1,4 +1,3 @@
-
 Connect-KeyLight
 ----------------
 ### Synopsis
@@ -73,5 +72,3 @@ If set, will output the connection information.
 Connect-KeyLight [-IPAddress] <IPAddress> [-PassThru] [<CommonParameters>]
 ```
 ---
-
-

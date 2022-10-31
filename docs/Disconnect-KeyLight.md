@@ -1,4 +1,3 @@
-
 Disconnect-KeyLight
 -------------------
 ### Synopsis
@@ -69,5 +68,3 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 Disconnect-KeyLight [-IPAddress] <IPAddress> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-

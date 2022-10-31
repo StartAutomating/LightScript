@@ -1,4 +1,3 @@
-
 Add-HueRoom
 -----------
 ### Synopsis
@@ -176,5 +175,3 @@ Valid Values:
 Add-HueRoom [-Name] <String> [-Light <String[]>] [-LightID <String[]>] [-AutoGroup] [-RoomType <String>] [-GroupType <String>] [<CommonParameters>]
 ```
 ---
-
-

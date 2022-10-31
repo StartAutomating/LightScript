@@ -1,4 +1,3 @@
-
 Connect-Pixoo
 -------------
 ### Synopsis
@@ -19,14 +18,15 @@ Connects to a Pixoo over Wifi
 ### Examples
 #### EXAMPLE 1
 ```PowerShell
-Connect-Pixoo 1.2.3.4 -PassThru
+Find-Pixoo | Connect-Pixoo
 ```
 
 ---
 ### Parameters
 #### **IPAddress**
 
-The IP Address for the Twinkly device.  This can be discovered thru the phone user interface.
+The IP Address for the Pixoo device.
+This can be discovered using Find-Pixoo.
 
 
 
@@ -58,6 +58,23 @@ If set, will output the connection information.
 
 
 ---
+#### **DeviceId**
+
+The DeviceID.  This can be provided by Find-Pixoo
+
+
+
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 ### Outputs
 * [Nullable](https://learn.microsoft.com/en-us/dotnet/api/System.Nullable)
 
@@ -70,8 +87,6 @@ If set, will output the connection information.
 ---
 ### Syntax
 ```PowerShell
-Connect-Pixoo [-IPAddress] <IPAddress> [-PassThru] [<CommonParameters>]
+Connect-Pixoo [-IPAddress] <IPAddress> [-PassThru] [-DeviceId <String>] [<CommonParameters>]
 ```
 ---
-
-

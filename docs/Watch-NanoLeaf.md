@@ -1,4 +1,3 @@
-
 Watch-NanoLeaf
 --------------
 ### Synopsis
@@ -98,5 +97,3 @@ The UDP port used for TouchStreamData
 Watch-NanoLeaf [[-IPAddress] <IPAddress>] [[-NanoLeafToken] <String>] [[-TouchEventsPort] <String>] [<CommonParameters>]
 ```
 ---
-
-

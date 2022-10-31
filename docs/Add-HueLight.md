@@ -1,4 +1,3 @@
-
 Add-HueLight
 ------------
 ### Synopsis
@@ -75,5 +74,3 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 Add-HueLight [[-DeviceID] <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-

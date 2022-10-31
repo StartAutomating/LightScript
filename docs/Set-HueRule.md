@@ -1,4 +1,3 @@
-
 Set-HueRule
 -----------
 ### Synopsis
@@ -244,5 +243,3 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 Set-HueRule [-Name] <String> [-Condition] <PSObject[]> [-Action] <PSObject[]> [-DeviceID <String>] [-IPAddress <IPAddress>] [-Disable] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-

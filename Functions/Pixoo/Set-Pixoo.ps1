@@ -104,7 +104,25 @@ function Set-Pixoo
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidatePattern('#(?>[a-f0-9]{6}|[a-f0-9]{3})')]
     [string]
-    $RGBColor
+    $RGBColor,
+
+    # The latitude for the device.  Must be provided with -Longitude
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('Lat')]
+    [double]
+    $Latitude,
+
+    # The longitude for the device.  Must be provided with -Latitude
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('Long')]
+    [double]
+    $Longitude,
+
+    # Set the device rotation.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [ValidateSet(0,90,180,270)]
+    [int]
+    $Rotation
     )
 
     begin {
@@ -114,6 +132,7 @@ function Set-Pixoo
         if ($home) {
             $lightScriptRoot = Join-Path $home -ChildPath LightScript
         }
+        $SetPixooCmd = $myInvocation.MyCommand
     }
 
     process {
@@ -206,6 +225,19 @@ function Set-Pixoo
                     }
                 }
 
+                if ($Latitude -and $longitude) {
+                    $invokeSplat.Body = (@{
+                        Command = "Sys/LogAndLat"
+                        Longitude = $longitude
+                        Latitude  = $Latitude
+                    } | ConvertTo-Json -Compress)                    
+                    if ($whatIfPreference) {
+                        $invokeSplat
+                    } elseif ($psCmdlet.ShouldProcess("$($invokeSplat.Command)")) {
+                        Invoke-RestMethod @invokeSplat
+                    }
+                }
+
                 if ($RGBColor) {
                     $r,$g,$b = 
                         if ($RGBColor.Length -eq 7) {
@@ -289,6 +321,18 @@ function Set-Pixoo
                     }                    
                 }
 
+                if ($PSBoundParameters.ContainsKey("Rotation")) {
+                    $invokeSplat.Body = (@{
+                        Command = "Device/SetScreenRotationAngle"
+                        Mode    = $Rotation / 90
+                    } | ConvertTo-Json -Compress)
+                    if ($whatIfPreference) {
+                        $invokeSplat
+                    } elseif ($psCmdlet.ShouldProcess("$($invokeSplat.Command)")) {
+                        Invoke-RestMethod @invokeSplat
+                    }
+                }
+
                 if ($psBoundParameters.ContainsKey("CustomPlaylist")) {                    
                     $invokeSplat.Body = (@{
                         Command = "Channel/SetCustomPageIndex"
@@ -299,7 +343,7 @@ function Set-Pixoo
                     } elseif ($psCmdlet.ShouldProcess("$($invokeSplat.Command)")) {
                         Invoke-RestMethod @invokeSplat
                     }
-                }
+                }                
 
                 if ($psBoundParameters.ContainsKey("CloudChannel")) {
                     $invokeSplat.Body = (@{
