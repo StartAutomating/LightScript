@@ -1,4 +1,3 @@
-
 Send-NanoLeaf
 -------------
 ### Synopsis
@@ -202,5 +201,3 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 Send-NanoLeaf [-IPAddress] <IPAddress> [[-Command] <String>] [[-Method] <String>] [[-Data] <PSObject>] [[-Property] <IDictionary>] [[-RemoveProperty] <String[]>] [[-ExpandProperty] <String>] [[-PSTypeName] <String[]>] [[-NanoLeafToken] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-
