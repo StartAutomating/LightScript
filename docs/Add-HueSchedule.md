@@ -1,4 +1,3 @@
-
 Add-HueSchedule
 ---------------
 ### Synopsis
@@ -250,5 +249,3 @@ Add-HueSchedule [-Name <String>] [-Description <String>] -Command <PSObject> [-I
 Add-HueSchedule [-Name <String>] [-Description <String>] -Command <PSObject> [-Every] <TimeSpan> [-DeviceID <String>] [-IPAddress <IPAddress>] [<CommonParameters>]
 ```
 ---
-
-
