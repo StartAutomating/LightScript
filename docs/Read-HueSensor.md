@@ -1,4 +1,3 @@
-
 Read-HueSensor
 --------------
 ### Synopsis
@@ -137,5 +136,3 @@ If set, will read values from the configuration.  By default, values are read fr
 Read-HueSensor [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Config] [<CommonParameters>]
 ```
 ---
-
-
