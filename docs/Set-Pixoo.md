@@ -319,6 +319,40 @@ If provided, will change the Pixoo into a single RGB color.
 
 
 ---
+#### **Latitude**
+
+The latitude for the device.  Must be provided with -Longitude
+
+
+
+> **Type**: ```[Double]```
+
+> **Required**: false
+
+> **Position**: 14
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **Longitude**
+
+The longitude for the device.  Must be provided with -Latitude
+
+
+
+> **Type**: ```[Double]```
+
+> **Required**: false
+
+> **Position**: 15
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
 -WhatIf is used to see what would happen, or return operations without executing them
@@ -334,6 +368,6 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 ---
 ### Syntax
 ```PowerShell
-Set-Pixoo [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-Visualizer] <Int32>] [[-CustomPlaylist] <Int32>] [[-CloudChannel] <Int32>] [[-Channel] <String>] [[-Stopwatch] <String>] [[-Timer] <TimeSpan>] [-NoiseMeter] [[-RedScore] <Int32>] [[-BlueScore] <Int32>] [[-RGBColor] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-Pixoo [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-Visualizer] <Int32>] [[-CustomPlaylist] <Int32>] [[-CloudChannel] <Int32>] [[-Channel] <String>] [[-Stopwatch] <String>] [[-Timer] <TimeSpan>] [-NoiseMeter] [[-RedScore] <Int32>] [[-BlueScore] <Int32>] [[-RGBColor] <String>] [[-Latitude] <Double>] [[-Longitude] <Double>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
