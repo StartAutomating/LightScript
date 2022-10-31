@@ -5,8 +5,8 @@ sourceURL: https://github.com/StartAutomating/LightScript/releases/tag/v0.2
 tag: release
 ---
 ## 0.2:
-Adding: Disconnect-HueBridge, Disconnect-NanoLeaf, Disconnect-Twinkly (#2)
-Adding Pixoo commands: Connect/Disconnect/Get/Set-Pixoo (#4)
+Adding: Disconnect-HueBridge, Disconnect-NanoLeaf, Disconnect-Twinkly ([#2](https://github.com/StartAutomating/LightScript/issues/2))
+Adding Pixoo commands: Connect/Disconnect/Get/Set-Pixoo ([#4](https://github.com/StartAutomating/LightScript/issues/4))
 
 ---
 ## 0.1:
