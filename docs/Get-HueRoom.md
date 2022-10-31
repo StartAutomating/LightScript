@@ -1,4 +1,3 @@
-
 Get-HueRoom
 -----------
 ### Synopsis
@@ -309,5 +308,3 @@ Get-HueRoom -Resource [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-
 Get-HueRoom -Light [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
 ```
 ---
-
-
