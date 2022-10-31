@@ -1,4 +1,3 @@
-
 Set-Pixoo
 ---------
 ### Synopsis
@@ -338,5 +337,3 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 Set-Pixoo [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-Visualizer] <Int32>] [[-CustomPlaylist] <Int32>] [[-CloudChannel] <Int32>] [[-Channel] <String>] [[-Stopwatch] <String>] [[-Timer] <TimeSpan>] [-NoiseMeter] [[-RedScore] <Int32>] [[-BlueScore] <Int32>] [[-RGBColor] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-
