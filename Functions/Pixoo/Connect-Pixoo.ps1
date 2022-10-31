@@ -44,7 +44,6 @@ function Connect-Pixoo
         )
         #endregion Attempt to Contact the Device
 
-
         if ($pixooConf) {
             $macAddress =
                 if ($PSVersionTable.Platform -like 'Win*' -or -not $PSVersionTable.Platform) {
@@ -66,11 +65,13 @@ function Connect-Pixoo
                     if (-not $createLightScriptDir) { return }
                 }
 
-
                 $pixooDataFile = Join-Path $lightScriptRoot ".$($macAddress).pixoo.clixml"
                 $pixooConf.pstypenames.clear()
                 $pixooConf.pstypenames.add('Pixoo')
+
+                # If the -DeviceID was provided
                 if ($DeviceId) {
+                    # add it to the configuration data.
                     $pixooConf | Add-Member NoteProperty DeviceID $DeviceId -Force
                 }
                 $pixooConf |
