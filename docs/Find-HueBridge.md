@@ -1,4 +1,3 @@
-
 Find-HueBridge
 --------------
 ### Synopsis
@@ -35,5 +34,3 @@ Find-HueBridge
 Find-HueBridge [<CommonParameters>]
 ```
 ---
-
-
