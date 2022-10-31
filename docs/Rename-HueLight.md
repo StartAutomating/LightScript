@@ -1,4 +1,3 @@
-
 Rename-HueLight
 ---------------
 ### Synopsis
@@ -74,5 +73,3 @@ The new name of the light.  A number sign will be replaced with the match number
 Rename-HueLight [-OldName] <String> [-NewName] <String> [<CommonParameters>]
 ```
 ---
-
-
