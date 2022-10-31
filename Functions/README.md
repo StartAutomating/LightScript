@@ -20,6 +20,7 @@ This directory and it's subdirectories contain the functions defined in LightScr
 |Disconnect-Twinkly  |Disconnect|Twinkly    |[Twinkly/Disconnect-Twinkly.ps1](Twinkly/Disconnect-Twinkly.ps1)    |
 |Find-HueBridge      |Find      |HueBridge  |[Hue/Find-HueBridge.ps1](Hue/Find-HueBridge.ps1)                    |
 |Find-NanoLeaf       |Find      |NanoLeaf   |[NanoLeaf/Find-NanoLeaf.ps1](NanoLeaf/Find-NanoLeaf.ps1)            |
+|Find-Pixoo          |Find      |Pixoo      |[Pixoo/Find-Pixoo.ps1](Pixoo/Find-Pixoo.ps1)                        |
 |Get-HueBridge       |Get       |HueBridge  |[Hue/Get-HueBridge.ps1](Hue/Get-HueBridge.ps1)                      |
 |Get-HueLight        |Get       |HueLight   |[Hue/Get-HueLight.ps1](Hue/Get-HueLight.ps1)                        |
 |Get-HueResource     |Get       |HueResource|[Hue/Get-HueResource.ps1](Hue/Get-HueResource.ps1)                  |
