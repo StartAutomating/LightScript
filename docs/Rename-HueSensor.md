@@ -1,4 +1,3 @@
-
 Rename-HueSensor
 ----------------
 ### Synopsis
@@ -74,5 +73,3 @@ The new name of the Sensor.  A number sign will be replaced with the match numbe
 Rename-HueSensor [-OldName] <String> [-NewName] <String> [<CommonParameters>]
 ```
 ---
-
-
