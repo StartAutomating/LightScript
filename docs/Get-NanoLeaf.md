@@ -1,4 +1,3 @@
-
 Get-NanoLeaf
 ------------
 ### Synopsis
@@ -240,5 +239,3 @@ Get-NanoLeaf [-NanoLeafToken <String>] [-Panel] [-Layout] [-EffectName <String>]
 Get-NanoLeaf -IPAddress <IPAddress> [-NanoLeafToken <String>] [-Panel] [-Layout] [-EffectName <String>] [-ListPlugin] [-PluginType <String>] [-ListEffectName] [-ListEffect] [-CurrentEffect] [-Force] [<CommonParameters>]
 ```
 ---
-
-
