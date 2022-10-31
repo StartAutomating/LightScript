@@ -104,7 +104,19 @@ function Set-Pixoo
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidatePattern('#(?>[a-f0-9]{6}|[a-f0-9]{3})')]
     [string]
-    $RGBColor
+    $RGBColor,
+
+    # The latitude for the device.  Must be provided with -Longitude
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('Lat')]
+    [double]
+    $Latitude,
+
+    # The longitude for the device.  Must be provided with -Latitude
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('Long')]
+    [double]
+    $Longitude
     )
 
     begin {
@@ -198,6 +210,19 @@ function Set-Pixoo
                     $invokeSplat.Body = (@{
                         Command = "Channel/SetEqPosition"
                         EqPosition = $Visualizer
+                    } | ConvertTo-Json -Compress)                    
+                    if ($whatIfPreference) {
+                        $invokeSplat
+                    } elseif ($psCmdlet.ShouldProcess("$($invokeSplat.Command)")) {
+                        Invoke-RestMethod @invokeSplat
+                    }
+                }
+
+                if ($Latitude -and $longitude) {
+                    $invokeSplat.Body = (@{
+                        Command = "Sys/LogAndLat"
+                        Longitude = $longitude
+                        Latitude  = $Latitude
                     } | ConvertTo-Json -Compress)                    
                     if ($whatIfPreference) {
                         $invokeSplat
