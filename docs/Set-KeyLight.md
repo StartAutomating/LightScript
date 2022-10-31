@@ -1,4 +1,3 @@
-
 Set-KeyLight
 ------------
 ### Synopsis
@@ -129,5 +128,3 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 Set-KeyLight [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [-On] [-Off] [[-ColorTemperature] <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
-
-
