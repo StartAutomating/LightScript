@@ -409,6 +409,75 @@ This can be nice if you have two Pixoos side by side.
 
 
 ---
+#### **Beep**
+
+If set, the Pixoo will beep.
+-BeepTime controls how long a -Beep will last
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **BeepTime**
+
+-BeepTime controls how long a -Beep will last
+
+
+
+> **Type**: ```[TimeSpan]```
+
+> **Required**: false
+
+> **Position**: 17
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **BeepPause**
+
+-BeepPause controls how long to wait between -Beeps
+
+
+
+> **Type**: ```[TimeSpan]```
+
+> **Required**: false
+
+> **Position**: 18
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **BeepCount**
+
+-BeepCount controls the number of -Beeps
+
+
+
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 19
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
 -WhatIf is used to see what would happen, or return operations without executing them
@@ -424,6 +493,6 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 ---
 ### Syntax
 ```PowerShell
-Set-Pixoo [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-Visualizer] <Int32>] [[-CustomPlaylist] <Int32>] [[-CloudChannel] <Int32>] [[-Channel] <String>] [[-Stopwatch] <String>] [[-Timer] <TimeSpan>] [-NoiseMeter] [[-RedScore] <Int32>] [[-BlueScore] <Int32>] [[-RGBColor] <String>] [[-Latitude] <Double>] [[-Longitude] <Double>] [[-Rotation] <Int32>] [-Mirror] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-Pixoo [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-Visualizer] <Int32>] [[-CustomPlaylist] <Int32>] [[-CloudChannel] <Int32>] [[-Channel] <String>] [[-Stopwatch] <String>] [[-Timer] <TimeSpan>] [-NoiseMeter] [[-RedScore] <Int32>] [[-BlueScore] <Int32>] [[-RGBColor] <String>] [[-Latitude] <Double>] [[-Longitude] <Double>] [[-Rotation] <Int32>] [-Mirror] [-Beep] [[-BeepTime] <TimeSpan>] [[-BeepPause] <TimeSpan>] [[-BeepCount] <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
