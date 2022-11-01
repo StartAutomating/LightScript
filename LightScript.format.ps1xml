@@ -686,6 +686,58 @@ New-Object PSObject -Property ([Ordered]@{
         </TableRowEntries>
       </TableControl>
     </View>
+    <View>
+      <Name>Pixoo.Weather</Name>
+      <ViewSelectedBy>
+        <TypeName>Pixoo.Weather</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <AutoSize />
+        <TableHeaders>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Weather</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>CurTemp</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>MaxTemp</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>MinTemp</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Pressure</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>WindSpeed</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Visibility</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
   </ViewDefinitions>
   <Controls>
     <Control>
