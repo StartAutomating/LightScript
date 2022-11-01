@@ -29,7 +29,7 @@ function Set-Pixoo
     # When passed with no other parameters, adjusts the absolute brightness
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('Luminance')]
-    [ValidateRange(0,1)]
+    [ValidateRange(0,100)]
     [float]
     $Brightness,
 
@@ -128,7 +128,13 @@ function Set-Pixoo
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidateSet(0,90,180,270)]
     [int]
-    $Rotation
+    $Rotation,
+
+    # If set, will put the Pixoo device into mirroring mode.
+    # This can be nice if you have two Pixoos side by side.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [switch]
+    $Mirror
     )
 
     begin {
@@ -332,6 +338,18 @@ function Set-Pixoo
                     $invokeSplat.Body = (@{
                         Command = "Device/SetScreenRotationAngle"
                         Mode    = $Rotation / 90
+                    } | ConvertTo-Json -Compress)
+                    if ($whatIfPreference) {
+                        $invokeSplat
+                    } elseif ($psCmdlet.ShouldProcess("$($invokeSplat.Command)")) {
+                        Invoke-RestMethod @invokeSplat
+                    }
+                }
+
+                if ($PSBoundParameters.ContainsKey("Mirror")) {
+                    $invokeSplat.Body = (@{
+                        Command = "Device/SetMirrorMode"
+                        Mode    = $Mirror -as [bool] -as [int]
                     } | ConvertTo-Json -Compress)
                     if ($whatIfPreference) {
                         $invokeSplat
