@@ -30,6 +30,7 @@ This directory contains LightScript's functions for [Philips Hue Bridges](https:
 |Send-HueBridge      |Send      |HueBridge  |[Send-HueBridge.ps1](Send-HueBridge.ps1)            |
 |Set-HueLight        |Set       |HueLight   |[Set-HueLight.ps1](Set-HueLight.ps1)                |
 |Set-HueRule         |Set       |HueRule    |[Set-HueRule.ps1](Set-HueRule.ps1)                  |
+|Watch-HueSensor     |Watch     |HueSensor  |[Watch-HueSensor.ps1](Watch-HueSensor.ps1)          |
 |Write-HueSensor     |Write     |HueSensor  |[Write-HueSensor.ps1](Write-HueSensor.ps1)          |
 
 
