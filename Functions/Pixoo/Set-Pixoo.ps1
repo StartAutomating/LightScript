@@ -1,12 +1,18 @@
 function Set-Pixoo
 {
     <#
-    .Synopsis
+    .SYNOPSIS
         Sets Pixoo Frames
-    .Description
+    .DESCRIPTION
         Changes Pixoo Frames
-    .Example
-        Set-Pixoo -Brightness .5
+    .EXAMPLE
+        Set-Pixoo -Brightness 1
+    .EXAMPLE        
+        # Set the pixoo to the 3rd visualizer (a nice frequency graph)
+        Set-Pixoo -Visualizer 3
+    .EXAMPLE
+        # The timer will elapse after 30 seconds.
+        Set-Pixoo -Timer "00:00:30"
     .LINK
         Get-Pixoo
     #>
@@ -182,7 +188,8 @@ function Set-Pixoo
                     $paramCopy.ContainsKey("Hue") -and 
                     $paramCopy.ContainsKey("Saturation")
                 ) {
-                    $RGBColor = ([PSCustomObject]@{PSTypeName='LightScript.Color'}).FromHSL($Hue, $Saturation, $Brightness)                    
+                    $convertedColor = (([PSCustomObject]@{PSTypeName='LightScript.Color'}).HSLToRGB($Hue, $Saturation, $Brightness))
+                    $RGBColor = $convertedColor.RGB
                 }
 
 
