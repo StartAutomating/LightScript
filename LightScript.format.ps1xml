@@ -671,8 +671,6 @@ New-Object PSObject -Property ([Ordered]@{
           </TableColumnHeader>
           <TableColumnHeader>
           </TableColumnHeader>
-          <TableColumnHeader>
-          </TableColumnHeader>
         </TableHeaders>
         <TableRowEntries>
           <TableRowEntry>
@@ -682,40 +680,6 @@ New-Object PSObject -Property ([Ordered]@{
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>MACAddress</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <PropertyName>Brightness</PropertyName>
-              </TableColumnItem>
-            </TableColumnItems>
-          </TableRowEntry>
-        </TableRowEntries>
-      </TableControl>
-    </View>
-    <View>
-      <Name>Orientation</Name>
-      <ViewSelectedBy>
-        <TypeName>Pixoo</TypeName>
-      </ViewSelectedBy>
-      <TableControl>
-        <TableHeaders>
-          <TableColumnHeader>
-          </TableColumnHeader>
-          <TableColumnHeader>
-          </TableColumnHeader>
-          <TableColumnHeader>
-          </TableColumnHeader>
-        </TableHeaders>
-        <TableRowEntries>
-          <TableRowEntry>
-            <TableColumnItems>
-              <TableColumnItem>
-                <PropertyName>RotationFlag</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <PropertyName>GyrateAngle</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <PropertyName>MirrorFlag</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
