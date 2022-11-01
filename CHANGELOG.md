@@ -1,3 +1,16 @@
+## 0.2.8:
+
+* Watch-HueSensor! (Fixes #58)
+* Pixoo Improvements:
+  * Set-Pixoo -Beep (Fixes #57)
+  * Set-Pixoo -Mirror (Fixes #49)
+  * Set-Pixoo -Hue/-Saturation/-Luminance Fix (Fixes #56)
+  * Connect-Pixoo saves less information for better pipelining (Fixes #56)
+  * Adding Formatting for Pixoo.Weather (Fixes #59)
+* LightScript.Color now supports daisy chaining (Fixes #54)
+
+---
+
 ## 0.2.7:
 
 * Pixoo Improvements:

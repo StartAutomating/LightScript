@@ -50,6 +50,7 @@ This directory and it's subdirectories contain the functions defined in LightScr
 |Set-NanoLeaf        |Set       |NanoLeaf   |[NanoLeaf/Set-NanoLeaf.ps1](NanoLeaf/Set-NanoLeaf.ps1)              |
 |Set-Pixoo           |Set       |Pixoo      |[Pixoo/Set-Pixoo.ps1](Pixoo/Set-Pixoo.ps1)                          |
 |Set-Twinkly         |Set       |Twinkly    |[Twinkly/Set-Twinkly.ps1](Twinkly/Set-Twinkly.ps1)                  |
+|Watch-HueSensor     |Watch     |HueSensor  |[Hue/Watch-HueSensor.ps1](Hue/Watch-HueSensor.ps1)                  |
 |Watch-NanoLeaf      |Watch     |NanoLeaf   |[NanoLeaf/Watch-NanoLeaf.ps1](NanoLeaf/Watch-NanoLeaf.ps1)          |
 |Write-HueSensor     |Write     |HueSensor  |[Hue/Write-HueSensor.ps1](Hue/Write-HueSensor.ps1)                  |
 

@@ -66,17 +66,19 @@ function Connect-Pixoo
                 }
 
                 $pixooDataFile = Join-Path $lightScriptRoot ".$($macAddress).pixoo.clixml"
-                $pixooConf.pstypenames.clear()
-                $pixooConf.pstypenames.add('Pixoo')
+                
+                $pixooObject = [PSCustomObject]@{
+                    PSTypeName = 'Pixoo'
+                    IPAddress  = $IPAddress
+                    MACAddress = $macAddress
+                }                
 
                 # If the -DeviceID was provided
                 if ($DeviceId) {
                     # add it to the configuration data.
-                    $pixooConf | Add-Member NoteProperty DeviceID $DeviceId -Force
+                    $pixooObject | Add-Member NoteProperty DeviceID $DeviceId -Force
                 }
-                $pixooConf |
-                    Add-Member NoteProperty IPAddress $IPAddress -Force -PassThru |
-                    Add-Member NoteProperty MACAddress $macAddress -Force -PassThru |
+                $pixooObject |
                     Export-Clixml -Path $pixooDataFile
             }
             #endregion Save Device Information

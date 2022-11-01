@@ -49,4 +49,9 @@ if (-not $delta) {
 $hue*=60
 if ($hue -gt 360) { $hue -= 360 } 
 if ($hue -lt 0) { $hue = 360 + $hue } 
-[PSCustomObject][Ordered]@{Hue = $hue;Saturation = $saturation;Luminance = $Luminance}
+[PSCustomObject][Ordered]@{
+    PSTypeName = 'LightScript.Color'
+    Hue = $hue
+    Saturation = $saturation
+    Luminance = $Luminance
+}
