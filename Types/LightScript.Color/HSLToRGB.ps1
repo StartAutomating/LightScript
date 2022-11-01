@@ -68,6 +68,7 @@ $green += $m
  
 
 [PSCustomObject][Ordered]@{
+    PSTypeName = 'LightScript.Color'
     Red = [Byte][Math]::Round($red * 255)
     Green = [Byte][Math]::Round($green * 255)
     Blue = [Byte][Math]::Round($blue * 255)
