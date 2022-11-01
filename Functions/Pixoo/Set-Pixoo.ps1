@@ -169,9 +169,7 @@ function Set-Pixoo
             }
         }
         #endregion Default to All Devices
-        
-        
-
+                
         foreach ($ip in $ipAddress) {
             $refreshDevice = $false
             $invokeSplat = @{Uri="http://$ip/post";Method='POST'}
@@ -198,7 +196,7 @@ function Set-Pixoo
                 }
 
 
-
+                #region On/Off Switch
                 if ($On -and -not $Off) {
                     $invokeSplat.Body = (@{
                         Command = "Channel/OnOffScreen"
@@ -224,7 +222,9 @@ function Set-Pixoo
                         Invoke-RestMethod @invokeSplat
                     }
                 }
+                #endregion On/Off Switch
 
+                #region Visualizer
                 if ($paramCopy.ContainsKey("Visualizer")) {
                     $invokeSplat.Body = (@{
                         Command = "Channel/SetEqPosition"
@@ -236,7 +236,9 @@ function Set-Pixoo
                         Invoke-RestMethod @invokeSplat
                     }
                 }
+                #endregion Visualizer
 
+                #region Lat/Long
                 if ($Latitude -and $longitude) {
                     $invokeSplat.Body = (@{
                         Command = "Sys/LogAndLat"
@@ -249,7 +251,9 @@ function Set-Pixoo
                         Invoke-RestMethod @invokeSplat
                     }
                 }
+                #endregion Lat/Long
 
+                #region RGBColor
                 if ($RGBColor) {
                     $r,$g,$b = 
                         if ($RGBColor.Length -eq 7) {
@@ -293,10 +297,11 @@ function Set-Pixoo
                             $invokeSplat
                         } else {
                             Invoke-RestMethod @invokeSplat
-                        }
-                        
+                        }                        
                 }
+                #endregion RGBColor
 
+                #region Change Channel
                 if ($Channel) {
                     $valueList = @($myInvocation.MyCommand.Parameters.Channel.Attributes.ValidValues)                    
                     for ($index = 0; $index -lt $valueList.Count;$index++) {
@@ -314,7 +319,9 @@ function Set-Pixoo
                         }
                     }                    
                 }
+                #endregion Change Channel
 
+                #region Stopwatch
                 if ($Stopwatch) {
                     $valueList = @($myInvocation.MyCommand.Parameters.StopWatch.Attributes.ValidValues)                    
                     for ($index = 0; $index -lt $valueList.Count;$index++) {
@@ -332,7 +339,9 @@ function Set-Pixoo
                         }
                     }                    
                 }
+                #endregion Stopwatch
 
+                #region Device Rotation
                 if ($PSBoundParameters.ContainsKey("Rotation")) {
                     $invokeSplat.Body = (@{
                         Command = "Device/SetScreenRotationAngle"
@@ -344,7 +353,9 @@ function Set-Pixoo
                         Invoke-RestMethod @invokeSplat
                     }
                 }
+                #endregion Device Rotation
 
+                #region Device Mirroring
                 if ($PSBoundParameters.ContainsKey("Mirror")) {
                     $invokeSplat.Body = (@{
                         Command = "Device/SetMirrorMode"
@@ -356,7 +367,9 @@ function Set-Pixoo
                         Invoke-RestMethod @invokeSplat
                     }
                 }
+                #endregion Device Mirroring
 
+                #region Select Custom Playlist
                 if ($psBoundParameters.ContainsKey("CustomPlaylist")) {                    
                     $invokeSplat.Body = (@{
                         Command = "Channel/SetCustomPageIndex"
@@ -367,8 +380,10 @@ function Set-Pixoo
                     } elseif ($psCmdlet.ShouldProcess("$($invokeSplat.Command)")) {
                         Invoke-RestMethod @invokeSplat
                     }
-                }                
+                }
+                #endregion Select Custom Playlist
 
+                #region Select Cloud Channel
                 if ($psBoundParameters.ContainsKey("CloudChannel")) {
                     $invokeSplat.Body = (@{
                         Command = "Channel/CloudIndex"
@@ -380,7 +395,9 @@ function Set-Pixoo
                         Invoke-RestMethod @invokeSplat
                     }
                 }
+                #endregion Select Cloud Channel
 
+                #region Timer
                 if ($timer) {
                     $invokeSplat.Body = (@{
                         Command = "Tools/SetTimer"
@@ -393,7 +410,9 @@ function Set-Pixoo
                         Invoke-RestMethod @invokeSplat
                     }
                 }
+                #endregion Timer
 
+                #region Noise Meter
                 if ($NoiseMeter.IsPresent) {
                     $invokeSplat.Body = (@{
                         Command = "Tools/SetNoiseStatus"
@@ -405,7 +424,9 @@ function Set-Pixoo
                         Invoke-RestMethod @invokeSplat
                     }
                 }
+                #endregion Noise Meter
 
+                #region Scoreboard
                 if ($paramCopy.ContainsKey("RedScore") -or $paramCopy.ContainsKey("BlueScore")) {
                     $invokeSplat.Body = (@{
                         Command = "Tools/SetScoreBoard"
@@ -432,6 +453,7 @@ function Set-Pixoo
                         Invoke-RestMethod @invokeSplat
                     }
                 }
+                #endregion Scoreboard
             )
 
             if ($restOutputs -and $whatIfPreference) {
