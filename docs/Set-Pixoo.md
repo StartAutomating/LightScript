@@ -18,7 +18,19 @@ Changes Pixoo Frames
 ### Examples
 #### EXAMPLE 1
 ```PowerShell
-Set-Pixoo -Brightness .5
+Set-Pixoo -Brightness 1
+```
+
+#### EXAMPLE 2
+```PowerShell
+# Set the pixoo to the 3rd visualizer (a nice frequency graph)
+Set-Pixoo -Visualizer 3
+```
+
+#### EXAMPLE 3
+```PowerShell
+# The timer will elapse after 30 seconds.
+Set-Pixoo -Timer "00:00:30"
 ```
 
 ---
