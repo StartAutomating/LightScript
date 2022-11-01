@@ -29,7 +29,7 @@ function Set-Pixoo
     # When passed with no other parameters, adjusts the absolute brightness
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('Luminance')]
-    [ValidateRange(0,100)]
+    [ValidateRange(0,1)]
     [float]
     $Brightness,
 
@@ -144,7 +144,6 @@ function Set-Pixoo
         if ($home) {
             $lightScriptRoot = Join-Path $home -ChildPath LightScript
         }
-        $SetPixooCmd = $myInvocation.MyCommand
     }
 
     process {
