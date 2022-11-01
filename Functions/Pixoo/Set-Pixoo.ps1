@@ -134,7 +134,31 @@ function Set-Pixoo
     # This can be nice if you have two Pixoos side by side.
     [Parameter(ValueFromPipelineByPropertyName)]
     [switch]
-    $Mirror
+    $Mirror,
+
+    # If set, the Pixoo will beep.
+    # -BeepTime controls how long a -Beep will last
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('Beeps')]
+    [switch]
+    $Beep,
+
+    # -BeepTime controls how long a -Beep will last
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('BeepFor')]    
+    [timespan]
+    $BeepTime = '00:00:00.25',
+
+    # -BeepPause controls how long to wait between -Beeps
+    [Parameter(ValueFromPipelineByPropertyName)]    
+    [timespan]
+    $BeepPause = '00:00:00.125',
+
+    # -BeepCount controls the number of -Beeps
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [ValidateRange(1,50)]
+    [int]
+    $BeepCount = 1
     )
 
     begin {
@@ -454,6 +478,23 @@ function Set-Pixoo
                     }
                 }
                 #endregion Scoreboard
+
+                #region Beeps
+                if ($Beep) {
+                    $invokeSplat.Body = (@{
+                        Command = "Device/PlayBuzzer"
+                        ActiveTimeInCycle = [int]$BeepTime.TotalMilliseconds
+                        OffTimeInCycle    = [int]$BeepPause.TotalMilliseconds
+                        PlayTotalTime     = $BeepCount * [int]($BeepTime + $BeepPause).TotalMilliseconds
+                        Second = [int]$Timer.Seconds
+                    } | ConvertTo-Json -Compress)
+                    if ($whatIfPreference) {
+                        $invokeSplat
+                    } elseif ($psCmdlet.ShouldProcess("$($invokeSplat.Command)")) {
+                        Invoke-RestMethod @invokeSplat
+                    }
+                }
+                #endregion Beeps
             )
 
             if ($restOutputs -and $whatIfPreference) {
