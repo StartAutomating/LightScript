@@ -18,9 +18,9 @@ function Set-Pixoo
     #>
     [CmdletBinding(SupportsShouldProcess)]
     param(
-    # One or more IP Addresses of Twinkly devices.
+    # One or more IP Addresses of Pixoo devices.
     [Parameter(ValueFromPipelineByPropertyName)]
-    [Alias('TwinklyIPAddress')]
+    [Alias('PixooIPAddress')]
     [IPAddress[]]
     $IPAddress,
 
@@ -158,7 +158,14 @@ function Set-Pixoo
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidateRange(1,50)]
     [int]
-    $BeepCount = 1
+    $BeepCount = 1,
+
+    # A file identifier of an upload or liked file.
+    # These can be retreived by using Get-Pixoo -Upload.
+    # Note: File IDs are unique to each Pixoo device
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [string]
+    $FileID
     )
 
     begin {
@@ -495,6 +502,20 @@ function Set-Pixoo
                     }
                 }
                 #endregion Beeps
+
+                #region FileID
+                if ($FileID) {
+                    $invokeSplat.Body = (@{
+                        Command = "Draw/SendRemote"
+                        FileId  = $FileID
+                    } | ConvertTo-Json -Compress)
+                    if ($whatIfPreference) {
+                        $invokeSplat
+                    } elseif ($psCmdlet.ShouldProcess("$($invokeSplat.Command)")) {
+                        Invoke-RestMethod @invokeSplat
+                    }
+                }
+                #endregion FileID
             )
 
             if ($restOutputs -and $whatIfPreference) {
