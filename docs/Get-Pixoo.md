@@ -79,6 +79,23 @@ If set, will get uploads.
 
 
 ---
+#### **Liked**
+
+If set, will get liked images.
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
+---
 #### **Force**
 
 If set, will clear any cached results.
@@ -105,5 +122,8 @@ Get-Pixoo [-IPAddress <IPAddress[]>] -Weather [-Force] [<CommonParameters>]
 ```
 ```PowerShell
 Get-Pixoo [-IPAddress <IPAddress[]>] -Upload [-Force] [<CommonParameters>]
+```
+```PowerShell
+Get-Pixoo [-IPAddress <IPAddress[]>] -Liked [-Force] [<CommonParameters>]
 ```
 ---
