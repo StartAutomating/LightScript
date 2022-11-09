@@ -21,10 +21,21 @@ function Get-Pixoo
     [IPAddress[]]
     $IPAddress,
 
+    # If set, will clear any cached results.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [switch]
+    $Force,
+
     # If set, will get the local weather.
     [Parameter(Mandatory,ParameterSetName='Weather')]
     [switch]
-    $Weather
+    $Weather,
+
+    # If set, will get uploads.
+    [Parameter(Mandatory,ParameterSetName='Uploads')]
+    [Alias('Uploads')]
+    [switch]
+    $Upload
     )
 
     begin {
@@ -60,6 +71,7 @@ function Get-Pixoo
         if ($PSCmdlet.ParameterSetName -eq 'ListDevices') {
             return $script:PixooCache.Values
         }
+
         if ($PSCmdlet.ParameterSetName -eq 'Weather') {
             foreach ($ip in $script:PixooCache.Keys) {
                 Invoke-RestMethod -uri "http://$ip/post" -Method Post -Body (
@@ -69,6 +81,42 @@ function Get-Pixoo
                     $_.pstypenames.insert(0,'Pixoo.Weather')
                     $_
                 } }
+                break
+            }
+        }
+
+        if ($PSCmdlet.ParameterSetName -eq 'Uploads') {
+
+            if ((-not $script:PixooUploadCache) -or $Force) {
+                $script:PixooUploadCache = @{}
+            }
+
+            foreach ($ip in $script:PixooCache.Keys) {
+                $deviceId     = $script:PixooCache[$ip].DeviceID -as [int64]
+                $body = @{
+                    DeviceId  = $script:PixooCache[$ip].DeviceID -as [int64]
+                    DeviceMac = $script:PixooCache[$ip].MACAddress.Replace('-','').ToLower()
+                } | ConvertTo-Json
+                if (-not $script:PixooUploadCache[$ip]) {
+                
+                    $restResults = Invoke-RestMethod -uri "https://app.divoom-gz.com/Device/GetImgUploadList" -Method Post -Body $body
+                    $script:PixooUploadCache[$ip] = $restResults.ImgList | & { process {
+                        if (-not $_) {
+                            Write-Warning "Did not receive results for $deviceID.  Try again in a second (Pixoo's API can be slow)."
+                            return
+                        }
+                        $img = $_
+                        $img.pstypenames.clear()
+                        $img.pstypenames.add('Divoom.Upload')
+                        $img.psobject.properties.Add([psnoteproperty]::new("IPAddress", $ip))
+                        $img.psobject.properties.Add([psnoteproperty]::new("DeviceID", $deviceId))
+                        $img
+                    } }
+                    $script:PixooUploadCache[$ip]
+                } else {
+                    $script:PixooUploadCache[$ip]
+                }
+                
             }
         }
     }
