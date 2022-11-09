@@ -38,6 +38,12 @@ function Get-Pixoo
     [switch]
     $Liked,
 
+    # If set, will get fonts that can be used on the Pixoo.
+    [Parameter(Mandatory,ParameterSetName='Fonts')]
+    [Alias('Fonts')]
+    [switch]
+    $Font,
+
     # If set, will clear any cached results.
     [switch]
     $Force    
@@ -139,6 +145,26 @@ function Get-Pixoo
                     $script:PixooDataCache[$dataCacheKey]
                 }
                 
+            }
+        }
+
+        if ($PSCmdlet.ParameterSetName -eq 'Fonts') {
+            foreach ($ip in $script:PixooCache.Keys) {
+                if ($script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]) {
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]
+                } else {
+                    $restResults = 
+                        Invoke-RestMethod -uri "https://app.divoom-gz.com/Device/GetTimeDialFontList" -Method Post
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"] = 
+                        $restResults.FontList |
+                        & { process {                            
+                            $_.pstypenames.insert(0,'Pixoo.Font')
+                            $_
+                        } }
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]                    
+                }
+                # Because are global, we don't need to ask each device for the fonts.
+                break
             }
         }
     }
