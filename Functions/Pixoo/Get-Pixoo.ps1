@@ -32,6 +32,12 @@ function Get-Pixoo
     [switch]
     $Upload,
 
+    # If set, will get liked images.
+    [Parameter(Mandatory,ParameterSetName='Likes')]
+    [Alias('Likes')]
+    [switch]
+    $Liked,
+
     # If set, will clear any cached results.
     [switch]
     $Force    
@@ -96,7 +102,7 @@ function Get-Pixoo
             }
         }
 
-        if ($PSCmdlet.ParameterSetName -eq 'Uploads') {            
+        if ($PSCmdlet.ParameterSetName -in 'Uploads', 'Likes') {            
             foreach ($ip in $script:PixooCache.Keys) {
 
                 $deviceId     = $script:PixooCache[$ip].DeviceID -as [int64]
@@ -106,8 +112,16 @@ function Get-Pixoo
                 } | ConvertTo-Json
                 $dataCacheKey = "$ip.$($PSCmdlet.ParameterSetName)"
                 if (-not $script:PixooDataCache[$dataCacheKey]) {
-                
-                    $restResults = Invoke-RestMethod -uri "https://app.divoom-gz.com/Device/GetImgUploadList" -Method Post -Body $body
+                    $dataUri     = 
+                        switch ($PSCmdlet.ParameterSetName) {
+                            Uploads {
+                                "https://app.divoom-gz.com/Device/GetImgUploadList"
+                            }
+                            Likes {
+                                "https://app.divoom-gz.com/Device/GetImgLikeList"
+                            }
+                        } 
+                    $restResults = Invoke-RestMethod -uri $dataUri -Method Post -Body $body
                     $script:PixooDataCache[$dataCacheKey] = $restResults.ImgList | & { process {
                         if (-not $_) {
                             Write-Warning "Did not receive results for $deviceID.  Try again in a second (Pixoo's API can be slow)."
@@ -115,7 +129,7 @@ function Get-Pixoo
                         }
                         $img = $_
                         $img.pstypenames.clear()
-                        $img.pstypenames.add('Divoom.Upload')
+                        $img.pstypenames.add("Divoom.$($PSCmdlet.ParameterSetName.TrimEnd('s'))")
                         $img.psobject.properties.Add([psnoteproperty]::new("IPAddress", $ip))
                         $img.psobject.properties.Add([psnoteproperty]::new("DeviceID", $deviceId))
                         $img
