@@ -96,6 +96,23 @@ If set, will get liked images.
 
 
 ---
+#### **Font**
+
+If set, will get fonts that can be used on the Pixoo.
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
+---
 #### **Force**
 
 If set, will clear any cached results.
@@ -125,5 +142,8 @@ Get-Pixoo [-IPAddress <IPAddress[]>] -Upload [-Force] [<CommonParameters>]
 ```
 ```PowerShell
 Get-Pixoo [-IPAddress <IPAddress[]>] -Liked [-Force] [<CommonParameters>]
+```
+```PowerShell
+Get-Pixoo [-IPAddress <IPAddress[]>] -Font [-Force] [<CommonParameters>]
 ```
 ---
