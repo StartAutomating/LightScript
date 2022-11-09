@@ -62,11 +62,48 @@ If set, will get the local weather.
 
 
 ---
+#### **Upload**
+
+If set, will get uploads.
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
+---
+#### **Force**
+
+If set, will clear any cached results.
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
+---
 ### Syntax
 ```PowerShell
-Get-Pixoo [-IPAddress <IPAddress[]>] [<CommonParameters>]
+Get-Pixoo [-IPAddress <IPAddress[]>] [-Force] [<CommonParameters>]
 ```
 ```PowerShell
-Get-Pixoo [-IPAddress <IPAddress[]>] -Weather [<CommonParameters>]
+Get-Pixoo [-IPAddress <IPAddress[]>] -Weather [-Force] [<CommonParameters>]
+```
+```PowerShell
+Get-Pixoo [-IPAddress <IPAddress[]>] -Upload [-Force] [<CommonParameters>]
 ```
 ---
