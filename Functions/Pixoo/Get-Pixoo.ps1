@@ -21,11 +21,6 @@ function Get-Pixoo
     [IPAddress[]]
     $IPAddress,
 
-    # If set, will clear any cached results.
-    [Parameter(ValueFromPipelineByPropertyName)]
-    [switch]
-    $Force,
-
     # If set, will get the local weather.
     [Parameter(Mandatory,ParameterSetName='Weather')]
     [switch]
@@ -35,12 +30,20 @@ function Get-Pixoo
     [Parameter(Mandatory,ParameterSetName='Uploads')]
     [Alias('Uploads')]
     [switch]
-    $Upload
+    $Upload,
+
+    # If set, will clear any cached results.
+    [switch]
+    $Force    
     )
 
     begin {
         if (-not $script:PixooCache) {
             $script:PixooCache = @{}
+        }
+
+        if (-not $script:PixooDataCache -or $force) {
+            $script:PixooDataCache = @{}
         }
         if ($home) {
             $lightScriptRoot = Join-Path $home -ChildPath LightScript
@@ -70,37 +73,42 @@ function Get-Pixoo
 
         if ($PSCmdlet.ParameterSetName -eq 'ListDevices') {
             return $script:PixooCache.Values
-        }
+        }        
 
         if ($PSCmdlet.ParameterSetName -eq 'Weather') {
+            
             foreach ($ip in $script:PixooCache.Keys) {
-                Invoke-RestMethod -uri "http://$ip/post" -Method Post -Body (
-                    @{Command="Device/GetWeatherInfo"} | ConvertTo-Json
-                ) |
-                & { process {
-                    $_.pstypenames.insert(0,'Pixoo.Weather')
-                    $_
-                } }
+                if ($script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]) {
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]
+                } else {
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"] = 
+                        Invoke-RestMethod -uri "http://$ip/post" -Method Post -Body (
+                            @{Command="Device/GetWeatherInfo"} | ConvertTo-Json
+                        ) |
+                        & { process {
+                            $_.pstypenames.insert(0,'Pixoo.Weather')
+                            $_
+                        } }
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]                    
+                }
+                # Because the Pixoo API only works on a LAN, we don't need to ask each device for the weather.
                 break
             }
         }
 
-        if ($PSCmdlet.ParameterSetName -eq 'Uploads') {
-
-            if ((-not $script:PixooUploadCache) -or $Force) {
-                $script:PixooUploadCache = @{}
-            }
-
+        if ($PSCmdlet.ParameterSetName -eq 'Uploads') {            
             foreach ($ip in $script:PixooCache.Keys) {
+
                 $deviceId     = $script:PixooCache[$ip].DeviceID -as [int64]
                 $body = @{
                     DeviceId  = $script:PixooCache[$ip].DeviceID -as [int64]
                     DeviceMac = $script:PixooCache[$ip].MACAddress.Replace('-','').ToLower()
                 } | ConvertTo-Json
-                if (-not $script:PixooUploadCache[$ip]) {
+                $dataCacheKey = "$ip.$($PSCmdlet.ParameterSetName)"
+                if (-not $script:PixooDataCache[$dataCacheKey]) {
                 
                     $restResults = Invoke-RestMethod -uri "https://app.divoom-gz.com/Device/GetImgUploadList" -Method Post -Body $body
-                    $script:PixooUploadCache[$ip] = $restResults.ImgList | & { process {
+                    $script:PixooDataCache[$dataCacheKey] = $restResults.ImgList | & { process {
                         if (-not $_) {
                             Write-Warning "Did not receive results for $deviceID.  Try again in a second (Pixoo's API can be slow)."
                             return
@@ -112,9 +120,9 @@ function Get-Pixoo
                         $img.psobject.properties.Add([psnoteproperty]::new("DeviceID", $deviceId))
                         $img
                     } }
-                    $script:PixooUploadCache[$ip]
+                    $script:PixooDataCache[$dataCacheKey]
                 } else {
-                    $script:PixooUploadCache[$ip]
+                    $script:PixooDataCache[$dataCacheKey]
                 }
                 
             }
