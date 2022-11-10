@@ -57,6 +57,19 @@ If set, will get apps from an LaMetric device.
 
 
 ---
+#### **Package**
+
+> **Type**: ```[String]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 ### Outputs
 * [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
 
@@ -70,5 +83,8 @@ Get-LaMetricTime [-IPAddress <IPAddress[]>] [<CommonParameters>]
 ```
 ```PowerShell
 Get-LaMetricTime [-IPAddress <IPAddress[]>] -Application [<CommonParameters>]
+```
+```PowerShell
+Get-LaMetricTime [-IPAddress <IPAddress[]>] -Package <String> [<CommonParameters>]
 ```
 ---
