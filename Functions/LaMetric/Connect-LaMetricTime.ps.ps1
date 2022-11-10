@@ -1,9 +1,9 @@
 ﻿function Connect-LaMetricTime
 {
     <#
-    .Synopsis
+    .SYNOPSIS
         Connects to a LaMetric clock
-    .Description
+    .DESCRIPTION
         Connects to a LaMetric clock.
 
         LaMetric Time devices require a local ApiKey.
@@ -13,10 +13,12 @@
         To Connect-LaMetricTime, you'll need to visit [developer.lametric.com](https://developer.lametric.com) and sign in.
 
         You will find API Keys for your devices at [developer.lametric.com/user/devices](https://developer.lametric.com/user/devices).
-    .Example
+    .EXAMPLE
         Connect-LaMetric -IPAddress $laMetricIP -ApiKey $myApiKey -PassThru
-    .Link
+    .LINK
         Get-LaMetricTime
+    .LINK
+        Disconnect-LaMetricTime
     #>
     [OutputType([Nullable], [PSObject])]
     param(
