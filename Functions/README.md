@@ -45,6 +45,7 @@ This directory and it's subdirectories contain the functions defined in LightScr
 |Remove-HueSensor       |Remove    |HueSensor   |[Hue/Remove-HueSensor.ps1](Hue/Remove-HueSensor.ps1)                        |
 |Rename-HueLight        |Rename    |HueLight    |[Hue/Rename-HueLight.ps1](Hue/Rename-HueLight.ps1)                          |
 |Rename-HueSensor       |Rename    |HueSensor   |[Hue/Rename-HueSensor.ps1](Hue/Rename-HueSensor.ps1)                        |
+|Search-LaMetricIcon    |Search    |LaMetricIcon|[LaMetric/Search-LaMetricIcon.ps1](LaMetric/Search-LaMetricIcon.ps1)        |
 |Send-HueBridge         |Send      |HueBridge   |[Hue/Send-HueBridge.ps1](Hue/Send-HueBridge.ps1)                            |
 |Send-NanoLeaf          |Send      |NanoLeaf    |[NanoLeaf/Send-NanoLeaf.ps1](NanoLeaf/Send-NanoLeaf.ps1)                    |
 |Set-HueLight           |Set       |HueLight    |[Hue/Set-HueLight.ps1](Hue/Set-HueLight.ps1)                                |
