@@ -18,7 +18,13 @@ function Get-LaMetricTime
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('LaMetricTimeIPAddress')]
     [IPAddress[]]
-    $IPAddress
+    $IPAddress,
+
+    # If set, will get apps from an LaMetric device.
+    [Parameter(Mandatory,ParameterSetName='api/v2/device/apps')]
+    [Alias('App','Apps','Applications')]
+    [switch]
+    $Application
     )
 
     begin {
@@ -28,6 +34,10 @@ function Get-LaMetricTime
         if ($home) {
             $lightScriptRoot = Join-Path $home -ChildPath LightScript
         }
+        $friendlyParameterSetNames = @{
+            "api/v2/device/apps" = "Application"
+        }
+        $expandPropertiesIn = @("api/v2/device/apps")
     }
     process {
         #region Default to All Devices
@@ -51,10 +61,14 @@ function Get-LaMetricTime
         }
         #endregion Default to All Devices
 
-        if ($PSCmdlet.ParameterSetName -like '/*') {
+        if ($PSCmdlet.ParameterSetName -like 'api*') {
             foreach ($ip in $IPAddress) {
                 $ipAndPort = "${ipAddress}:8080"
-                $endpoint  = $PSCmdlet.ParameterSetName -replace '^/api'
+                $endpoint  = $PSCmdlet.ParameterSetName -replace '^api'
+                $typename  = 
+                    if ($friendlyParameterSetNames[$PSCmdlet.ParameterSetName]) {
+                        $friendlyParameterSetNames[$PSCmdlet.ParameterSetName]
+                    } else { $endpoint }
                 #region Connect to the Device
                 
                 http://$ipAndPort/api/$endpoint -Headers @{
@@ -62,10 +76,18 @@ function Get-LaMetricTime
                 } |
                     & { process {
                         $out = $_
-
-                        $out.pstypenames.clear()
-                        $out.pstypenames.add("LaMetric.Time.$endpoint")
-                        $out
+                        if ($expandPropertiesIn -contains $PSCmdlet.ParameterSetName) {
+                            foreach ($prop in $out.psobject.properties) {
+                                $prop.value.pstypenames.clear()
+                                $prop.value.pstypenames.add("LaMetric.Time.$typeName")
+                                $prop.value
+                            }
+                        } else {
+                            $out.pstypenames.clear()
+                            $out.pstypenames.add("LaMetric.Time.$typename")
+                            $out
+                        }
+                        
                     } }
             }
         } 
