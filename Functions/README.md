@@ -32,6 +32,7 @@ This directory and it's subdirectories contain the functions defined in LightScr
 |Get-HueSchedule        |Get       |HueSchedule |[Hue/Get-HueSchedule.ps1](Hue/Get-HueSchedule.ps1)                          |
 |Get-HueSensor          |Get       |HueSensor   |[Hue/Get-HueSensor.ps1](Hue/Get-HueSensor.ps1)                              |
 |Get-KeyLight           |Get       |KeyLight    |[KeyLight/Get-KeyLight.ps1](KeyLight/Get-KeyLight.ps1)                      |
+|Get-LaMetricTime       |Get       |LaMetricTime|[LaMetric/Get-LaMetricTime.ps1](LaMetric/Get-LaMetricTime.ps1)              |
 |Get-NanoLeaf           |Get       |NanoLeaf    |[NanoLeaf/Get-Nanoleaf.ps1](NanoLeaf/Get-Nanoleaf.ps1)                      |
 |Get-Pixoo              |Get       |Pixoo       |[Pixoo/Get-Pixoo.ps1](Pixoo/Get-Pixoo.ps1)                                  |
 |Get-Twinkly            |Get       |Twinkly     |[Twinkly/Get-Twinkly.ps1](Twinkly/Get-Twinkly.ps1)                          |
