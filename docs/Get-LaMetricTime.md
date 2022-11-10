@@ -40,6 +40,23 @@ One or more IP Addresses of LaMetricTime devices.
 
 
 ---
+#### **Application**
+
+If set, will get apps from an LaMetric device.
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
+---
 ### Outputs
 * [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
 
@@ -50,5 +67,8 @@ One or more IP Addresses of LaMetricTime devices.
 ### Syntax
 ```PowerShell
 Get-LaMetricTime [-IPAddress <IPAddress[]>] [<CommonParameters>]
+```
+```PowerShell
+Get-LaMetricTime [-IPAddress <IPAddress[]>] -Application [<CommonParameters>]
 ```
 ---
