@@ -20,6 +20,10 @@ You will find API Keys for your devices at [developer.lametric.com/user/devices]
 
 
 
+* [Disconnect-LaMetricTime](Disconnect-LaMetricTime.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
