@@ -1,0 +1,1 @@
+Write-FormatView -TypeName LaMetric.Icon -Property Name, BigThumbnail -AutoSize -GroupByProperty Category
