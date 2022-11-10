@@ -1,0 +1,1 @@
+Write-FormatView -TypeName LaMetric.Time -Property Name, Model, IPAddress
