@@ -22,7 +22,10 @@ function Get-LaMetricTime {
     [Parameter(Mandatory,ParameterSetName='api/v2/device/apps')]
     [Alias('App','Apps','Applications')]
     [switch]
-    $Application
+    $Application,
+    [Parameter(Mandatory,ParameterSetName='api/v2/device/apps/$Package',ValueFromPipelineByPropertyName)]    
+    [string]
+    $Package
     )
     begin {
         if (-not $script:LaMetricTimeCache) {
@@ -33,6 +36,7 @@ function Get-LaMetricTime {
         }
         $friendlyParameterSetNames = @{
             "api/v2/device/apps" = "Application"
+            'api/v2/device/apps/$packages' = "Application.Details"
         }
         $expandPropertiesIn = @("api/v2/device/apps")
     }
@@ -60,7 +64,8 @@ function Get-LaMetricTime {
         if ($PSCmdlet.ParameterSetName -like 'api*') {
             foreach ($ip in $IPAddress) {
                 $ipAndPort = "${ipAddress}:8080"
-                $endpoint  = $PSCmdlet.ParameterSetName -replace '^api'
+                $endpoint  = 
+                    $ExecutionContext.SessionState.InvokeCommand.ExpandString($PSCmdlet.ParameterSetName) -replace '^api'
                 $typename  = 
                     if ($friendlyParameterSetNames[$PSCmdlet.ParameterSetName]) {
                         $friendlyParameterSetNames[$PSCmdlet.ParameterSetName]
