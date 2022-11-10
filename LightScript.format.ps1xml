@@ -565,6 +565,37 @@ New-Object PSObject -Property ([Ordered]@{
       </TableControl>
     </View>
     <View>
+      <Name>LaMetric.Time.Application</Name>
+      <ViewSelectedBy>
+        <TypeName>LaMetric.Time.Application</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>title</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>vendor</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>version</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
       <Name>LaMetric.Time</Name>
       <ViewSelectedBy>
         <TypeName>LaMetric.Time</TypeName>
