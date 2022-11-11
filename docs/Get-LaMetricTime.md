@@ -57,23 +57,6 @@ If set, will get apps from an LaMetric device.
 
 
 ---
-#### **Display**
-
-If set, will get display settings of an LaMetric Time device
-
-
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:false
-
-
-
----
 #### **Audio**
 
 If set, will get audio settings of an LaMetric Time device
@@ -94,6 +77,23 @@ If set, will get audio settings of an LaMetric Time device
 #### **Bluetooth**
 
 If set, will get bluetooth settings of an LaMetric Time device
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
+---
+#### **Display**
+
+If set, will get display settings of an LaMetric Time device
 
 
 
@@ -142,6 +142,23 @@ If set, will get details about a particular package of an LaMetric Time device.
 
 
 ---
+#### **WiFi**
+
+If set, will get wifi settings of an LaMetric Time device
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
+---
 ### Outputs
 * [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
 
@@ -157,18 +174,21 @@ Get-LaMetricTime [-IPAddress <IPAddress[]>] [<CommonParameters>]
 Get-LaMetricTime [-IPAddress <IPAddress[]>] -Application [<CommonParameters>]
 ```
 ```PowerShell
-Get-LaMetricTime [-IPAddress <IPAddress[]>] -Display [<CommonParameters>]
-```
-```PowerShell
 Get-LaMetricTime [-IPAddress <IPAddress[]>] -Audio [<CommonParameters>]
 ```
 ```PowerShell
 Get-LaMetricTime [-IPAddress <IPAddress[]>] -Bluetooth [<CommonParameters>]
 ```
 ```PowerShell
+Get-LaMetricTime [-IPAddress <IPAddress[]>] -Display [<CommonParameters>]
+```
+```PowerShell
 Get-LaMetricTime [-IPAddress <IPAddress[]>] -Notification [<CommonParameters>]
 ```
 ```PowerShell
 Get-LaMetricTime [-IPAddress <IPAddress[]>] -Package <String> [<CommonParameters>]
+```
+```PowerShell
+Get-LaMetricTime [-IPAddress <IPAddress[]>] -WiFi [<CommonParameters>]
 ```
 ---
