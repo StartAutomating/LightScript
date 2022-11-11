@@ -51,6 +51,7 @@ This directory and it's subdirectories contain the functions defined in LightScr
 |Set-HueLight           |Set       |HueLight    |[Hue/Set-HueLight.ps1](Hue/Set-HueLight.ps1)                                |
 |Set-HueRule            |Set       |HueRule     |[Hue/Set-HueRule.ps1](Hue/Set-HueRule.ps1)                                  |
 |Set-KeyLight           |Set       |KeyLight    |[KeyLight/Set-KeyLight.ps1](KeyLight/Set-KeyLight.ps1)                      |
+|Set-LaMetricTime       |Set       |LaMetricTime|[LaMetric/Set-LaMetricTime.ps1](LaMetric/Set-LaMetricTime.ps1)              |
 |Set-NanoLeaf           |Set       |NanoLeaf    |[NanoLeaf/Set-NanoLeaf.ps1](NanoLeaf/Set-NanoLeaf.ps1)                      |
 |Set-Pixoo              |Set       |Pixoo       |[Pixoo/Set-Pixoo.ps1](Pixoo/Set-Pixoo.ps1)                                  |
 |Set-Twinkly            |Set       |Twinkly     |[Twinkly/Set-Twinkly.ps1](Twinkly/Set-Twinkly.ps1)                          |
