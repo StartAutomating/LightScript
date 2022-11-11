@@ -31,6 +31,11 @@ function Get-LaMetricTime
     [switch]
     $Display,
 
+    # If set, will get audio settings of an LaMetric Time device
+    [Parameter(Mandatory,ParameterSetName='api/v2/device/audio')]
+    [switch]
+    $Audio,
+
     # If set, will get bluetooth settings of an LaMetric Time device
     [Parameter(Mandatory,ParameterSetName='api/v2/device/bluetooth')]    
     [switch]
