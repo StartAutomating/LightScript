@@ -31,6 +31,11 @@ function Get-LaMetricTime
     [switch]
     $Display,
 
+    # If set, will get bluetooth settings of an LaMetric Time device
+    [Parameter(Mandatory,ParameterSetName='api/v2/device/bluetooth')]    
+    [switch]
+    $Bluetooth,
+
     # If set, will get LaMetric Time notifications
     [Parameter(Mandatory,ParameterSetName='api/v2/device/notifications')]
     [Alias('Notifications')]
