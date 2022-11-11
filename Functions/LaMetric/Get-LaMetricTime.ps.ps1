@@ -26,6 +26,12 @@ function Get-LaMetricTime
     [switch]
     $Application,
 
+    # If set, will get display settings of an LaMetric Time device
+    [Parameter(Mandatory,ParameterSetName='api/v2/device/display')]    
+    [switch]
+    $Display,
+
+    # If set, will get details about a particular package of an LaMetric Time device.
     [Parameter(Mandatory,ParameterSetName='api/v2/device/apps/$Package',ValueFromPipelineByPropertyName)]    
     [string]
     $Package
@@ -40,7 +46,7 @@ function Get-LaMetricTime
         }
         $friendlyParameterSetNames = @{
             "api/v2/device/apps" = "Application"
-            'api/v2/device/apps/$packages' = "Application.Details"
+            'api/v2/device/apps/$packages' = "Application.Details"            
         }
         $expandPropertiesIn = @("api/v2/device/apps")
     }
@@ -74,7 +80,7 @@ function Get-LaMetricTime
                 $typename  = 
                     if ($friendlyParameterSetNames[$PSCmdlet.ParameterSetName]) {
                         $friendlyParameterSetNames[$PSCmdlet.ParameterSetName]
-                    } else { $endpoint }
+                    } else { @($endpoint -split '/')[-1]}
                 #region Connect to the Device
                 
                 http://$ipAndPort/api/$endpoint -Headers @{
