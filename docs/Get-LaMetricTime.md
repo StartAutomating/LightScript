@@ -57,7 +57,28 @@ If set, will get apps from an LaMetric device.
 
 
 ---
+#### **Display**
+
+If set, will get display settings of an LaMetric Time device
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
+---
 #### **Package**
+
+If set, will get details about a particular package of an LaMetric Time device.
+
+
 
 > **Type**: ```[String]```
 
@@ -83,6 +104,9 @@ Get-LaMetricTime [-IPAddress <IPAddress[]>] [<CommonParameters>]
 ```
 ```PowerShell
 Get-LaMetricTime [-IPAddress <IPAddress[]>] -Application [<CommonParameters>]
+```
+```PowerShell
+Get-LaMetricTime [-IPAddress <IPAddress[]>] -Display [<CommonParameters>]
 ```
 ```PowerShell
 Get-LaMetricTime [-IPAddress <IPAddress[]>] -Package <String> [<CommonParameters>]
