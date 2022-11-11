@@ -27,6 +27,11 @@ function Get-LaMetricTime {
     [Parameter(Mandatory,ParameterSetName='api/v2/device/display')]    
     [switch]
     $Display,
+    # If set, will get LaMetric Time notifications
+    [Parameter(Mandatory,ParameterSetName='api/v2/device/notifications')]
+    [Alias('Notifications')]
+    [switch]
+    $Notification,
     # If set, will get details about a particular package of an LaMetric Time device.
     [Parameter(Mandatory,ParameterSetName='api/v2/device/apps/$Package',ValueFromPipelineByPropertyName)]    
     [string]
@@ -74,7 +79,10 @@ function Get-LaMetricTime {
                 $typename  = 
                     if ($friendlyParameterSetNames[$PSCmdlet.ParameterSetName]) {
                         $friendlyParameterSetNames[$PSCmdlet.ParameterSetName]
-                    } else { @($endpoint -split '/')[-1]}
+                    } else { 
+                        $lastSegment = @($endpoint -split '/')[-1]
+                        ($lastSegment.Substring(0,1).ToUpper() + $lastSegment.Substring(1)) -replace 's$'
+                    }
                 #region Connect to the Device
                 
                 Invoke-RestMethod ('http://',$ipAndPort,'/api/',$endpoint,'' -join '') -Headers @{
