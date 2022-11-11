@@ -21,11 +21,17 @@ function Set-LaMetricTime {
     [Parameter(ValueFromPipelineByPropertyName)]
     [timespan]
     $Timer,
-    # If provided, will switch the LaMetric Time into Stopwatch mode, and Stop, Reset, or Start the StopWatch
+    # If provided, will switch the LaMetric Time into Stopwatch mode, and Stop/Pause, Reset, or Start the StopWatch
     [Parameter(ValueFromPipelineByPropertyName)]
-    [ValidateSet("Stop", "Start", "Reset")]
+    [ValidateSet("Stop", "Pause", "Start", "Reset")]
     [string]
-    $Stopwatch
+    $Stopwatch,
+    
+    # If set, will switch the LaMetric Time into weather forecast mode.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('Forecast')]
+    [switch]
+    $Weather
     )
     process {
         if (-not $IPAddress) {
@@ -58,17 +64,32 @@ function Set-LaMetricTime {
             }
             #endregion Timer
             #region Stopwatch
-            $ipAndPort = "${ip}:8080"
-            $endpoint  = "api/v2/device/apps"
-            $appAndWiget = "com.lametric.stopwatch/widgets/b1166a6059640bf76b9dfe0455ba8062=/actions"
-            Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Headers @{
-                            Authorization = "Basic $laMetricB64Key"
-                        } -Body ([Ordered]@{
-                            id = "stopwatch.$($Stopwatch.ToLower())"
-                            params = [Ordered]@{}
-                            activate = $true
-                        } | ConvertTo-Json) -Method 'post'
+            if ($Stopwatch) {
+                if ($Stopwatch -eq 'Stop') {
+                    $Stopwatch = "Pause"
+                }
+                $ipAndPort = "${ip}:8080"
+                $endpoint  = "api/v2/device/apps"
+                $appAndWiget = "com.lametric.stopwatch/widgets/b1166a6059640bf76b9dfe0455ba8062/actions"
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Headers @{
+                                    Authorization = "Basic $laMetricB64Key"
+                                } -Body ([Ordered]@{
+                                    id = "stopwatch.$($Stopwatch.ToLower())"
+                                    params = [Ordered]@{}
+                                    activate = $true
+                                } | ConvertTo-Json) -Method 'post'
+            }
             #endregion Stopwatch
+            #region Weather
+            if ($Weather) {
+                $ipAndPort = "${ip}:8080"
+                $endpoint  = "api/v2/device/apps"
+                $appAndWiget = "com.lametric.weather/widgets/380375c4b12c16e3adafb48355ba8061/activate"
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Headers @{
+                                    Authorization = "Basic $laMetricB64Key"
+                                } -Method 'put'
+            }
+            #endregion Weather
         }
     }
 }
