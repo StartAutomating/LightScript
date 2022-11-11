@@ -20,7 +20,12 @@ function Set-LaMetricTime {
     # Sets a Timer on the LaMetric device, using the built-in Countdown app.
     [Parameter(ValueFromPipelineByPropertyName)]
     [timespan]
-    $Timer
+    $Timer,
+    # If provided, will switch the LaMetric Time into Stopwatch mode, and Stop, Reset, or Start the StopWatch
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [ValidateSet("Stop", "Start", "Reset")]
+    [string]
+    $Stopwatch
     )
     process {
         if (-not $IPAddress) {
@@ -36,20 +41,34 @@ function Set-LaMetricTime {
         foreach ($ip in $IPAddress) {
             $laMetricB64Key = $script:LaMetricTimeCache["$ip"].ApiKey
             #region Timer
+            if ($timer.TotalSeconds -ge 1) {
+                $ipAndPort = "${ip}:8080"
+                $endpoint  = "api/v2/device/apps"
+                $appAndWiget = "com.lametric.countdown/widgets/f03ea1ae1ae5f85b390b460f55ba8061/actions"
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Headers @{
+                                    Authorization = "Basic $laMetricB64Key"
+                                } -Body ([Ordered]@{
+                                    id = "countdown.configure"
+                                    params = [Ordered]@{
+                                        duration  = [int]$timer.TotalSeconds
+                                        start_now = $true                    
+                                    }
+                                    activate = $true
+                                } | ConvertTo-Json) -Method 'post'
+            }
+            #endregion Timer
+            #region Stopwatch
             $ipAndPort = "${ip}:8080"
             $endpoint  = "api/v2/device/apps"
-            $appAndWiget = "com.lametric.countdown/widgets/f03ea1ae1ae5f85b390b460f55ba8061/actions"
+            $appAndWiget = "com.lametric.stopwatch/widgets/b1166a6059640bf76b9dfe0455ba8062=/actions"
             Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Headers @{
                             Authorization = "Basic $laMetricB64Key"
                         } -Body ([Ordered]@{
-                            id = "countdown.configure"
-                            params = [Ordered]@{
-                                duration  = [int]$timer.TotalSeconds
-                                start_now = $true                    
-                            }
+                            id = "stopwatch.$($Stopwatch.ToLower())"
+                            params = [Ordered]@{}
                             activate = $true
                         } | ConvertTo-Json) -Method 'post'
-            #endregion Timer
+            #endregion Stopwatch
         }
     }
 }
