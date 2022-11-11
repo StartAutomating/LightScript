@@ -26,16 +26,28 @@ function Set-LaMetricTime
     [switch]
     $Clock,
 
-    # Sets a Timer on the LaMetric device, using the built-in Countdown app.
-    [Parameter(ValueFromPipelineByPropertyName)]
-    [timespan]
-    $Timer,
-
     # If provided, will switch the LaMetric Time into Stopwatch mode, and Stop/Pause, Reset, or Start the StopWatch
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidateSet("Stop", "Pause", "Start", "Reset")]
     [string]
     $Stopwatch,
+
+    # If set, will switch to the previous application on the LaMetric Time.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('LastApp','Last','Prev', 'Previous','PreviousApp', 'PreviousApplication')]
+    [switch]
+    $LastApplication,
+
+    # If set, will switch to the next application on the LaMetric Time.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('NextApp','Next')]
+    [switch]
+    $NextApplication,
+    
+    # Sets a Timer on the LaMetric device, using the built-in Countdown app.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Timespan]
+    $Timer,    
     
     # If set, will switch the LaMetric Time into weather forecast mode.
     [Parameter(ValueFromPipelineByPropertyName)]
@@ -105,7 +117,6 @@ function Set-LaMetricTime
             }
             #endregion Weather
 
-
             #region -Clock
             if ($Clock) {
                 $ipAndPort = "${ip}:8080"
@@ -116,6 +127,26 @@ function Set-LaMetricTime
                 }
             }
             #endregion Clock
+
+            #region -NextApplication
+            if ($NextApplication) {
+                $ipAndPort = "${ip}:8080"
+                $endpoint  = "api/v2/device/apps/next"
+                put http://$ipAndPort/$endpoint -Headers @{
+                    Authorization = "Basic $laMetricB64Key"
+                }
+            }
+            #endregion NextApplication
+
+            #region LastApplication
+            if ($LastApplication) {
+                $ipAndPort = "${ip}:8080"
+                $endpoint  = "api/v2/device/apps/prev"
+                put http://$ipAndPort/$endpoint -Headers @{
+                    Authorization = "Basic $laMetricB64Key"
+                }
+            }
+            #endregion LastApplication
         }
     }
 }
