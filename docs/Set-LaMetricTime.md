@@ -59,23 +59,6 @@ If set, will switch the LaMetric Time into clock mode.
 
 
 ---
-#### **Timer**
-
-Sets a Timer on the LaMetric device, using the built-in Countdown app.
-
-
-
-> **Type**: ```[TimeSpan]```
-
-> **Required**: false
-
-> **Position**: 2
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Stopwatch**
 
 If provided, will switch the LaMetric Time into Stopwatch mode, and Stop/Pause, Reset, or Start the StopWatch
@@ -92,6 +75,57 @@ Valid Values:
 
 
 > **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 2
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **LastApplication**
+
+If set, will switch to the previous application on the LaMetric Time.
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **NextApplication**
+
+If set, will switch to the next application on the LaMetric Time.
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **Timer**
+
+Sets a Timer on the LaMetric device, using the built-in Countdown app.
+
+
+
+> **Type**: ```[TimeSpan]```
 
 > **Required**: false
 
@@ -121,6 +155,6 @@ If set, will switch the LaMetric Time into weather forecast mode.
 ---
 ### Syntax
 ```PowerShell
-Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Timer] <TimeSpan>] [[-Stopwatch] <String>] [-Weather] [<CommonParameters>]
+Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Stopwatch] <String>] [-LastApplication] [-NextApplication] [[-Timer] <TimeSpan>] [-Weather] [<CommonParameters>]
 ```
 ---
