@@ -59,8 +59,33 @@ Sets a Timer on the LaMetric device, using the built-in Countdown app.
 
 
 ---
+#### **Stopwatch**
+
+If provided, will switch the LaMetric Time into Stopwatch mode, and Stop, Reset, or Start the StopWatch
+
+
+
+Valid Values:
+
+* Stop
+* Start
+* Reset
+
+
+
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 3
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 ### Syntax
 ```PowerShell
-Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [[-Timer] <TimeSpan>] [<CommonParameters>]
+Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [[-Timer] <TimeSpan>] [[-Stopwatch] <String>] [<CommonParameters>]
 ```
 ---
