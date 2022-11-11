@@ -17,6 +17,11 @@ function Set-LaMetricTime {
     [Alias('LaMetricTimeIPAddress')]
     [IPAddress[]]
     $IPAddress,
+    # If set, will switch the LaMetric Time into clock mode.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('ShowClock')]
+    [switch]
+    $Clock,
     # Sets a Timer on the LaMetric device, using the built-in Countdown app.
     [Parameter(ValueFromPipelineByPropertyName)]
     [timespan]
@@ -29,9 +34,9 @@ function Set-LaMetricTime {
     
     # If set, will switch the LaMetric Time into weather forecast mode.
     [Parameter(ValueFromPipelineByPropertyName)]
-    [Alias('Forecast')]
+    [Alias('Forecast','ShowForecast', 'ShowWeather')]
     [switch]
-    $Weather
+    $Weather    
     )
     process {
         if (-not $IPAddress) {
@@ -90,6 +95,16 @@ function Set-LaMetricTime {
                                 } -Method 'put'
             }
             #endregion Weather
+            #region -Clock
+            if ($Clock) {
+                $ipAndPort = "${ip}:8080"
+                $endpoint  = "api/v2/device/apps"
+                $appAndWiget = "com.lametric.clock/widgets/08b8eac21074f8f7e5a29f2855ba8060/activate"
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Headers @{
+                                    Authorization = "Basic $laMetricB64Key"
+                                } -Method 'put'
+            }
+            #endregion Clock
         }
     }
 }
