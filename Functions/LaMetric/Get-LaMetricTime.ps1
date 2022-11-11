@@ -23,10 +23,6 @@ function Get-LaMetricTime {
     [Alias('App','Apps','Applications')]
     [switch]
     $Application,
-    # If set, will get display settings of an LaMetric Time device
-    [Parameter(Mandatory,ParameterSetName='api/v2/device/display')]    
-    [switch]
-    $Display,
     # If set, will get audio settings of an LaMetric Time device
     [Parameter(Mandatory,ParameterSetName='api/v2/device/audio')]
     [switch]
@@ -35,6 +31,10 @@ function Get-LaMetricTime {
     [Parameter(Mandatory,ParameterSetName='api/v2/device/bluetooth')]    
     [switch]
     $Bluetooth,
+    # If set, will get display settings of an LaMetric Time device
+    [Parameter(Mandatory,ParameterSetName='api/v2/device/display')]
+    [switch]
+    $Display,
     # If set, will get LaMetric Time notifications
     [Parameter(Mandatory,ParameterSetName='api/v2/device/notifications')]
     [Alias('Notifications')]
@@ -43,7 +43,11 @@ function Get-LaMetricTime {
     # If set, will get details about a particular package of an LaMetric Time device.
     [Parameter(Mandatory,ParameterSetName='api/v2/device/apps/$Package',ValueFromPipelineByPropertyName)]    
     [string]
-    $Package
+    $Package,
+    # If set, will get wifi settings of an LaMetric Time device
+    [Parameter(Mandatory,ParameterSetName='api/v2/device/wifi')]
+    [switch]
+    $WiFi
     )
     begin {
         if (-not $script:LaMetricTimeCache) {
