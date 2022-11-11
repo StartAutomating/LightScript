@@ -29,7 +29,13 @@ function Set-LaMetricTime
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidateSet("Stop", "Pause", "Start", "Reset")]
     [string]
-    $Stopwatch
+    $Stopwatch,
+    
+    # If set, will switch the LaMetric Time into weather forecast mode.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('Forecast')]
+    [switch]
+    $Weather
     )
 
     process {
@@ -81,6 +87,17 @@ function Set-LaMetricTime
                 } | ConvertTo-Json)
             }
             #endregion Stopwatch
+
+            #region Weather
+            if ($Weather) {
+                $ipAndPort = "${ip}:8080"
+                $endpoint  = "api/v2/device/apps"
+                $appAndWiget = "com.lametric.weather/widgets/380375c4b12c16e3adafb48355ba8061/activate"
+                put http://$ipAndPort/$endpoint/$appAndWiget -Headers @{
+                    Authorization = "Basic $laMetricB64Key"
+                }
+            }
+            #endregion Weather
         }
     }
 }
