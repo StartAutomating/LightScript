@@ -42,6 +42,23 @@ If no IP Addresses are provided, the change will apply to all devices.
 
 
 ---
+#### **Clock**
+
+If set, will switch the LaMetric Time into clock mode.
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 #### **Timer**
 
 Sets a Timer on the LaMetric device, using the built-in Countdown app.
@@ -104,6 +121,6 @@ If set, will switch the LaMetric Time into weather forecast mode.
 ---
 ### Syntax
 ```PowerShell
-Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [[-Timer] <TimeSpan>] [[-Stopwatch] <String>] [-Weather] [<CommonParameters>]
+Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Timer] <TimeSpan>] [[-Stopwatch] <String>] [-Weather] [<CommonParameters>]
 ```
 ---
