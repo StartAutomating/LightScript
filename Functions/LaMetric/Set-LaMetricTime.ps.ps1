@@ -25,9 +25,9 @@ function Set-LaMetricTime
     [timespan]
     $Timer,
 
-    # If provided, will switch the LaMetric Time into Stopwatch mode, and Stop, Reset, or Start the StopWatch
+    # If provided, will switch the LaMetric Time into Stopwatch mode, and Stop/Pause, Reset, or Start the StopWatch
     [Parameter(ValueFromPipelineByPropertyName)]
-    [ValidateSet("Stop", "Start", "Reset")]
+    [ValidateSet("Stop", "Pause", "Start", "Reset")]
     [string]
     $Stopwatch
     )
@@ -65,16 +65,21 @@ function Set-LaMetricTime
             #endregion Timer
 
             #region Stopwatch
-            $ipAndPort = "${ip}:8080"
-            $endpoint  = "api/v2/device/apps"
-            $appAndWiget = "com.lametric.stopwatch/widgets/b1166a6059640bf76b9dfe0455ba8062=/actions"
-            post http://$ipAndPort/$endpoint/$appAndWiget -Headers @{
-                Authorization = "Basic $laMetricB64Key"
-            } -Body ([Ordered]@{
-                id = "stopwatch.$($Stopwatch.ToLower())"
-                params = [Ordered]@{}
-                activate = $true
-            } | ConvertTo-Json)
+            if ($Stopwatch) {
+                if ($Stopwatch -eq 'Stop') {
+                    $Stopwatch = "Pause"
+                }
+                $ipAndPort = "${ip}:8080"
+                $endpoint  = "api/v2/device/apps"
+                $appAndWiget = "com.lametric.stopwatch/widgets/b1166a6059640bf76b9dfe0455ba8062/actions"
+                post http://$ipAndPort/$endpoint/$appAndWiget -Headers @{
+                    Authorization = "Basic $laMetricB64Key"
+                } -Body ([Ordered]@{
+                    id = "stopwatch.$($Stopwatch.ToLower())"
+                    params = [Ordered]@{}
+                    activate = $true
+                } | ConvertTo-Json)
+            }
             #endregion Stopwatch
         }
     }
