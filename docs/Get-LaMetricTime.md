@@ -74,6 +74,23 @@ If set, will get display settings of an LaMetric Time device
 
 
 ---
+#### **Bluetooth**
+
+If set, will get bluetooth settings of an LaMetric Time device
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: true
+
+> **Position**: named
+
+> **PipelineInput**:false
+
+
+
+---
 #### **Notification**
 
 If set, will get LaMetric Time notifications
@@ -124,6 +141,9 @@ Get-LaMetricTime [-IPAddress <IPAddress[]>] -Application [<CommonParameters>]
 ```
 ```PowerShell
 Get-LaMetricTime [-IPAddress <IPAddress[]>] -Display [<CommonParameters>]
+```
+```PowerShell
+Get-LaMetricTime [-IPAddress <IPAddress[]>] -Bluetooth [<CommonParameters>]
 ```
 ```PowerShell
 Get-LaMetricTime [-IPAddress <IPAddress[]>] -Notification [<CommonParameters>]
