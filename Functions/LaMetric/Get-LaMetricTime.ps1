@@ -85,7 +85,7 @@ function Get-LaMetricTime {
         #endregion Default to All Devices
         if ($PSCmdlet.ParameterSetName -like 'api*') {
             foreach ($ip in $IPAddress) {
-                $ipAndPort = "${ipAddress}:8080"
+                $ipAndPort = "${ip}:8080"
                 $endpoint  = 
                     $ExecutionContext.SessionState.InvokeCommand.ExpandString($PSCmdlet.ParameterSetName) -replace '^api'
                 $typename  = 
