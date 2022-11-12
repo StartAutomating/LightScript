@@ -1,3 +1,16 @@
+## 0.2.9:
+
+* Added Support for LaMetric Time Clocks!
+  * Connect-LaMetricTime (#67)
+  * Disconnect-LaMetricTime (#68)
+  * Get-LaMetricTime (#69, #71, #72, #74, #73, #75, #77)
+  * Set-LaMetricTime (#79, #80, #81, #82, #83, #84, #85, #86, #87 )
+* Pixoo Improvement:
+  * Get-Pixoo -Font (#65) -Liked (#63) -Upload (#61)
+  * Set-Pixoo -FileID (#62)
+
+---
+
 ## 0.2.8:
 
 * Watch-HueSensor! (Fixes #58)

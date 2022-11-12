@@ -24,12 +24,38 @@ function Get-Pixoo
     # If set, will get the local weather.
     [Parameter(Mandatory,ParameterSetName='Weather')]
     [switch]
-    $Weather
+    $Weather,
+
+    # If set, will get uploads.
+    [Parameter(Mandatory,ParameterSetName='Uploads')]
+    [Alias('Uploads')]
+    [switch]
+    $Upload,
+
+    # If set, will get liked images.
+    [Parameter(Mandatory,ParameterSetName='Likes')]
+    [Alias('Likes')]
+    [switch]
+    $Liked,
+
+    # If set, will get fonts that can be used on the Pixoo.
+    [Parameter(Mandatory,ParameterSetName='Fonts')]
+    [Alias('Fonts')]
+    [switch]
+    $Font,
+
+    # If set, will clear any cached results.
+    [switch]
+    $Force    
     )
 
     begin {
         if (-not $script:PixooCache) {
             $script:PixooCache = @{}
+        }
+
+        if (-not $script:PixooDataCache -or $force) {
+            $script:PixooDataCache = @{}
         }
         if ($home) {
             $lightScriptRoot = Join-Path $home -ChildPath LightScript
@@ -59,16 +85,86 @@ function Get-Pixoo
 
         if ($PSCmdlet.ParameterSetName -eq 'ListDevices') {
             return $script:PixooCache.Values
-        }
+        }        
+
         if ($PSCmdlet.ParameterSetName -eq 'Weather') {
+            
             foreach ($ip in $script:PixooCache.Keys) {
-                Invoke-RestMethod -uri "http://$ip/post" -Method Post -Body (
-                    @{Command="Device/GetWeatherInfo"} | ConvertTo-Json
-                ) |
-                & { process {
-                    $_.pstypenames.insert(0,'Pixoo.Weather')
-                    $_
-                } }
+                if ($script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]) {
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]
+                } else {
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"] = 
+                        Invoke-RestMethod -uri "http://$ip/post" -Method Post -Body (
+                            @{Command="Device/GetWeatherInfo"} | ConvertTo-Json
+                        ) |
+                        & { process {
+                            $_.pstypenames.insert(0,'Pixoo.Weather')
+                            $_
+                        } }
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]                    
+                }
+                # Because the Pixoo API only works on a LAN, we don't need to ask each device for the weather.
+                break
+            }
+        }
+
+        if ($PSCmdlet.ParameterSetName -in 'Uploads', 'Likes') {            
+            foreach ($ip in $script:PixooCache.Keys) {
+
+                $deviceId     = $script:PixooCache[$ip].DeviceID -as [int64]
+                $body = @{
+                    DeviceId  = $script:PixooCache[$ip].DeviceID -as [int64]
+                    DeviceMac = $script:PixooCache[$ip].MACAddress.Replace('-','').ToLower()
+                } | ConvertTo-Json
+                $dataCacheKey = "$ip.$($PSCmdlet.ParameterSetName)"
+                if (-not $script:PixooDataCache[$dataCacheKey]) {
+                    $dataUri     = 
+                        switch ($PSCmdlet.ParameterSetName) {
+                            Uploads {
+                                "https://app.divoom-gz.com/Device/GetImgUploadList"
+                            }
+                            Likes {
+                                "https://app.divoom-gz.com/Device/GetImgLikeList"
+                            }
+                        } 
+                    $restResults = Invoke-RestMethod -uri $dataUri -Method Post -Body $body
+                    $script:PixooDataCache[$dataCacheKey] = $restResults.ImgList | & { process {
+                        if (-not $_) {
+                            Write-Warning "Did not receive results for $deviceID.  Try again in a second (Pixoo's API can be slow)."
+                            return
+                        }
+                        $img = $_
+                        $img.pstypenames.clear()
+                        $img.pstypenames.add("Divoom.$($PSCmdlet.ParameterSetName.TrimEnd('s'))")
+                        $img.psobject.properties.Add([psnoteproperty]::new("IPAddress", $ip))
+                        $img.psobject.properties.Add([psnoteproperty]::new("DeviceID", $deviceId))
+                        $img
+                    } }
+                    $script:PixooDataCache[$dataCacheKey]
+                } else {
+                    $script:PixooDataCache[$dataCacheKey]
+                }
+                
+            }
+        }
+
+        if ($PSCmdlet.ParameterSetName -eq 'Fonts') {
+            foreach ($ip in $script:PixooCache.Keys) {
+                if ($script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]) {
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]
+                } else {
+                    $restResults = 
+                        Invoke-RestMethod -uri "https://app.divoom-gz.com/Device/GetTimeDialFontList" -Method Post
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"] = 
+                        $restResults.FontList |
+                        & { process {                            
+                            $_.pstypenames.insert(0,'Pixoo.Font')
+                            $_
+                        } }
+                    $script:PixooDataCache["$ip.$($PSCmdlet.ParameterSetName)"]                    
+                }
+                # Because are global, we don't need to ask each device for the fonts.
+                break
             }
         }
     }

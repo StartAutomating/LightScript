@@ -22,6 +22,54 @@
     </Members>
   </Type>
   <Type>
+    <Name>LaMetric.Icon</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>BigThumbnail</Name>
+        <GetScriptBlock>
+                        [uri]("https://developer.lametric.com/content/apps/icon_thumbs/$(
+    $this.IconID -replace '\D'
+)_icon_thumb_big.png")
+                    </GetScriptBlock>
+      </ScriptProperty>
+      <ScriptProperty>
+        <Name>IconUrl</Name>
+        <GetScriptBlock>
+                        [uri]("https://developer.lametric.com/content/apps/icon_thumbs/$(
+    $this.IconID -replace '\D'
+)$(
+    if ($this.IconType -eq '1') { ".gif"} else { ".png"}
+)")
+                    </GetScriptBlock>
+      </ScriptProperty>
+      <ScriptProperty>
+        <Name>LargeThumbnail</Name>
+        <GetScriptBlock>
+                        [uri]("https://developer.lametric.com/content/apps/icon_thumbs/$(
+    $this.IconID -replace '\D'
+)_icon_thumb_lg.png")
+                    </GetScriptBlock>
+      </ScriptProperty>
+      <ScriptProperty>
+        <Name>SmallThumbnail</Name>
+        <GetScriptBlock>
+                        [uri]("https://developer.lametric.com/content/apps/icon_thumbs/$(
+    $this.IconID -replace '\D'
+)_icon_thumb_sm.png")
+                    </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>LaMetric.Time.Notification</Name>
+    <Members>
+      <AliasProperty>
+        <Name>NotificationID</Name>
+        <ReferencedMemberName>ID</ReferencedMemberName>
+      </AliasProperty>
+    </Members>
+  </Type>
+  <Type>
     <Name>LightScript.Color</Name>
     <Members>
       <ScriptMethod>

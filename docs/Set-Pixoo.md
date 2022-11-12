@@ -37,7 +37,7 @@ Set-Pixoo -Timer "00:00:30"
 ### Parameters
 #### **IPAddress**
 
-One or more IP Addresses of Twinkly devices.
+One or more IP Addresses of Pixoo devices.
 
 
 
@@ -478,6 +478,25 @@ If set, the Pixoo will beep.
 
 
 ---
+#### **FileID**
+
+A file identifier of an upload or liked file.
+These can be retreived by using Get-Pixoo -Upload.
+Note: File IDs are unique to each Pixoo device
+
+
+
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 20
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
 -WhatIf is used to see what would happen, or return operations without executing them
@@ -493,6 +512,6 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 ---
 ### Syntax
 ```PowerShell
-Set-Pixoo [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-Visualizer] <Int32>] [[-CustomPlaylist] <Int32>] [[-CloudChannel] <Int32>] [[-Channel] <String>] [[-Stopwatch] <String>] [[-Timer] <TimeSpan>] [-NoiseMeter] [[-RedScore] <Int32>] [[-BlueScore] <Int32>] [[-RGBColor] <String>] [[-Latitude] <Double>] [[-Longitude] <Double>] [[-Rotation] <Int32>] [-Mirror] [-Beep] [[-BeepTime] <TimeSpan>] [[-BeepPause] <TimeSpan>] [[-BeepCount] <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-Pixoo [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-Visualizer] <Int32>] [[-CustomPlaylist] <Int32>] [[-CloudChannel] <Int32>] [[-Channel] <String>] [[-Stopwatch] <String>] [[-Timer] <TimeSpan>] [-NoiseMeter] [[-RedScore] <Int32>] [[-BlueScore] <Int32>] [[-RGBColor] <String>] [[-Latitude] <Double>] [[-Longitude] <Double>] [[-Rotation] <Int32>] [-Mirror] [-Beep] [[-BeepTime] <TimeSpan>] [[-BeepPause] <TimeSpan>] [[-BeepCount] <Int32>] [[-FileID] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 ---
