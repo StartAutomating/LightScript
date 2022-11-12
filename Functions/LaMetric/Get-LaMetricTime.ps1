@@ -1,17 +1,26 @@
 function Get-LaMetricTime {
     <#
-    .Synopsis
+    .SYNOPSIS
         Gets LaMetricTime
-    .Description
+    .DESCRIPTION
         Gets LaMetricTime devices.
-    .Example
+    .EXAMPLE
         Get-LaMetricTime
-    .Link
+    .EXAMPLE
+        Get-LaMetricTime -Audio         # Gets audio settings
+    .EXAMPLE
+        Get-LaMetricTime -Bluetooth     # Gets bluetooth settings
+    .EXAMPLE
+        Get-LaMetricTime -Notification  # Gets notifications (there may be none)
+    .EXAMPLE
+        Get-LaMetricTime -Audio         # Gets audio settings
+    .LINK
         Connect-LaMetricTime
+    .LINK
+        Set-LaMetricTime
     #>
     [CmdletBinding(PositionalBinding=$false,DefaultParameterSetName='ListDevices')]
-    [OutputType([PSObject])]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "", Justification="Parameters used as hints for Parameter Sets")]
+    [OutputType([PSObject])]    
     param(
     # One or more IP Addresses of LaMetricTime devices.
     [Parameter(ValueFromPipelineByPropertyName)]
