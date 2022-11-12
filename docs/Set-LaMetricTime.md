@@ -21,6 +21,62 @@ Configures or sends notifications to an LaMetricTime device.
 ---
 ### Examples
 #### EXAMPLE 1
+```PowerShell
+Set-LaMetricTime -Clock    # Set LaMetricTime devices into clock mode
+```
+
+#### EXAMPLE 2
+```PowerShell
+Set-LaMetricTime -Weather  # Set LaMetricTime devices into weather forecast mode
+```
+
+#### EXAMPLE 3
+```PowerShell
+Set-LaMetricTime -NotificationText "Hello World"  # Send a notification to the LaMetric time device.
+```
+
+#### EXAMPLE 4
+```PowerShell
+Set-LaMetricTime -NotificationText "$" -NotificationSound cash
+```
+
+#### EXAMPLE 5
+```PowerShell
+# Find an icon
+Search-LaMetricIcon "PowerShell" | 
+    Select-Object -First 1 | # pick the first one
+    Set-LaMetricTime -NotificationText "Hello PowerShell" # and display the notification
+```
+
+#### EXAMPLE 6
+```PowerShell
+Set-LaMetricTime -Stopwatch start   # Starts a stopwatch
+```
+
+#### EXAMPLE 7
+```PowerShell
+Set-LaMetricTime -Stopwatch stop    # Stops a stopwatch
+```
+
+#### EXAMPLE 8
+```PowerShell
+Set-LaMetricTime -Stopwatch reset   # Resets a stopwatch
+```
+
+#### EXAMPLE 9
+```PowerShell
+Set-LaMetricTime -Timer "00:01:00"  # Sets a timer for a minute
+```
+
+#### EXAMPLE 10
+```PowerShell
+Set-LaMetricTime -NextApplication      # Switches to the next application
+```
+
+#### EXAMPLE 11
+```PowerShell
+Set-LaMetricTime -PreviousApplication  # Switches to the previous application
+```
 
 ---
 ### Parameters
