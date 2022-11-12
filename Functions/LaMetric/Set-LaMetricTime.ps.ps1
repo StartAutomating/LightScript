@@ -6,7 +6,28 @@ function Set-LaMetricTime
     .DESCRIPTION
         Configures or sends notifications to an LaMetricTime device.
     .EXAMPLE
-
+        Set-LaMetricTime -Clock    # Set LaMetricTime devices into clock mode
+    .EXAMPLE
+        Set-LaMetricTime -Weather  # Set LaMetricTime devices into weather forecast mode
+    .EXAMPLE
+        Set-LaMetricTime -NotificationText "Hello World"  # Send a notification to the LaMetric time device.
+    .EXAMPLE
+        # Find an icon
+        Search-LaMetricIcon "PowerShell" | 
+            Select-Object -First 1 | # pick the first one
+            Set-LaMetricTime -NotificationText "Hello PowerShell" # and display the notification
+    .EXAMPLE
+        Set-LaMetricTime -Stopwatch start   # Starts a stopwatch
+    .EXAMPLE
+        Set-LaMetricTime -Stopwatch stop    # Stops a stopwatch
+    .EXAMPLE
+        Set-LaMetricTime -Stopwatch reset   # Resets a stopwatch
+    .EXAMPLE
+        Set-LaMetricTime -Timer "00:01:00"  # Sets a timer for a minute
+    .EXAMPLE
+        Set-LaMetricTime -NextApplication      # Switches to the next application
+    .EXAMPLE
+        Set-LaMetricTime -PreviousApplication  # Switches to the previous application
     .LINK
         Get-LaMetricTime
     .LINK
