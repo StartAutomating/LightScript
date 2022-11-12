@@ -115,7 +115,28 @@ function Set-LaMetricTime {
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('Forecast','ShowForecast', 'ShowWeather')]
     [switch]
-    $Weather    
+    $Weather,
+    
+    # If set, will switch to a given app.
+    # If -Widget is not provided, the first widget will be used.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [string]
+    $Package,
+    # The widget of a given application that should be activated.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [string]
+    $WidgetID,
+    # The name of the widget action id.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [string]
+    $WidgetActionId,
+    # A set of properties to pass to a given widget.
+    # Must be provided with -WidgetSetting
+    # If no properties are provided, the widget will be activated.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('WidgetParameter','WidgetParams')]
+    [PSObject]
+    $WidgetProperty
     )
     process {
         if (-not $IPAddress) {
@@ -271,6 +292,42 @@ function Set-LaMetricTime {
                 Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'' -join '') -Headers $headers -Method 'delete'
             }
             #endregion Cancel Notification
+            #region Package and Widget
+            if ($package) {
+                $endpoint  = "api/v2/device/apps"
+                if (-not $WidgetID) {                    
+                    $WidgetID = Get-LaMetricTime -IPAddress $ip -Application |
+                        Where-Object Package -eq $package |
+                        ForEach-Object { 
+                            @($_.widgets.psobject.properties)[0].name
+                        }
+                }
+                if (-not $WidgetID) {
+                    Write-Error "Could not find widget in package '$package'"
+                    continue
+                }
+                $appAndWiget = "$package/widgets/$widgetId"
+                if ($WidgetProperty) {
+                    if (-not $WidgetActionId) {
+                        Write-Error "Must provide a Widget Action Id"
+                        continue
+                    }
+                    if ($WidgetProperty -is [Collections.IDictionary]) {
+                        $WidgetProperty = [PSCustomObject]$WidgetProperty
+                    }
+                    
+                    Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'/actions' -join '') -Headers $headers -Body (
+                                            [Ordered]@{
+                                                id = $WidgetID
+                                                params = $WidgetProperty
+                                                activate = $true
+                                            }  | ConvertTo-Json -Depth 10
+                                        ) -Method 'post'
+                } else {
+                    Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'/activate' -join '') -Headers $headers -Method 'put'
+                }
+            }
+            #endregion Package and Widget
         }
     }
 }
