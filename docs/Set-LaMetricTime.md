@@ -384,8 +384,79 @@ If set, will switch the LaMetric Time into weather forecast mode.
 
 
 ---
+#### **Package**
+
+If set, will switch to a given app.
+If -Widget is not provided, the first widget will be used.
+
+
+
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 10
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **WidgetID**
+
+The widget of a given application that should be activated.
+
+
+
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 11
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **WidgetActionId**
+
+The name of the widget action id.
+
+
+
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 12
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **WidgetProperty**
+
+A set of properties to pass to a given widget.
+Must be provided with -WidgetSetting
+If no properties are provided, the widget will be activated.
+
+
+
+> **Type**: ```[PSObject]```
+
+> **Required**: false
+
+> **Position**: 13
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 ### Syntax
 ```PowerShell
-Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Stopwatch] <String>] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-NotificationIcon] <String[]>] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-LoopNotification] [[-NotificationSound] <String>] [[-CancelNotification] <Int32>] [[-Timer] <TimeSpan>] [-Weather] [<CommonParameters>]
+Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Stopwatch] <String>] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-NotificationIcon] <String[]>] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-LoopNotification] [[-NotificationSound] <String>] [[-CancelNotification] <Int32>] [[-Timer] <TimeSpan>] [-Weather] [[-Package] <String>] [[-WidgetID] <String>] [[-WidgetActionId] <String>] [[-WidgetProperty] <PSObject>] [<CommonParameters>]
 ```
 ---
