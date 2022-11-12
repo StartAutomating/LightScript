@@ -128,12 +128,18 @@ function Set-LaMetricTime
     [Alias('Forecast','ShowForecast', 'ShowWeather')]
     [switch]
     $Weather,
+
+    # Sets the volume of an LaMetric Time device.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [ValidateRange(0,100)]
+    [int]
+    $Volume,
     
     # If set, will switch to a given app.
     # If -Widget is not provided, the first widget will be used.
     [Parameter(ValueFromPipelineByPropertyName)]
     [string]
-    $Package,
+    $Package,    
 
     # The widget of a given application that should be activated.
     [Parameter(ValueFromPipelineByPropertyName)]
@@ -355,6 +361,12 @@ function Set-LaMetricTime
                 } else {
                     put http://$ipAndPort/$endpoint/$appAndWiget/activate -Headers $headers
                 }
+            }
+
+            if ($PSBoundParameters.ContainsKey('Volume')) {
+                put http://$ipAndPort/api/v2/device/audio -Headers $headers -body ([Ordered]@{
+                    volume = $Volume
+                } | ConvertTo-Json)
             }
             #endregion Package and Widget
         }
