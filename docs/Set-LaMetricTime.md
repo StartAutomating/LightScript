@@ -384,6 +384,23 @@ If set, will switch the LaMetric Time into weather forecast mode.
 
 
 ---
+#### **Volume**
+
+Sets the volume of an LaMetric Time device.
+
+
+
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 10
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 #### **Package**
 
 If set, will switch to a given app.
@@ -395,7 +412,7 @@ If -Widget is not provided, the first widget will be used.
 
 > **Required**: false
 
-> **Position**: 10
+> **Position**: 11
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -412,7 +429,7 @@ The widget of a given application that should be activated.
 
 > **Required**: false
 
-> **Position**: 11
+> **Position**: 12
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -429,7 +446,7 @@ The name of the widget action id.
 
 > **Required**: false
 
-> **Position**: 12
+> **Position**: 13
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -448,7 +465,7 @@ If no properties are provided, the widget will be activated.
 
 > **Required**: false
 
-> **Position**: 13
+> **Position**: 14
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -457,6 +474,6 @@ If no properties are provided, the widget will be activated.
 ---
 ### Syntax
 ```PowerShell
-Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Stopwatch] <String>] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-NotificationIcon] <String[]>] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-LoopNotification] [[-NotificationSound] <String>] [[-CancelNotification] <Int32>] [[-Timer] <TimeSpan>] [-Weather] [[-Package] <String>] [[-WidgetID] <String>] [[-WidgetActionId] <String>] [[-WidgetProperty] <PSObject>] [<CommonParameters>]
+Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Stopwatch] <String>] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-NotificationIcon] <String[]>] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-LoopNotification] [[-NotificationSound] <String>] [[-CancelNotification] <Int32>] [[-Timer] <TimeSpan>] [-Weather] [[-Volume] <Int32>] [[-Package] <String>] [[-WidgetID] <String>] [[-WidgetActionId] <String>] [[-WidgetProperty] <PSObject>] [<CommonParameters>]
 ```
 ---
