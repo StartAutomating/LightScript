@@ -108,7 +108,16 @@ function Get-LaMetricTime {
                                 $prop.value.pstypenames.add("LaMetric.Time.$typeName")
                                 $prop.value
                             }
-                        } else {
+                        
+                        } 
+                        elseif ($out -is [Collections.IList]) {
+                            foreach ($o in $out) {
+                                $o.pstypenames.clear()
+                                $o.pstypenames.add("LaMetric.Time.$typename")
+                                $o
+                            }
+                        }
+                        else {
                             $out.pstypenames.clear()
                             $out.pstypenames.add("LaMetric.Time.$typename")
                             $out
