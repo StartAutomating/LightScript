@@ -75,6 +75,12 @@ function Set-LaMetricTime {
     )]
     [string]
     $NotificationSound,
+    # If provided, will cancel a given notification.
+    # If 0 or less is provided, will cancel all notifications.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('NotificationID')]
+    [int]
+    $CancelNotification,
     
     # Sets a Timer on the LaMetric device, using the built-in Countdown app.
     [Parameter(ValueFromPipelineByPropertyName)]
@@ -230,6 +236,17 @@ function Set-LaMetricTime {
                                 ) -Headers $headers -Method 'post'
             }
             #endregion Notifications
+            #region Cancel Notification
+            if ($CancelNotification) {
+                if ($CancelNotification -le 0) {
+                    Get-LaMetricTime -IPAddress $ip -Notification |
+                        Set-LaMetricTime
+                    continue
+                }                
+                $endpoint  = "api/v2/device/notifications/$CancelNotification"
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'' -join '') -Headers $headers -Method 'delete'
+            }
+            #endregion Cancel Notification
         }
     }
 }
