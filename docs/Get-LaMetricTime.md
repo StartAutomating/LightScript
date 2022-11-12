@@ -14,11 +14,35 @@ Gets LaMetricTime devices.
 
 
 
+* [Set-LaMetricTime](Set-LaMetricTime.md)
+
+
+
 ---
 ### Examples
 #### EXAMPLE 1
 ```PowerShell
 Get-LaMetricTime
+```
+
+#### EXAMPLE 2
+```PowerShell
+Get-LaMetricTime -Audio         # Gets audio settings
+```
+
+#### EXAMPLE 3
+```PowerShell
+Get-LaMetricTime -Bluetooth     # Gets bluetooth settings
+```
+
+#### EXAMPLE 4
+```PowerShell
+Get-LaMetricTime -Notification  # Gets notifications (there may be none)
+```
+
+#### EXAMPLE 5
+```PowerShell
+Get-LaMetricTime -Audio         # Gets audio settings
 ```
 
 ---
