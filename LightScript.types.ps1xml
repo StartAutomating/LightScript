@@ -61,6 +61,15 @@
     </Members>
   </Type>
   <Type>
+    <Name>LaMetric.Time.Notification</Name>
+    <Members>
+      <AliasProperty>
+        <Name>NotificationID</Name>
+        <ReferencedMemberName>ID</ReferencedMemberName>
+      </AliasProperty>
+    </Members>
+  </Type>
+  <Type>
     <Name>LightScript.Color</Name>
     <Members>
       <ScriptMethod>
