@@ -12,6 +12,8 @@ function Set-LaMetricTime
     .EXAMPLE
         Set-LaMetricTime -NotificationText "Hello World"  # Send a notification to the LaMetric time device.
     .EXAMPLE
+        Set-LaMetricTime -NotificationText "$" -NotificationSound cash
+    .EXAMPLE
         # Find an icon
         Search-LaMetricIcon "PowerShell" | 
             Select-Object -First 1 | # pick the first one
