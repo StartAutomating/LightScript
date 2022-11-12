@@ -276,6 +276,24 @@ Valid Values:
 
 
 ---
+#### **CancelNotification**
+
+If provided, will cancel a given notification.
+If 0 or less is provided, will cancel all notifications.
+
+
+
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 8
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 #### **Timer**
 
 Sets a Timer on the LaMetric device, using the built-in Countdown app.
@@ -286,7 +304,7 @@ Sets a Timer on the LaMetric device, using the built-in Countdown app.
 
 > **Required**: false
 
-> **Position**: 8
+> **Position**: 9
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -312,6 +330,6 @@ If set, will switch the LaMetric Time into weather forecast mode.
 ---
 ### Syntax
 ```PowerShell
-Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Stopwatch] <String>] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-NotificationIcon] <String[]>] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-LoopNotification] [[-NotificationSound] <String>] [[-Timer] <TimeSpan>] [-Weather] [<CommonParameters>]
+Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Stopwatch] <String>] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-NotificationIcon] <String[]>] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-LoopNotification] [[-NotificationSound] <String>] [[-CancelNotification] <Int32>] [[-Timer] <TimeSpan>] [-Weather] [<CommonParameters>]
 ```
 ---
