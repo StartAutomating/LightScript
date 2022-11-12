@@ -119,6 +119,163 @@ If set, will switch to the next application on the LaMetric Time.
 
 
 ---
+#### **NotificationText**
+
+One or more messages of notification text
+
+
+
+> **Type**: ```[String[]]```
+
+> **Required**: false
+
+> **Position**: 3
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **NotificationIcon**
+
+One or more notification icons.
+
+
+
+> **Type**: ```[String[]]```
+
+> **Required**: false
+
+> **Position**: 4
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **NotificationDuration**
+
+The duration of the notification.
+By default, 15 seconds.
+
+
+
+> **Type**: ```[TimeSpan]```
+
+> **Required**: false
+
+> **Position**: 5
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **NotificationLoopCount**
+
+The number of times to display the notification.
+Zero or less will be considered an indefinite notification
+
+
+
+> **Type**: ```[Int32]```
+
+> **Required**: false
+
+> **Position**: 6
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **LoopNotification**
+
+If set, will indefinitely loop the notification.
+
+
+
+> **Type**: ```[Switch]```
+
+> **Required**: false
+
+> **Position**: named
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
+#### **NotificationSound**
+
+If provided, will play a sound with the notification.
+
+
+
+Valid Values:
+
+* alarm1
+* alarm2
+* alarm3
+* alarm4
+* alarm5
+* alarm6
+* alarm7
+* alarm8
+* alarm9
+* alarm10
+* alarm11
+* alarm12
+* alarm13
+* bicycle
+* car
+* cash
+* cat
+* dog
+* dog2
+* energy
+* knock-knock
+* letter_email
+* lose1
+* lose2
+* negative1
+* negative2
+* negative3
+* negative4
+* negative5
+* notification
+* notification2
+* notification3
+* notification4
+* open_door
+* positive1
+* positive2
+* positive3
+* positive4
+* positive5
+* positive6
+* statistic
+* thunder
+* water1
+* water2
+* win
+* win2
+* wind
+* wind_short
+
+
+
+> **Type**: ```[String]```
+
+> **Required**: false
+
+> **Position**: 7
+
+> **PipelineInput**:true (ByPropertyName)
+
+
+
+---
 #### **Timer**
 
 Sets a Timer on the LaMetric device, using the built-in Countdown app.
@@ -129,7 +286,7 @@ Sets a Timer on the LaMetric device, using the built-in Countdown app.
 
 > **Required**: false
 
-> **Position**: 3
+> **Position**: 8
 
 > **PipelineInput**:true (ByPropertyName)
 
@@ -155,6 +312,6 @@ If set, will switch the LaMetric Time into weather forecast mode.
 ---
 ### Syntax
 ```PowerShell
-Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Stopwatch] <String>] [-LastApplication] [-NextApplication] [[-Timer] <TimeSpan>] [-Weather] [<CommonParameters>]
+Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Stopwatch] <String>] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-NotificationIcon] <String[]>] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-LoopNotification] [[-NotificationSound] <String>] [[-Timer] <TimeSpan>] [-Weather] [<CommonParameters>]
 ```
 ---
