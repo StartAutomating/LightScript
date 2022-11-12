@@ -35,7 +35,7 @@ function Search-LaMetricIcon {
                     [PSCustomObject][Ordered]@{
                         PSTypeName = 'LaMetric.Icon'
                         Name       = $icon.name
-                        IconId     = $icon.id
+                        IconId     = "$(if ($icon.Type -eq 0) { 'i'} else { 'a'})$($icon.id)"
                         IconType   = $icon.type
                         Category   = $icon.category
                         CreatorID  = $icon.creator                        
