@@ -1,126 +1,103 @@
 Set-LaMetricTime
 ----------------
+
 ### Synopsis
 Sets a LaMetricTime device.
 
 ---
+
 ### Description
 
 Configures or sends notifications to an LaMetricTime device.
 
 ---
+
 ### Related Links
 * [Get-LaMetricTime](Get-LaMetricTime.md)
 
-
-
 * [Connect-LaMetrictime](Connect-LaMetrictime.md)
 
-
-
 ---
+
 ### Examples
-#### EXAMPLE 1
+> EXAMPLE 1
+
 ```PowerShell
 Set-LaMetricTime -Clock    # Set LaMetricTime devices into clock mode
 ```
+> EXAMPLE 2
 
-#### EXAMPLE 2
 ```PowerShell
 Set-LaMetricTime -Weather  # Set LaMetricTime devices into weather forecast mode
 ```
+> EXAMPLE 3
 
-#### EXAMPLE 3
 ```PowerShell
 Set-LaMetricTime -NotificationText "Hello World"  # Send a notification to the LaMetric time device.
 ```
+> EXAMPLE 4
 
-#### EXAMPLE 4
 ```PowerShell
 Set-LaMetricTime -NotificationText "$" -NotificationSound cash
 ```
+Find an icon
 
-#### EXAMPLE 5
 ```PowerShell
-# Find an icon
 Search-LaMetricIcon "PowerShell" | 
     Select-Object -First 1 | # pick the first one
     Set-LaMetricTime -NotificationText "Hello PowerShell" # and display the notification
 ```
+> EXAMPLE 6
 
-#### EXAMPLE 6
 ```PowerShell
 Set-LaMetricTime -Stopwatch start   # Starts a stopwatch
 ```
+> EXAMPLE 7
 
-#### EXAMPLE 7
 ```PowerShell
 Set-LaMetricTime -Stopwatch stop    # Stops a stopwatch
 ```
+> EXAMPLE 8
 
-#### EXAMPLE 8
 ```PowerShell
 Set-LaMetricTime -Stopwatch reset   # Resets a stopwatch
 ```
+> EXAMPLE 9
 
-#### EXAMPLE 9
 ```PowerShell
 Set-LaMetricTime -Timer "00:01:00"  # Sets a timer for a minute
 ```
+> EXAMPLE 10
 
-#### EXAMPLE 10
 ```PowerShell
 Set-LaMetricTime -NextApplication      # Switches to the next application
 ```
+> EXAMPLE 11
 
-#### EXAMPLE 11
 ```PowerShell
 Set-LaMetricTime -PreviousApplication  # Switches to the previous application
 ```
 
 ---
+
 ### Parameters
 #### **IPAddress**
-
 One or more IP Addresses of LaMetricTime devices.
 If no IP Addresses are provided, the change will apply to all devices.
 
+|Type           |Required|Position|PipelineInput        |Aliases              |
+|---------------|--------|--------|---------------------|---------------------|
+|`[IPAddress[]]`|false   |1       |true (ByPropertyName)|LaMetricTimeIPAddress|
 
-
-> **Type**: ```[IPAddress[]]```
-
-> **Required**: false
-
-> **Position**: 1
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Clock**
-
 If set, will switch the LaMetric Time into clock mode.
 
+|Type      |Required|Position|PipelineInput        |Aliases  |
+|----------|--------|--------|---------------------|---------|
+|`[Switch]`|false   |named   |true (ByPropertyName)|ShowClock|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: false
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Stopwatch**
-
 If provided, will switch the LaMetric Time into Stopwatch mode, and Stop/Pause, Reset, or Start the StopWatch
-
-
-
 Valid Values:
 
 * Stop
@@ -128,146 +105,63 @@ Valid Values:
 * Start
 * Reset
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[String]`|false   |2       |true (ByPropertyName)|
 
-
-> **Type**: ```[String]```
-
-> **Required**: false
-
-> **Position**: 2
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **LastApplication**
-
 If set, will switch to the previous application on the LaMetric Time.
 
+|Type      |Required|Position|PipelineInput        |Aliases                                                                       |
+|----------|--------|--------|---------------------|------------------------------------------------------------------------------|
+|`[Switch]`|false   |named   |true (ByPropertyName)|LastApp<br/>Last<br/>Prev<br/>Previous<br/>PreviousApp<br/>PreviousApplication|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: false
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **NextApplication**
-
 If set, will switch to the next application on the LaMetric Time.
 
+|Type      |Required|Position|PipelineInput        |Aliases         |
+|----------|--------|--------|---------------------|----------------|
+|`[Switch]`|false   |named   |true (ByPropertyName)|NextApp<br/>Next|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: false
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **NotificationText**
-
 One or more messages of notification text
 
+|Type        |Required|Position|PipelineInput        |
+|------------|--------|--------|---------------------|
+|`[String[]]`|false   |3       |true (ByPropertyName)|
 
-
-> **Type**: ```[String[]]```
-
-> **Required**: false
-
-> **Position**: 3
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **NotificationIcon**
-
 One or more notification icons.
 
+|Type        |Required|Position|PipelineInput        |Aliases|
+|------------|--------|--------|---------------------|-------|
+|`[String[]]`|false   |4       |true (ByPropertyName)|IconID |
 
-
-> **Type**: ```[String[]]```
-
-> **Required**: false
-
-> **Position**: 4
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **NotificationDuration**
-
 The duration of the notification.
 By default, 15 seconds.
 
+|Type        |Required|Position|PipelineInput        |
+|------------|--------|--------|---------------------|
+|`[TimeSpan]`|false   |5       |true (ByPropertyName)|
 
-
-> **Type**: ```[TimeSpan]```
-
-> **Required**: false
-
-> **Position**: 5
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **NotificationLoopCount**
-
 The number of times to display the notification.
 Zero or less will be considered an indefinite notification
 
+|Type     |Required|Position|PipelineInput        |Aliases  |
+|---------|--------|--------|---------------------|---------|
+|`[Int32]`|false   |6       |true (ByPropertyName)|LoopCount|
 
-
-> **Type**: ```[Int32]```
-
-> **Required**: false
-
-> **Position**: 6
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **LoopNotification**
-
 If set, will indefinitely loop the notification.
 
+|Type      |Required|Position|PipelineInput        |Aliases|
+|----------|--------|--------|---------------------|-------|
+|`[Switch]`|false   |named   |true (ByPropertyName)|Loop   |
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: false
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **NotificationSound**
-
 If provided, will play a sound with the notification.
-
-
-
 Valid Values:
 
 * alarm1
@@ -319,161 +213,73 @@ Valid Values:
 * wind
 * wind_short
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[String]`|false   |7       |true (ByPropertyName)|
 
-
-> **Type**: ```[String]```
-
-> **Required**: false
-
-> **Position**: 7
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **CancelNotification**
-
 If provided, will cancel a given notification.
 If 0 or less is provided, will cancel all notifications.
 
+|Type     |Required|Position|PipelineInput        |Aliases       |
+|---------|--------|--------|---------------------|--------------|
+|`[Int32]`|false   |8       |true (ByPropertyName)|NotificationID|
 
-
-> **Type**: ```[Int32]```
-
-> **Required**: false
-
-> **Position**: 8
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Timer**
-
 Sets a Timer on the LaMetric device, using the built-in Countdown app.
 
+|Type        |Required|Position|PipelineInput        |
+|------------|--------|--------|---------------------|
+|`[TimeSpan]`|false   |9       |true (ByPropertyName)|
 
-
-> **Type**: ```[TimeSpan]```
-
-> **Required**: false
-
-> **Position**: 9
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Weather**
-
 If set, will switch the LaMetric Time into weather forecast mode.
 
+|Type      |Required|Position|PipelineInput        |Aliases                                  |
+|----------|--------|--------|---------------------|-----------------------------------------|
+|`[Switch]`|false   |named   |true (ByPropertyName)|Forecast<br/>ShowForecast<br/>ShowWeather|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: false
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Volume**
-
 Sets the volume of an LaMetric Time device.
 
+|Type     |Required|Position|PipelineInput        |
+|---------|--------|--------|---------------------|
+|`[Int32]`|false   |10      |true (ByPropertyName)|
 
-
-> **Type**: ```[Int32]```
-
-> **Required**: false
-
-> **Position**: 10
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Package**
-
 If set, will switch to a given app.
 If -Widget is not provided, the first widget will be used.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[String]`|false   |11      |true (ByPropertyName)|
 
-
-> **Type**: ```[String]```
-
-> **Required**: false
-
-> **Position**: 11
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **WidgetID**
-
 The widget of a given application that should be activated.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[String]`|false   |12      |true (ByPropertyName)|
 
-
-> **Type**: ```[String]```
-
-> **Required**: false
-
-> **Position**: 12
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **WidgetActionId**
-
 The name of the widget action id.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[String]`|false   |13      |true (ByPropertyName)|
 
-
-> **Type**: ```[String]```
-
-> **Required**: false
-
-> **Position**: 13
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **WidgetProperty**
-
 A set of properties to pass to a given widget.
 Must be provided with -WidgetSetting
 If no properties are provided, the widget will be activated.
 
-
-
-> **Type**: ```[PSObject]```
-
-> **Required**: false
-
-> **Position**: 14
-
-> **PipelineInput**:true (ByPropertyName)
-
-
+|Type        |Required|Position|PipelineInput        |Aliases                         |
+|------------|--------|--------|---------------------|--------------------------------|
+|`[PSObject]`|false   |14      |true (ByPropertyName)|WidgetParameter<br/>WidgetParams|
 
 ---
+
 ### Syntax
 ```PowerShell
 Set-LaMetricTime [[-IPAddress] <IPAddress[]>] [-Clock] [[-Stopwatch] <String>] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-NotificationIcon] <String[]>] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-LoopNotification] [[-NotificationSound] <String>] [[-CancelNotification] <Int32>] [[-Timer] <TimeSpan>] [-Weather] [[-Volume] <Int32>] [[-Package] <String>] [[-WidgetID] <String>] [[-WidgetActionId] <String>] [[-WidgetProperty] <PSObject>] [<CommonParameters>]
 ```
----
