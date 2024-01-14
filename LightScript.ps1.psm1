@@ -18,3 +18,8 @@ if ($home) {
         }
     }
 }
+
+$LightScript = $MyInvocation.MyCommand.ScriptBlock.Module
+$LightScript.pstypenames.insert(0,'LightScript')
+
+Export-ModuleMember -Function * -Alias * -Variable LightScript
