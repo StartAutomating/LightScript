@@ -19,7 +19,12 @@ if ($home) {
     }
 }
 
-$LightScript = $MyInvocation.MyCommand.ScriptBlock.Module
+$LightScript = $MyModule = $MyInvocation.MyCommand.ScriptBlock.Module
 $LightScript.pstypenames.insert(0,'LightScript')
+
+New-PSDrive -Name $MyModule.Name -PSProvider FileSystem -Scope Global -Root $PSScriptRoot -ErrorAction Ignore
+
+$MyModuleProfileDirectory =  $profile | Split-Path | Join-Path -ChildPath $MyModule.Name
+New-PSDrive -Name "My$($MyModule.Name)" -PSProvider FileSystem -Scope Global -Root $MyModuleProfileDirectory -ErrorAction Ignore
 
 Export-ModuleMember -Function * -Alias * -Variable LightScript
