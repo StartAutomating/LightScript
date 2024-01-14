@@ -1,281 +1,141 @@
 Get-HueResource
 ---------------
+
 ### Synopsis
 Gets Hue ResourceLinks
 
 ---
+
 ### Description
 
 Gets ResourceLinks from one or more Hue Bridges
 
 ---
+
 ### Related Links
 * [Remove-HueResource](Remove-HueResource.md)
 
-
-
 * [Get-HueBridge](Get-HueBridge.md)
-
-
 
 * [Send-HueBridge](Send-HueBridge.md)
 
-
-
 ---
+
 ### Examples
-#### EXAMPLE 1
+> EXAMPLE 1
+
 ```PowerShell
 Get-HueResource
 ```
 
 ---
+
 ### Parameters
 #### **Schedule**
-
 If set, will get the schedules defined on the Hue bridge
 
+|Type      |Required|Position|PipelineInput        |Aliases                       |
+|----------|--------|--------|---------------------|------------------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|Schedules<br/>Timer<br/>Timers|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Rule**
-
 If set, will get the rules defined on the Hue bridge
 
+|Type      |Required|Position|PipelineInput        |Aliases                       |
+|----------|--------|--------|---------------------|------------------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|Rules<br/>Trigger<br/>Triggers|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Scene**
-
 If set, will get the scenes defined on the Hue bridge
 
+|Type      |Required|Position|PipelineInput        |Aliases|
+|----------|--------|--------|---------------------|-------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|Scenes |
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Sensor**
-
 If set, will get the sensors defined on the Hue bridge
 
+|Type      |Required|Position|PipelineInput        |Aliases|
+|----------|--------|--------|---------------------|-------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|Sensors|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Group**
-
 If set, will get the groups (or rooms) defined on the Hue bridge
 
+|Type      |Required|Position|PipelineInput        |Aliases                  |
+|----------|--------|--------|---------------------|-------------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|Groups<br/>Room<br/>Rooms|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Configuration**
-
 If set, will get the device configuration
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Capability**
-
 If set, will get the device capabilities
 
+|Type      |Required|Position|PipelineInput        |Aliases     |
+|----------|--------|--------|---------------------|------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|Capabilities|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Resource**
-
 If set, will get resources defined on the device
 
+|Type      |Required|Position|PipelineInput        |Aliases                                     |
+|----------|--------|--------|---------------------|--------------------------------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|Resources<br/>ResourceLink<br/>ResourceLinks|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Light**
-
 If set, will get the lights defined on the device
 
+|Type      |Required|Position|PipelineInput        |Aliases|
+|----------|--------|--------|---------------------|-------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|Lights |
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Name**
-
 If provided, will filter returned items by name
 
+|Type        |Required|Position|PipelineInput        |
+|------------|--------|--------|---------------------|
+|`[String[]]`|false   |1       |true (ByPropertyName)|
 
-
-> **Type**: ```[String[]]```
-
-> **Required**: false
-
-> **Position**: 1
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **RegularExpression**
-
 If set, will treat the Name parameter as a regular expression pattern.  By default, Name will be treated as a wildcard
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|false   |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: false
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **ExactMatch**
-
 If set, will treat the Name parameter as a specific match
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|false   |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: false
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **ID**
-
 If provided, will filter returned items by ID
 
+|Type        |Required|Position|PipelineInput        |
+|------------|--------|--------|---------------------|
+|`[String[]]`|false   |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[String[]]```
-
-> **Required**: false
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Detailed**
-
 If set, will requery each returned resource to retreive additional information.
 
-
-
-> **Type**: ```[Switch]```
-
-> **Required**: false
-
-> **Position**: named
-
-> **PipelineInput**:false
-
-
+|Type      |Required|Position|PipelineInput|
+|----------|--------|--------|-------------|
+|`[Switch]`|false   |named   |false        |
 
 ---
+
 ### Outputs
 * [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
 
-
-
-
 ---
+
 ### Syntax
 ```PowerShell
 Get-HueResource [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
@@ -307,4 +167,3 @@ Get-HueResource -Resource [[-Name] <String[]>] [-RegularExpression] [-ExactMatch
 ```PowerShell
 Get-HueResource -Light [[-Name] <String[]>] [-RegularExpression] [-ExactMatch] [-ID <String[]>] [-Detailed] [<CommonParameters>]
 ```
----
