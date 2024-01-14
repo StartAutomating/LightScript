@@ -1,4 +1,5 @@
 function Search-LaMetricIcon {
+
     <#
     .SYNOPSIS
         Searchs for LaMetricIcons
@@ -15,18 +16,21 @@ function Search-LaMetricIcon {
     [Alias('Title','Query','Name')]
     [string]
     $IconName,
+
     # The page count.  By default, zero.
     [Parameter(ValueFromPipelineByPropertyName)]
     [int]
     $Page = 0,
+
     # The page size.  By default, 100.
     [Parameter(ValueFromPipelineByPropertyName)]
     [int]
     $PageSize = 100
     )
+
     process {
         $queryString = "search=$IconName&count=$pageSize&page=$page"
-        Invoke-RestMethod ('https://developer.lametric.com/api/v1/dev/preloadicons?',$queryString,'' -join '')  |            
+        Invoke-RestMethod ('https://developer.lametric.com/api/v1/dev/preloadicons?',$queryString,'' -join '') |            
             & { process {
                 foreach ($icon in $_.Icons) {
                     [PSCustomObject][Ordered]@{
@@ -42,4 +46,5 @@ function Search-LaMetricIcon {
             } } | 
             Sort-Object Category
     }
+
 }
