@@ -1,177 +1,97 @@
 Set-Twinkly
 -----------
+
 ### Synopsis
 Sets Twinkly Lights
 
 ---
+
 ### Description
 
 Sets Twinkly Lights.  Changes colors, mode of operation
 
 ---
+
 ### Related Links
 * [Get-Twinkly](Get-Twinkly.md)
 
-
-
 * [Connect-Twinkly](Connect-Twinkly.md)
 
-
-
 ---
+
 ### Examples
-#### EXAMPLE 1
+> EXAMPLE 1
+
 ```PowerShell
 Set-Twinkly -Hue 360 -Saturation 100 -Luminance 1
 ```
 
 ---
+
 ### Parameters
 #### **IPAddress**
-
 One or more IP Addresses of Twinkly devices.
 
+|Type           |Required|Position|PipelineInput        |Aliases         |
+|---------------|--------|--------|---------------------|----------------|
+|`[IPAddress[]]`|false   |1       |true (ByPropertyName)|TwinklyIPAddress|
 
-
-> **Type**: ```[IPAddress[]]```
-
-> **Required**: false
-
-> **Position**: 1
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Hue**
-
 Sets the hue of all lights in a fixture
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Double]`|false   |2       |true (ByPropertyName)|
 
-
-> **Type**: ```[Double]```
-
-> **Required**: false
-
-> **Position**: 2
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Saturation**
-
 Sets the saturation of all lights in a fixture
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Double]`|false   |3       |true (ByPropertyName)|
 
-
-> **Type**: ```[Double]```
-
-> **Required**: false
-
-> **Position**: 3
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Brightness**
-
 Sets the brightness of all lights in a fixture
 When passed with -Hue and -Saturation, sets the color
 When passed with no other parameters, adjusts the absolute brightness
 
+|Type      |Required|Position|PipelineInput        |Aliases  |
+|----------|--------|--------|---------------------|---------|
+|`[Double]`|false   |4       |true (ByPropertyName)|Luminance|
 
-
-> **Type**: ```[Double]```
-
-> **Required**: false
-
-> **Position**: 4
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Red**
-
 Sets the red part of a color
 
+|Type    |Required|Position|PipelineInput        |
+|--------|--------|--------|---------------------|
+|`[Byte]`|false   |5       |true (ByPropertyName)|
 
-
-> **Type**: ```[Byte]```
-
-> **Required**: false
-
-> **Position**: 5
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Green**
-
 Sets the green part of a color
 
+|Type    |Required|Position|PipelineInput        |
+|--------|--------|--------|---------------------|
+|`[Byte]`|false   |6       |true (ByPropertyName)|
 
-
-> **Type**: ```[Byte]```
-
-> **Required**: false
-
-> **Position**: 6
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Blue**
-
 Sets the blue part of a color
 
+|Type    |Required|Position|PipelineInput        |
+|--------|--------|--------|---------------------|
+|`[Byte]`|false   |7       |true (ByPropertyName)|
 
-
-> **Type**: ```[Byte]```
-
-> **Required**: false
-
-> **Position**: 7
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **RGBColor**
-
 Sets lights to an RGB color.
 If one color is provided, this will set the Twinkly color mode
 If more than one RGB Color is provided, this will create a movie where each light alternates between each color
 If -MovieFrameRate and
 
+|Type        |Required|Position|PipelineInput        |
+|------------|--------|--------|---------------------|
+|`[String[]]`|false   |8       |true (ByPropertyName)|
 
-
-> **Type**: ```[String[]]```
-
-> **Required**: false
-
-> **Position**: 8
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Mode**
-
 Will change the mode. Can be:
-
 * Off
 * Color
 * Demo
@@ -179,13 +99,8 @@ Will change the mode. Can be:
 * Movie
 * Playlist
 * RT
-
 Many operations require the mode to be set before they take effect.
-
 For instance, if you use -RGBColor, you will not see the changes if the mode is not set to 'color'.
-
-
-
 Valid Values:
 
 * off
@@ -196,167 +111,77 @@ Valid Values:
 * playlist
 * rt
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[String]`|false   |9       |true (ByPropertyName)|
 
-
-> **Type**: ```[String]```
-
-> **Required**: false
-
-> **Position**: 9
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **DeviceName**
-
 If provided, will set the device name.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[String]`|false   |10      |true (ByPropertyName)|
 
-
-> **Type**: ```[String]```
-
-> **Required**: false
-
-> **Position**: 10
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **RestartPlaylist**
-
 If provided, will restart the playlist
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|false   |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: false
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **MovieName**
-
 The name of a movie.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[String]`|false   |11      |true (ByPropertyName)|
 
-
-> **Type**: ```[String]```
-
-> **Required**: false
-
-> **Position**: 11
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **MovieFramerate**
-
 The movie framerate
 
+|Type     |Required|Position|PipelineInput        |Aliases |
+|---------|--------|--------|---------------------|--------|
+|`[Int32]`|false   |12      |true (ByPropertyName)|MovieFPS|
 
-
-> **Type**: ```[Int32]```
-
-> **Required**: false
-
-> **Position**: 12
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **MovieLEDCount**
-
 The movie LED
 
+|Type     |Required|Position|PipelineInput        |Aliases          |
+|---------|--------|--------|---------------------|-----------------|
+|`[Int32]`|false   |13      |true (ByPropertyName)|MovieLEDsPerFrame|
 
-
-> **Type**: ```[Int32]```
-
-> **Required**: false
-
-> **Position**: 13
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **MovieFrameCount**
-
 The number of frames in the movie.
 
+|Type     |Required|Position|PipelineInput        |
+|---------|--------|--------|---------------------|
+|`[Int32]`|false   |14      |true (ByPropertyName)|
 
-
-> **Type**: ```[Int32]```
-
-> **Required**: false
-
-> **Position**: 14
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **MovieData**
-
 A byte array of movie data.
 Each sequence of 3-4 bytes represents a light color
 Each sequence of colors represents a frame
 Each sequence of frames represents a movie.
 
+|Type      |Required|Position|PipelineInput        |Aliases                   |
+|----------|--------|--------|---------------------|--------------------------|
+|`[Byte[]]`|false   |15      |true (ByPropertyName)|MovieFrame<br/>MovieFrames|
 
-
-> **Type**: ```[Byte[]]```
-
-> **Required**: false
-
-> **Position**: 15
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **MovieBlockSize**
-
 The size of each block within a movie.  By default, 3.
 
-
-
-> **Type**: ```[Byte]```
-
-> **Required**: false
-
-> **Position**: 16
-
-> **PipelineInput**:true (ByPropertyName)
-
-
+|Type    |Required|Position|PipelineInput        |
+|--------|--------|--------|---------------------|
+|`[Byte]`|false   |16      |true (ByPropertyName)|
 
 ---
+
 ### Outputs
 * [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
 
-
-
-
 ---
+
 ### Syntax
 ```PowerShell
 Set-Twinkly [[-IPAddress] <IPAddress[]>] [[-Hue] <Double>] [[-Saturation] <Double>] [[-Brightness] <Double>] [[-Red] <Byte>] [[-Green] <Byte>] [[-Blue] <Byte>] [[-RGBColor] <String[]>] [[-Mode] <String>] [[-DeviceName] <String>] [-RestartPlaylist] [[-MovieName] <String>] [[-MovieFramerate] <Int32>] [[-MovieLEDCount] <Int32>] [[-MovieFrameCount] <Int32>] [[-MovieData] <Byte[]>] [[-MovieBlockSize] <Byte>] [<CommonParameters>]
 ```
----

@@ -1,358 +1,172 @@
 Get-Twinkly
 -----------
+
 ### Synopsis
 Gets Twinkly
 
 ---
+
 ### Description
 
 Gets Twinkly lights.
 
 ---
+
 ### Related Links
 * [Connect-Twinkly](Connect-Twinkly.md)
 
-
-
 ---
+
 ### Examples
-#### EXAMPLE 1
+> EXAMPLE 1
+
 ```PowerShell
 Get-Twinkly
 ```
 
 ---
+
 ### Parameters
 #### **IPAddress**
-
 One or more IP Addresses of Twinkly devices.
 
+|Type           |Required|Position|PipelineInput        |Aliases         |
+|---------------|--------|--------|---------------------|----------------|
+|`[IPAddress[]]`|false   |named   |true (ByPropertyName)|TwinklyIPAddress|
 
-
-> **Type**: ```[IPAddress[]]```
-
-> **Required**: false
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **OperationMode**
-
 If set, will get the operation mode
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Layout**
-
 If set, will get the layout of the Twinkly lights.  This may take a bit.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **CurrentColor**
-
 If set, will get the color displayed when the Twinkly lights are in color mode.
 
+|Type      |Required|Position|PipelineInput        |Aliases      |
+|----------|--------|--------|---------------------|-------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|CurrentColour|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **ListEffect**
-
 If set, will list the available effects.
 
+|Type      |Required|Position|PipelineInput        |Aliases    |
+|----------|--------|--------|---------------------|-----------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|ListEffects|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **CurrentEffect**
-
 If set, will show the current effect.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Configuration**
-
 If set, will list the configuration of each LED.
 
+|Type      |Required|Position|PipelineInput        |Aliases|
+|----------|--------|--------|---------------------|-------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|Config |
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Brightness**
-
 If set, will output the brightness levels.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Saturation**
-
 If set, will output the saturation levels.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **ListMovie**
-
 If set, will output the list of movies.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **CurrentMovie**
-
 If set, will output the list of movies.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **MovieConfiguration**
-
 If set, will output movie configuration.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Playlist**
-
 If set, will output the playlists.
 
+|Type      |Required|Position|PipelineInput        |Aliases  |
+|----------|--------|--------|---------------------|---------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|Playlists|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **CurrentPlaylistItem**
-
 If set, will output the current playlist item.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **MQTTConfiguration**
-
 If set, will output the MQTT configuration.
 
+|Type      |Required|Position|PipelineInput        |Aliases   |
+|----------|--------|--------|---------------------|----------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|MQTTConfig|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Summary**
-
 If set, will output the summary.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **NetworkStatus**
-
 If set, will output the network status.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **FirmwareVersion**
-
 If set, will output the network status.
 
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
-
----
 #### **Timer**
-
 If set, will output timers associated with each device.
 
-
-
-> **Type**: ```[Switch]```
-
-> **Required**: true
-
-> **Position**: named
-
-> **PipelineInput**:true (ByPropertyName)
-
-
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
 
 ---
+
 ### Outputs
 * [Management.Automation.PSObject](https://learn.microsoft.com/en-us/dotnet/api/System.Management.Automation.PSObject)
 
-
-
-
 ---
+
 ### Syntax
 ```PowerShell
 Get-Twinkly [-IPAddress <IPAddress[]>] [<CommonParameters>]
@@ -411,4 +225,3 @@ Get-Twinkly [-IPAddress <IPAddress[]>] -FirmwareVersion [<CommonParameters>]
 ```PowerShell
 Get-Twinkly [-IPAddress <IPAddress[]>] -Timer [<CommonParameters>]
 ```
----
