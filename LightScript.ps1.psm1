@@ -25,6 +25,9 @@ $LightScript.pstypenames.insert(0,'LightScript')
 New-PSDrive -Name $MyModule.Name -PSProvider FileSystem -Scope Global -Root $PSScriptRoot -ErrorAction Ignore
 
 $MyModuleProfileDirectory =  $profile | Split-Path | Join-Path -ChildPath $MyModule.Name
+if (-not (Test-Path $MyModuleProfileDirectory)) {
+    $null = New-Item -ItemType Directory -Path $MyModuleProfileDirectory -Force
+}
 New-PSDrive -Name "My$($MyModule.Name)" -PSProvider FileSystem -Scope Global -Root $MyModuleProfileDirectory -ErrorAction Ignore
 
 Export-ModuleMember -Function * -Alias * -Variable LightScript
