@@ -296,6 +296,3 @@ Set-KeyLight -ColorTemperature 270 -Brightness 0.25
 # Turn on and change the brightness at the same time:
 Set-KeyLight -On -Brightness 0.25
 ~~~
-
-
-
