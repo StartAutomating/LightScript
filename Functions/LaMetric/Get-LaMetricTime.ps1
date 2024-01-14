@@ -1,4 +1,5 @@
 function Get-LaMetricTime {
+
     <#
     .SYNOPSIS
         Gets LaMetricTime
@@ -27,37 +28,45 @@ function Get-LaMetricTime {
     [Alias('LaMetricTimeIPAddress')]
     [IPAddress[]]
     $IPAddress,
+
     # If set, will get apps from an LaMetric device.
     [Parameter(Mandatory,ParameterSetName='api/v2/device/apps')]
     [Alias('App','Apps','Applications')]
     [switch]
     $Application,
+
     # If set, will get audio settings of an LaMetric Time device
     [Parameter(Mandatory,ParameterSetName='api/v2/device/audio')]
     [switch]
     $Audio,
+
     # If set, will get bluetooth settings of an LaMetric Time device
     [Parameter(Mandatory,ParameterSetName='api/v2/device/bluetooth')]    
     [switch]
     $Bluetooth,
+
     # If set, will get display settings of an LaMetric Time device
     [Parameter(Mandatory,ParameterSetName='api/v2/device/display')]
     [switch]
     $Display,
+
     # If set, will get LaMetric Time notifications
     [Parameter(Mandatory,ParameterSetName='api/v2/device/notifications')]
     [Alias('Notifications')]
     [switch]
     $Notification,
+
     # If set, will get details about a particular package of an LaMetric Time device.
     [Parameter(Mandatory,ParameterSetName='api/v2/device/apps/$Package',ValueFromPipelineByPropertyName)]    
     [string]
     $Package,
+
     # If set, will get wifi settings of an LaMetric Time device
     [Parameter(Mandatory,ParameterSetName='api/v2/device/wifi')]
     [switch]
     $WiFi
     )
+
     begin {
         if (-not $script:LaMetricTimeCache) {
             $script:LaMetricTimeCache = @{}
@@ -92,6 +101,7 @@ function Get-LaMetricTime {
             }
         }
         #endregion Default to All Devices
+
         if ($PSCmdlet.ParameterSetName -like 'api*') {
             foreach ($ip in $IPAddress) {
                 $ipAndPort = "${ip}:8080"
@@ -106,7 +116,7 @@ function Get-LaMetricTime {
                     }
                 #region Connect to the Device
                 
-                Invoke-RestMethod ('http://',$ipAndPort,'/api/',$endpoint,'' -join '') -Headers @{
+                Invoke-RestMethod ('http://',$ipAndPort,'/api/',$endpoint,'' -join '')-Headers @{
                                     Authorization = "Basic $laMetricB64Key"
                                 } |
                     & { process {
@@ -139,6 +149,7 @@ function Get-LaMetricTime {
             $script:LaMetricTimeCache.Values
         }
     }
+
 }
 
 
