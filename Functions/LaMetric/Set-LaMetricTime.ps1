@@ -1,4 +1,5 @@
 function Set-LaMetricTime {
+
     <#
     .SYNOPSIS
         Sets a LaMetricTime device.
@@ -41,51 +42,61 @@ function Set-LaMetricTime {
     [Alias('LaMetricTimeIPAddress')]
     [IPAddress[]]
     $IPAddress,
+
     # If set, will switch the LaMetric Time into clock mode.
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('ShowClock')]
     [switch]
     $Clock,
+
     # If provided, will switch the LaMetric Time into Stopwatch mode, and Stop/Pause, Reset, or Start the StopWatch
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidateSet("Stop", "Pause", "Start", "Reset")]
     [string]
     $Stopwatch,
+
     # If set, will switch to the previous application on the LaMetric Time.
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('LastApp','Last','Prev', 'Previous','PreviousApp', 'PreviousApplication')]
     [switch]
     $LastApplication,
+
     # If set, will switch to the next application on the LaMetric Time.
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('NextApp','Next')]
     [switch]
     $NextApplication,
+
     # One or more messages of notification text
     [Parameter(ValueFromPipelineByPropertyName)]
     [string[]]
     $NotificationText,
+
     # One or more notification icons.
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('IconID')]
     [string[]]
     $NotificationIcon,
+
     # The duration of the notification.
     # By default, 15 seconds.
     [Parameter(ValueFromPipelineByPropertyName)]
     [timespan]
     $NotificationDuration = "00:00:15",
+
     # The number of times to display the notification.
     # Zero or less will be considered an indefinite notification
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('LoopCount')]
     [int]
     $NotificationLoopCount,
+
     # If set, will indefinitely loop the notification.
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('Loop')]
     [switch]
     $LoopNotification,
+
     # If provided, will play a sound with the notification.
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidateSet(
@@ -99,6 +110,7 @@ function Set-LaMetricTime {
     )]
     [string]
     $NotificationSound,
+
     # If provided, will cancel a given notification.
     # If 0 or less is provided, will cancel all notifications.
     [Parameter(ValueFromPipelineByPropertyName)]
@@ -116,6 +128,7 @@ function Set-LaMetricTime {
     [Alias('Forecast','ShowForecast', 'ShowWeather')]
     [switch]
     $Weather,
+
     # Sets the volume of an LaMetric Time device.
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidateRange(0,100)]
@@ -127,14 +140,17 @@ function Set-LaMetricTime {
     [Parameter(ValueFromPipelineByPropertyName)]
     [string]
     $Package,    
+
     # The widget of a given application that should be activated.
     [Parameter(ValueFromPipelineByPropertyName)]
     [string]
     $WidgetID,
+
     # The name of the widget action id.
     [Parameter(ValueFromPipelineByPropertyName)]
     [string]
     $WidgetActionId,
+
     # A set of properties to pass to a given widget.
     # Must be provided with -WidgetSetting
     # If no properties are provided, the widget will be activated.
@@ -143,6 +159,7 @@ function Set-LaMetricTime {
     [PSObject]
     $WidgetProperty
     )
+
     process {
         if (-not $IPAddress) {
             if ($home) {
@@ -154,6 +171,7 @@ function Set-LaMetricTime {
                 return
             }
         }
+
         foreach ($ip in $IPAddress) {
             $laMetricB64Key = $script:LaMetricTimeCache["$ip"].ApiKey
             $ipAndPort = "${ip}:8080"
@@ -162,16 +180,17 @@ function Set-LaMetricTime {
             if ($timer.TotalSeconds -ge 1) {                
                 $endpoint  = "api/v2/device/apps"
                 $appAndWiget = "com.lametric.countdown/widgets/f03ea1ae1ae5f85b390b460f55ba8061/actions"
-                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Body ([Ordered]@{
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Method 'post'-Body ([Ordered]@{
                                     id = "countdown.configure"
                                     params = [Ordered]@{
                                         duration  = [int]$timer.TotalSeconds
                                         start_now = $true                    
                                     }
                                     activate = $true
-                                } | ConvertTo-Json) -Headers $headers -Method 'post'
+                                } | ConvertTo-Json) -Headers $headers
             }
             #endregion Timer
+
             #region Stopwatch
             if ($Stopwatch) {
                 if ($Stopwatch -eq 'Stop') {
@@ -179,39 +198,44 @@ function Set-LaMetricTime {
                 }                
                 $endpoint  = "api/v2/device/apps"
                 $appAndWiget = "com.lametric.stopwatch/widgets/b1166a6059640bf76b9dfe0455ba8062/actions"
-                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Body ([Ordered]@{
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Method 'post'-Body ([Ordered]@{
                                     id = "stopwatch.$($Stopwatch.ToLower())"
                                     params = [Ordered]@{}
                                     activate = $true
-                                } | ConvertTo-Json) -Headers $headers -Method 'post'
+                                } | ConvertTo-Json) -Headers $headers
             }
             #endregion Stopwatch
+
             #region Weather
             if ($Weather) {                
                 $endpoint  = "api/v2/device/apps"
                 $appAndWiget = "com.lametric.weather/widgets/380375c4b12c16e3adafb48355ba8061/activate"
-                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Headers $headers -Method 'put'
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Method 'put'-Headers $headers
             }
             #endregion Weather
+
             #region -Clock
             if ($Clock) {                
                 $endpoint  = "api/v2/device/apps"
                 $appAndWiget = "com.lametric.clock/widgets/08b8eac21074f8f7e5a29f2855ba8060/activate"
-                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Headers $headers -Method 'put'
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'' -join '') -Method 'put'-Headers $headers
             }
             #endregion Clock
+
             #region -NextApplication
             if ($NextApplication) {                
                 $endpoint  = "api/v2/device/apps/next"
-                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'' -join '') -Headers $headers -Method 'put'
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'' -join '') -Method 'put'-Headers $headers
             }
             #endregion NextApplication
+
             #region LastApplication
             if ($LastApplication) {
                 $endpoint  = "api/v2/device/apps/prev"
-                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'' -join '') -Headers $headers -Method 'put'
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'' -join '') -Method 'put'-Headers $headers
             }
             #endregion LastApplication
+
             #region Notifications
             if ($NotificationText -or $NotificationIcon) {
                 $maxFrameCount = [Math]::max($NotificationText.Length, $NotificationIcon.Length)
@@ -233,6 +257,7 @@ function Set-LaMetricTime {
                         if ($NotificationIcon -and $NotificationIcon[$frameNumber]) {
                             $icon = $NotificationIcon[$frameNumber]
                             if ($icon -like 'http*') {
+
                             }
                             elseif ((($icon -replace '\D') -as [int]) -ge 1) {
                                 $frameInfo.icon = $icon
@@ -265,12 +290,14 @@ function Set-LaMetricTime {
                             frames = $notificationFrames
                         }
                 }
+
                 if ($LoopNotification) {
                     $notificationBody.model.cycles = 0
                 }
                 if ($NotificationLoopCount) {
                     $notificationBody.model.cycles = [int][math]::min(0, $NotificationLoopCount)
                 }
+
                 if ($NotificationSound) {
                     $notificationBody.model.sound = [Ordered]@{}
                     $notificationBody.model.sound.category = 
@@ -281,11 +308,13 @@ function Set-LaMetricTime {
                         }
                     $notificationBody.model.sound.id = $NotificationSound                    
                 }
-                Invoke-RestMethod ('http://',$ipAndPort,'/api/v2/device/notifications' -join '') -body (
+
+                Invoke-RestMethod ('http://',$ipAndPort,'/api/v2/device/notifications' -join '') -Method 'post'-body (
                                     $notificationBody | ConvertTo-Json -Depth 10
-                                ) -Headers $headers -Method 'post'
+                                ) -Headers $headers
             }
             #endregion Notifications
+
             #region Cancel Notification
             if ($CancelNotification) {
                 if ($CancelNotification -le 0) {
@@ -294,9 +323,10 @@ function Set-LaMetricTime {
                     continue
                 }                
                 $endpoint  = "api/v2/device/notifications/$CancelNotification"
-                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'' -join '') -Headers $headers -Method 'delete'
+                Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'' -join '') -Method 'delete'-Headers $headers
             }
             #endregion Cancel Notification
+
             #region Package and Widget
             if ($package) {
                 $endpoint  = "api/v2/device/apps"
@@ -321,25 +351,27 @@ function Set-LaMetricTime {
                         $WidgetProperty = [PSCustomObject]$WidgetProperty
                     }
                     
-                    Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'/actions' -join '') -Headers $headers -Body (
+                    Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'/actions' -join '') -Method 'post'-Headers $headers -Body (
                                             [Ordered]@{
                                                 id = $WidgetID
                                                 params = $WidgetProperty
                                                 activate = $true
                                             }  | ConvertTo-Json -Depth 10
-                                        ) -Method 'post'
+                                        )
                 } else {
-                    Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'/activate' -join '') -Headers $headers -Method 'put'
+                    Invoke-RestMethod ('http://',$ipAndPort,'/',$endpoint,'/',$appAndWiget,'/activate' -join '') -Method 'put'-Headers $headers
                 }
             }
+
             if ($PSBoundParameters.ContainsKey('Volume')) {
-                Invoke-RestMethod ('http://',$ipAndPort,'/api/v2/device/audio' -join '') -Headers $headers -body ([Ordered]@{
+                Invoke-RestMethod ('http://',$ipAndPort,'/api/v2/device/audio' -join '') -Method 'put'-Headers $headers -body ([Ordered]@{
                                     volume = $Volume
-                                } | ConvertTo-Json) -Method 'put'
+                                } | ConvertTo-Json)
             }
             #endregion Package and Widget
         }
     }
+
 }
 
 
