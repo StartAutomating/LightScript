@@ -1,38 +1,42 @@
 function Add-HueLight {
-<#
-    .SYNOPSIS
-        Adds lights to Hue
-    .DESCRIPTION
-        Adds new lights to a Hue Bridge.
-    .EXAMPLE
-        Add-HueLight # Search for new lights
-    .EXAMPLE
-        Add-HueLight -DeviceID $serialNumber # Add a new light by serial number.
-    .EXAMPLE
-        Add-HueLight        # Search for new lights
-        Get-HueLight -New   # Get-HueLight -New will return the new lights
-    .LINK
-        Get-HueLight
-    .LINK
-        Set-HueLight
+    <#
     
-#>
+    .SYNOPSIS    
+        Adds lights to Hue    
+    .DESCRIPTION    
+        Adds new lights to a Hue Bridge.    
+    .EXAMPLE    
+        Add-HueLight # Search for new lights    
+    .EXAMPLE    
+        Add-HueLight -DeviceID $serialNumber # Add a new light by serial number.    
+    .EXAMPLE    
+        Add-HueLight        # Search for new lights    
+        Get-HueLight -New   # Get-HueLight -New will return the new lights    
+    .LINK    
+        Get-HueLight    
+    .LINK    
+        Set-HueLight    
     
-    [CmdletBinding(SupportsShouldProcess)]
+    #>
+            
+    [CmdletBinding(SupportsShouldProcess)]    
+
     param(
-# One or more Device Identifiers (serial numbers ).
-        # Use this parameter when adding lights that have already been assigned to another bridge.
+    # One or more Device Identifiers (serial numbers ).        
+        # Use this parameter when adding lights that have already been assigned to another bridge.        
         [Alias('SerialNumber')]
         [string[]]
         $DeviceID
     )
-    begin {
+        begin {
         $hueBridge = Get-HueBridge
         $invokeParams = @{}
         $invokeParams.IPAddress = $hueBridge.IPAddress
         $invokeParams.HueUserName = $hueBridge.HueUserName
     
+
         function ConvertRestInput {
+        
                     param([Collections.IDictionary]$RestInput = @{}, [switch]$ToQueryString)
                     foreach ($ri in @($RestInput.GetEnumerator())) {
                         
@@ -60,8 +64,8 @@ function Add-HueLight {
                 
         }
     
-}
-process {
+    }
+    process {
     $InvokeCommand       = 'Send-HueBridge'
     $invokerCommandinfo  = 
         $ExecutionContext.SessionState.InvokeCommand.GetCommand('Send-HueBridge', 'All')
@@ -78,14 +82,19 @@ process {
     if ($ForEachOutput -match '^\s{0,}$') {
         $ForEachOutput = $null
     }    
+
+
     if (-not $invokerCommandinfo) {
         Write-Error "Unable to find invoker '$InvokeCommand'"
         return        
     }
     if (-not $psParameterSet) { $psParameterSet = $psCmdlet.ParameterSetName}
     if ($psParameterSet -eq '__AllParameterSets') { $psParameterSet = $endpoints[0]}    
+
+
         $uri = $endpoints[0]
     
+
     $invokeSplat = @{}
     $invokeSplat.Uri = $uri
     if ($method) {
@@ -94,9 +103,13 @@ process {
     if ($ContentType -and $invokerCommandInfo.Parameters.ContentType) {        
         $invokeSplat.ContentType = $ContentType
     }
+
+
     if ($InvokeParams -and $InvokeParams -is [Collections.IDictionary]) {
         $invokeSplat += $InvokeParams
     }
+
+
     $completeBody = [Ordered]@{}
     foreach ($bodyParameterName in $bodyParameterNames) {
         if ($bodyParameterName) {
@@ -110,7 +123,9 @@ process {
             }
         }
     }
+
     $completeBody = ConvertRestInput $completeBody
+
     $bodyContent = 
         if ($ContentType -match 'x-www-form-urlencoded') {
             @(foreach ($bodyPart in $completeBody.GetEnumerator()) {
@@ -119,9 +134,12 @@ process {
         } elseif ($ContentType -match 'json' -or -not $ContentType) {
             ConvertTo-Json $completeBody
         }
+
     if ($bodyContent -and $method -ne 'get') {
         $invokeSplat.Body = $bodyContent
     }    
+
+
     Write-Verbose "$($invokeSplat.Uri)"
     if ($ForEachOutput) {
         if ($ForEachOutput.Ast.ProcessBlock) {
@@ -132,6 +150,7 @@ process {
     } else {
         & $invokerCommandinfo @invokeSplat
     }
-}
+
+    }
 }
 
