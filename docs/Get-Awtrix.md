@@ -35,7 +35,13 @@ This can be discovered thru the phone user interface or by using Find-Awtrix.
 
 |Type           |Required|Position|PipelineInput        |Aliases        |
 |---------------|--------|--------|---------------------|---------------|
-|`[IPAddress[]]`|false   |1       |true (ByPropertyName)|AwtrixIPAddress|
+|`[IPAddress[]]`|false   |named   |true (ByPropertyName)|AwtrixIPAddress|
+
+#### **ListEffectName**
+
+|Type      |Required|Position|PipelineInput        |Aliases        |
+|----------|--------|--------|---------------------|---------------|
+|`[Switch]`|false   |named   |true (ByPropertyName)|ListEffectNames|
 
 #### **Force**
 If set, will clear any cached results.
@@ -48,5 +54,8 @@ If set, will clear any cached results.
 
 ### Syntax
 ```PowerShell
-Get-Awtrix [[-IPAddress] <IPAddress[]>] [-Force] [<CommonParameters>]
+Get-Awtrix [-IPAddress <IPAddress[]>] [-Force] [<CommonParameters>]
+```
+```PowerShell
+Get-Awtrix [-IPAddress <IPAddress[]>] [-ListEffectName] [-Force] [<CommonParameters>]
 ```
