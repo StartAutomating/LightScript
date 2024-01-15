@@ -20,6 +20,11 @@ function Get-Awtrix
     [Alias('AwtrixIPAddress')]
     [IPAddress[]]
     $IPAddress,
+
+    [Parameter(ParameterSetName='ListEffectName',ValueFromPipelineByPropertyName)]
+    [Alias('ListEffectNames')]
+    [switch]
+    $ListEffectName,
     
     # If set, will clear any cached results.
     [switch]
@@ -63,5 +68,14 @@ function Get-Awtrix
         if ($PSCmdlet.ParameterSetName -eq 'ListDevices') {
             return $script:AwtrixCache.Values
         }
+
+        foreach ($ipAddr in $script:AwtrixCache.Keys) {
+            switch ($PSCmdlet.ParameterSetName) {
+                ListEffectName {
+                    Invoke-RestMethod "http://$ipAddr/api/effects"
+                }
+            }
+        }
+        
     }
 }
