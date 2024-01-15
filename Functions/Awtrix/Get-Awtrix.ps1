@@ -21,10 +21,17 @@ function Get-Awtrix
     [IPAddress[]]
     $IPAddress,
 
-    [Parameter(ParameterSetName='ListEffectName',ValueFromPipelineByPropertyName)]
+    # If set, will list the effects supported by the Awtrix device. 
+    [Parameter(ParameterSetName='api/effects',ValueFromPipelineByPropertyName)]
     [Alias('ListEffectNames')]
     [switch]
     $ListEffectName,
+
+    # If set, will output the application loop on the Awtrix device. 
+    [Parameter(ParameterSetName='api/loop',ValueFromPipelineByPropertyName)]
+    [Alias('AppLoop')]
+    [switch]
+    $ApplicationLoop,
     
     # If set, will clear any cached results.
     [switch]
@@ -69,11 +76,12 @@ function Get-Awtrix
             return $script:AwtrixCache.Values
         }
 
-        foreach ($ipAddr in $script:AwtrixCache.Keys) {
-            switch ($PSCmdlet.ParameterSetName) {
-                ListEffectName {
-                    Invoke-RestMethod "http://$ipAddr/api/effects"
-                }
+
+        foreach ($ipAddr in $script:AwtrixCache.Keys) {            
+            foreach ($restOut in Invoke-RestMethod "http://$ipAddr/$($PSCmdlet.ParameterSetName)") {
+                $restOut.pstypenames.clear()
+                $restOut.pstypenames.add(($PSCmdlet.ParameterSetName -replace '/','.' -replace '$api', 'Awtrix'))
+                $restOut
             }
         }
         
