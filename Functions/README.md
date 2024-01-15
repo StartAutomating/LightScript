@@ -8,6 +8,7 @@ This directory and it's subdirectories contain the functions defined in LightScr
 |Add-HueSchedule        |Add       |HueSchedule |[Hue/Add-HueSchedule.ps1](Hue/Add-HueSchedule.ps1)                          |
 |Add-HueSensor          |Add       |HueSensor   |[Hue/Add-HueSensor.ps1](Hue/Add-HueSensor.ps1)                              |
 |Clear-Twinkly          |Clear     |Twinkly     |[Twinkly/Clear-Twinkly.ps1](Twinkly/Clear-Twinkly.ps1)                      |
+|Connect-Awtrix         |Connect   |Awtrix      |[Awtrix/Connect-Awtrix.ps1](Awtrix/Connect-Awtrix.ps1)                      |
 |Connect-HueBridge      |Connect   |HueBridge   |[Hue/Connect-HueBridge.ps1](Hue/Connect-HueBridge.ps1)                      |
 |Connect-KeyLight       |Connect   |KeyLight    |[KeyLight/Connect-KeyLight.ps1](KeyLight/Connect-KeyLight.ps1)              |
 |Connect-LaMetricTime   |Connect   |LaMetricTime|[LaMetric/Connect-LaMetricTime.ps1](LaMetric/Connect-LaMetricTime.ps1)      |
