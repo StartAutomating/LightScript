@@ -15,6 +15,7 @@ This directory and it's subdirectories contain the functions defined in LightScr
 |Connect-Nanoleaf       |Connect   |Nanoleaf    |[NanoLeaf/Connect-NanoLeaf.ps1](NanoLeaf/Connect-NanoLeaf.ps1)              |
 |Connect-Pixoo          |Connect   |Pixoo       |[Pixoo/Connect-Pixoo.ps1](Pixoo/Connect-Pixoo.ps1)                          |
 |Connect-Twinkly        |Connect   |Twinkly     |[Twinkly/Connect-Twinkly.ps1](Twinkly/Connect-Twinkly.ps1)                  |
+|Disconnect-Awtrix      |Disconnect|Awtrix      |[Awtrix/Disconnect-Awtrix.ps1](Awtrix/Disconnect-Awtrix.ps1)                |
 |Disconnect-HueBridge   |Disconnect|HueBridge   |[Hue/Disconnect-HueBridge.ps1](Hue/Disconnect-HueBridge.ps1)                |
 |Disconnect-KeyLight    |Disconnect|KeyLight    |[KeyLight/Disconnect-KeyLight.ps1](KeyLight/Disconnect-KeyLight.ps1)        |
 |Disconnect-LaMetricTime|Disconnect|LaMetricTime|[LaMetric/Disconnect-LaMetricTime.ps1](LaMetric/Disconnect-LaMetricTime.ps1)|
