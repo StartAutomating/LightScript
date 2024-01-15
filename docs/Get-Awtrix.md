@@ -38,10 +38,18 @@ This can be discovered thru the phone user interface or by using Find-Awtrix.
 |`[IPAddress[]]`|false   |named   |true (ByPropertyName)|AwtrixIPAddress|
 
 #### **ListEffectName**
+If set, will list the effects supported by the Awtrix device.
 
 |Type      |Required|Position|PipelineInput        |Aliases        |
 |----------|--------|--------|---------------------|---------------|
 |`[Switch]`|false   |named   |true (ByPropertyName)|ListEffectNames|
+
+#### **ApplicationLoop**
+If set, will output the application loop on the Awtrix device.
+
+|Type      |Required|Position|PipelineInput        |Aliases|
+|----------|--------|--------|---------------------|-------|
+|`[Switch]`|false   |named   |true (ByPropertyName)|AppLoop|
 
 #### **Force**
 If set, will clear any cached results.
@@ -58,4 +66,7 @@ Get-Awtrix [-IPAddress <IPAddress[]>] [-Force] [<CommonParameters>]
 ```
 ```PowerShell
 Get-Awtrix [-IPAddress <IPAddress[]>] [-ListEffectName] [-Force] [<CommonParameters>]
+```
+```PowerShell
+Get-Awtrix [-IPAddress <IPAddress[]>] [-ApplicationLoop] [-Force] [<CommonParameters>]
 ```
