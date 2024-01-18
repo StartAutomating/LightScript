@@ -51,6 +51,7 @@ This directory and it's subdirectories contain the functions defined in LightScr
 |Search-LaMetricIcon    |Search    |LaMetricIcon|[LaMetric/Search-LaMetricIcon.ps1](LaMetric/Search-LaMetricIcon.ps1)        |
 |Send-HueBridge         |Send      |HueBridge   |[Hue/Send-HueBridge.ps1](Hue/Send-HueBridge.ps1)                            |
 |Send-NanoLeaf          |Send      |NanoLeaf    |[NanoLeaf/Send-NanoLeaf.ps1](NanoLeaf/Send-NanoLeaf.ps1)                    |
+|Set-Awtrix             |Set       |Awtrix      |[Awtrix/Set-Awtrix.ps1](Awtrix/Set-Awtrix.ps1)                              |
 |Set-HueLight           |Set       |HueLight    |[Hue/Set-HueLight.ps1](Hue/Set-HueLight.ps1)                                |
 |Set-HueRule            |Set       |HueRule     |[Hue/Set-HueRule.ps1](Hue/Set-HueRule.ps1)                                  |
 |Set-KeyLight           |Set       |KeyLight    |[KeyLight/Set-KeyLight.ps1](KeyLight/Set-KeyLight.ps1)                      |
