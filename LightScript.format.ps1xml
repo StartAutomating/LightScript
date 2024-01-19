@@ -45,6 +45,130 @@
       </ListControl>
     </View>
     <View>
+      <Name>Hue.Sensor</Name>
+      <ViewSelectedBy>
+        <TypeName>Hue.Sensor</TypeName>
+      </ViewSelectedBy>
+      <GroupBy>
+        <PropertyName>Manufacturer</PropertyName>
+      </GroupBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>4</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>20</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Alignment>left</Alignment>
+            <Width>10</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Config</Label>
+            <Alignment>left</Alignment>
+            <Width>40</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>State</Label>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <Wrap />
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>ID</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>ModelID</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock> ($_.Config | Out-String -Width 40).Trim()</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock> ($_.State | Out-String -Width 40).Trim()</ScriptBlock>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>Hue.Sensor</Name>
+      <ViewSelectedBy>
+        <TypeName>Hue.Sensor</TypeName>
+      </ViewSelectedBy>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <ScriptBlock>
+    $sensor = $_ 
+    $mfgName = try { 
+        $null =[Convert]::FromBase64String($sensor.ManufacturerName) 
+    } catch {
+        $sensor.ManufacturerName
+    }
+    $sensorNameString = $mfgName, $sensor.ModelId, $sensor.Name, "[ID: $($sensor.ID)]" -ne $null -join ' ' 
+    @($sensorNameString
+    ""
+    $sensorState = ($sensor.State | Out-String).Trim()
+    $sensorConfig = if ($sensor.config) { ($sensor.Config | Out-String).Trim() } 
+    "State:"
+    $sensorState = $sensorState -replace "($([Environment]::NewLine)|`n)", '$1    '
+    $sensorState
+    
+    if ($sensorConfig) {
+        "Config:"
+        $($sensorConfig -replace "($([Environment]::NewLine)|`n)", '$1    ')        
+    }) -join [Environment]::NewLine
+    
+</ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </View>
+    <View>
+      <Name>LaMetric.Icon</Name>
+      <ViewSelectedBy>
+        <TypeName>LaMetric.Icon</TypeName>
+      </ViewSelectedBy>
+      <GroupBy>
+        <PropertyName>Category</PropertyName>
+      </GroupBy>
+      <TableControl>
+        <AutoSize />
+        <TableHeaders>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>BigThumbnail</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
       <Name>Hue.Group</Name>
       <ViewSelectedBy>
         <TypeName>Hue.Group</TypeName>
@@ -439,130 +563,6 @@ New-Object PSObject -Property ([Ordered]@{
           </CustomEntry>
         </CustomEntries>
       </CustomControl>
-    </View>
-    <View>
-      <Name>Hue.Sensor</Name>
-      <ViewSelectedBy>
-        <TypeName>Hue.Sensor</TypeName>
-      </ViewSelectedBy>
-      <GroupBy>
-        <PropertyName>Manufacturer</PropertyName>
-      </GroupBy>
-      <TableControl>
-        <TableHeaders>
-          <TableColumnHeader>
-            <Alignment>left</Alignment>
-            <Width>4</Width>
-          </TableColumnHeader>
-          <TableColumnHeader>
-            <Alignment>left</Alignment>
-            <Width>20</Width>
-          </TableColumnHeader>
-          <TableColumnHeader>
-            <Alignment>left</Alignment>
-            <Width>10</Width>
-          </TableColumnHeader>
-          <TableColumnHeader>
-            <Label>Config</Label>
-            <Alignment>left</Alignment>
-            <Width>40</Width>
-          </TableColumnHeader>
-          <TableColumnHeader>
-            <Label>State</Label>
-            <Alignment>left</Alignment>
-          </TableColumnHeader>
-        </TableHeaders>
-        <TableRowEntries>
-          <TableRowEntry>
-            <Wrap />
-            <TableColumnItems>
-              <TableColumnItem>
-                <PropertyName>ID</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <PropertyName>Name</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <PropertyName>ModelID</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <ScriptBlock> ($_.Config | Out-String -Width 40).Trim()</ScriptBlock>
-              </TableColumnItem>
-              <TableColumnItem>
-                <ScriptBlock> ($_.State | Out-String -Width 40).Trim()</ScriptBlock>
-              </TableColumnItem>
-            </TableColumnItems>
-          </TableRowEntry>
-        </TableRowEntries>
-      </TableControl>
-    </View>
-    <View>
-      <Name>Hue.Sensor</Name>
-      <ViewSelectedBy>
-        <TypeName>Hue.Sensor</TypeName>
-      </ViewSelectedBy>
-      <CustomControl>
-        <CustomEntries>
-          <CustomEntry>
-            <CustomItem>
-              <ExpressionBinding>
-                <ScriptBlock>
-    $sensor = $_ 
-    $mfgName = try { 
-        $null =[Convert]::FromBase64String($sensor.ManufacturerName) 
-    } catch {
-        $sensor.ManufacturerName
-    }
-    $sensorNameString = $mfgName, $sensor.ModelId, $sensor.Name, "[ID: $($sensor.ID)]" -ne $null -join ' ' 
-    @($sensorNameString
-    ""
-    $sensorState = ($sensor.State | Out-String).Trim()
-    $sensorConfig = if ($sensor.config) { ($sensor.Config | Out-String).Trim() } 
-    "State:"
-    $sensorState = $sensorState -replace "($([Environment]::NewLine)|`n)", '$1    '
-    $sensorState
-    
-    if ($sensorConfig) {
-        "Config:"
-        $($sensorConfig -replace "($([Environment]::NewLine)|`n)", '$1    ')        
-    }) -join [Environment]::NewLine
-    
-</ScriptBlock>
-              </ExpressionBinding>
-            </CustomItem>
-          </CustomEntry>
-        </CustomEntries>
-      </CustomControl>
-    </View>
-    <View>
-      <Name>LaMetric.Icon</Name>
-      <ViewSelectedBy>
-        <TypeName>LaMetric.Icon</TypeName>
-      </ViewSelectedBy>
-      <GroupBy>
-        <PropertyName>Category</PropertyName>
-      </GroupBy>
-      <TableControl>
-        <AutoSize />
-        <TableHeaders>
-          <TableColumnHeader>
-          </TableColumnHeader>
-          <TableColumnHeader>
-          </TableColumnHeader>
-        </TableHeaders>
-        <TableRowEntries>
-          <TableRowEntry>
-            <TableColumnItems>
-              <TableColumnItem>
-                <PropertyName>Name</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <PropertyName>BigThumbnail</PropertyName>
-              </TableColumnItem>
-            </TableColumnItems>
-          </TableRowEntry>
-        </TableRowEntries>
-      </TableControl>
     </View>
     <View>
       <Name>LaMetric.Time.Application</Name>
