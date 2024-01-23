@@ -23,10 +23,17 @@
     [OutputType([Nullable], [PSObject])]
     param(
     # The IP Address of the Hue Bridge
+    # This can be provided by piping Find-HueBridge to Connect-HueBridge.
     [Parameter(Mandatory,ParameterSetName='NewConnection',ValueFromPipelineByPropertyName)]
     [Alias('IPAddress')]
     [IPAddress]
-    $HueBridgeIP
+    $HueBridgeIP,
+
+    # The device identifier.
+    # This can be provided by piping Find-HueBridge to Connect-HueBridge.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [string]
+    $DeviceID
     )
 
     begin {
@@ -38,11 +45,25 @@
     process {
         #region Create New Connection
         if ($PSCmdlet.ParameterSetName -eq 'NewConnection') {
+            if ($DeviceId) {
+
+                $DeviceId = $DeviceId.ToUpper()
+                $bridgeDataFile = Join-Path $lightScriptRoot ".$($DeviceId).huebridge.clixml"
+
+                if (Test-Path $bridgeDataFile) {
+                    $bridgeData = Import-Clixml -Path $bridgeDataFile
+                    $bridgeData.IPAddress = "$HueBridgeIP"
+                    $bridgeData | Export-Clixml -Path $bridgeDataFile
+                    return    
+                }
+            }
+
             $DeviceType = 'LightScript'
             $userName = Get-Random
             $hueResult = Invoke-RestMethod -Uri "http://$HueBridgeIP/api" -Method POST -Body (
                 ConvertTo-Json -InputObject ([PSCustomObject]@{devicetype="${DeviceType}#$UserName"})
             )
+
             if ($hueResult.error) {
                 Write-Error -Message $hueResult.error.description -ErrorId $hueResult.error.type
                 return
