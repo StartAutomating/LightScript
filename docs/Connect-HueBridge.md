@@ -38,10 +38,19 @@ Find-HueBridge | Connect-HueBridge
 ### Parameters
 #### **HueBridgeIP**
 The IP Address of the Hue Bridge
+This can be provided by piping Find-HueBridge to Connect-HueBridge.
 
 |Type         |Required|Position|PipelineInput        |Aliases  |
 |-------------|--------|--------|---------------------|---------|
 |`[IPAddress]`|true    |named   |true (ByPropertyName)|IPAddress|
+
+#### **DeviceID**
+The device identifier.
+This can be provided by piping Find-HueBridge to Connect-HueBridge.
+
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[String]`|false   |named   |true (ByPropertyName)|
 
 ---
 
@@ -54,8 +63,8 @@ The IP Address of the Hue Bridge
 
 ### Syntax
 ```PowerShell
-Connect-HueBridge [<CommonParameters>]
+Connect-HueBridge [-DeviceID <String>] [<CommonParameters>]
 ```
 ```PowerShell
-Connect-HueBridge -HueBridgeIP <IPAddress> [<CommonParameters>]
+Connect-HueBridge -HueBridgeIP <IPAddress> [-DeviceID <String>] [<CommonParameters>]
 ```
