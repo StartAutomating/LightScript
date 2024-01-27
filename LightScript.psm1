@@ -32,13 +32,15 @@ $LightScript = $MyModule = $MyInvocation.MyCommand.ScriptBlock.Module
 $LightScript.pstypenames.insert(0,'LightScript')
 
 New-PSDrive -Name $MyModule.Name -PSProvider FileSystem -Scope Global -Root $PSScriptRoot -ErrorAction Ignore
+. ([ScriptBlock]::Create("function $($MyModule.Name): { Push-Location $($myModule.Name): }"))
 
 if ($home) {
     $MyModuleProfileDirectory = Join-Path $home $MyModule.Name
     if (-not (Test-Path $MyModuleProfileDirectory)) {
         $null = New-Item -ItemType Directory -Path $MyModuleProfileDirectory -Force
     }
-    New-PSDrive -Name "My$($MyModule.Name)" -PSProvider FileSystem -Scope Global -Root $MyModuleProfileDirectory -ErrorAction Ignore    
+    New-PSDrive -Name "My$($MyModule.Name)" -PSProvider FileSystem -Scope Global -Root $MyModuleProfileDirectory -ErrorAction Ignore
+    . ([ScriptBlock]::Create("function My$($MyModule.Name): { Push-Location My$($myModule.Name): }"))
 }
 
 Export-ModuleMember -Function * -Alias * -Variable LightScript
