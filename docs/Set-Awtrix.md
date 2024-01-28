@@ -163,6 +163,7 @@ Any options for the effect
 |`[PSObject]`|false   |12      |true (ByPropertyName)|EffectOptions<br/>EffectParameter<br/>EffectParameters|
 
 #### **NotificationOption**
+Any options related to the notification.
 
 |Type        |Required|Position|PipelineInput        |Aliases                                                                 |
 |------------|--------|--------|---------------------|------------------------------------------------------------------------|
