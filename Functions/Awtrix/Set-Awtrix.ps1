@@ -97,8 +97,19 @@ function Set-Awtrix
 
     # One or more messages of notification text
     [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('Activity')]
     [string[]]
     $NotificationText,
+
+    # If provided, will display a progress bar within a notification.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [int]
+    $PercentComplete,
+    
+    # If set, will clear a progress bar within a notification.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [switch]
+    $Completed,
 
     # The duration of the notification (rounded to the nearest second).
     # By default, 15 seconds.
@@ -296,13 +307,22 @@ function Set-Awtrix
                     
                     if ($EffectOption) {
                         $invokeSplat.Body.effectSettings = $EffectOption
-                    }
-
-                    if ($EffectSpeed) {
+                    } else {
                         if (-not $invokeSplat.Body.effectSettings) {
                             $invokeSplat.Body.effectSettings = @{}
                         }
+                    }
+
+                    if ($EffectSpeed) {                        
                         $invokeSplat.Body.effectSettings.speed = $EffectSpeed
+                    }
+
+                    if ($Completed) {
+                        $PSBoundParameters['PercentComplete'] = $PercentComplete = -1
+                    }
+
+                    if ($PSBoundParameters.ContainsKey('PercentComplete')) {
+                        $invokeSplat.Body.progress = $PercentComplete
                     }
 
                     if ($HoldNotification) {
