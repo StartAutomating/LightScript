@@ -143,6 +143,12 @@ function Set-Awtrix
     [PSObject]
     $EffectOption,
 
+    # The speed of the effect
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('EffectSpeeds')]
+    [int]
+    $EffectSpeed,
+
     # Any options related to the notification.
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('NotificationOptions','NotificationParameter','NotificationParameters')]
@@ -290,8 +296,13 @@ function Set-Awtrix
                     
                     if ($EffectOption) {
                         $invokeSplat.Body.effectSettings = $EffectOption
-                    } elseif ($EffectName) {
-                        # $invokeSplat.Body.effectSettings = @{speed=10;palette='Rainbow'}
+                    }
+
+                    if ($EffectSpeed) {
+                        if (-not $invokeSplat.Body.effectSettings) {
+                            $invokeSplat.Body.effectSettings = @{}
+                        }
+                        $invokeSplat.Body.effectSettings.speed = $EffectSpeed
                     }
 
                     if ($HoldNotification) {
