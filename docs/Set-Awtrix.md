@@ -162,12 +162,19 @@ Any options for the effect
 |------------|--------|--------|---------------------|------------------------------------------------------|
 |`[PSObject]`|false   |12      |true (ByPropertyName)|EffectOptions<br/>EffectParameter<br/>EffectParameters|
 
+#### **EffectSpeed**
+The speed of the effect
+
+|Type     |Required|Position|PipelineInput        |Aliases     |
+|---------|--------|--------|---------------------|------------|
+|`[Int32]`|false   |13      |true (ByPropertyName)|EffectSpeeds|
+
 #### **NotificationOption**
 Any options related to the notification.
 
 |Type        |Required|Position|PipelineInput        |Aliases                                                                 |
 |------------|--------|--------|---------------------|------------------------------------------------------------------------|
-|`[PSObject]`|false   |13      |true (ByPropertyName)|NotificationOptions<br/>NotificationParameter<br/>NotificationParameters|
+|`[PSObject]`|false   |14      |true (ByPropertyName)|NotificationOptions<br/>NotificationParameter<br/>NotificationParameters|
 
 #### **WhatIf**
 -WhatIf is an automatic variable that is created when a command has ```[CmdletBinding(SupportsShouldProcess)]```.
@@ -184,5 +191,5 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 
 ### Syntax
 ```PowerShell
-Set-Awtrix [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-RGBColor] <String>] [[-ColorTemperature] <Int32>] [[-ApplicationName] <String>] [-SwitchTo] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-HoldNotification] [[-EffectName] <String>] [[-EffectOption] <PSObject>] [[-NotificationOption] <PSObject>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-Awtrix [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-RGBColor] <String>] [[-ColorTemperature] <Int32>] [[-ApplicationName] <String>] [-SwitchTo] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-HoldNotification] [[-EffectName] <String>] [[-EffectOption] <PSObject>] [[-EffectSpeed] <Int32>] [[-NotificationOption] <PSObject>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
