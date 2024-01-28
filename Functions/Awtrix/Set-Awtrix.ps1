@@ -53,7 +53,7 @@ function Set-Awtrix
     [Parameter(ValueFromPipelineByPropertyName)]
     [ValidatePattern('#(?>[a-f0-9]{6}|[a-f0-9]{3})')]
     [string]
-    $RGBColor,
+    $RGBColor,    
 
     # If set, will change the Awtrix into a given color temperature.
     [Parameter(ValueFromPipelineByPropertyName)]
@@ -118,6 +118,21 @@ function Set-Awtrix
 
     # The name of the effect.
     [Parameter(ValueFromPipelineByPropertyName)]
+    [ArgumentCompleter({
+        param ( $commandName,
+            $parameterName,
+            $wordToComplete,
+            $commandAst,
+            $fakeBoundParameters )
+        $effectNames = @(Get-Awtrix -ListEffectName | 
+            Select-Object -Unique)
+        if ($wordToComplete) {        
+            $toComplete = $wordToComplete -replace "^'" -replace "'$"
+            return @($effectNames -like "$toComplete*" -replace '^', "'" -replace '$',"'")
+        } else {
+            return @($effectNames -replace '^', "'" -replace '$',"'")
+        }
+    })]
     [Alias('animName')]
     [string]
     $EffectName,
@@ -128,6 +143,7 @@ function Set-Awtrix
     [PSObject]
     $EffectOption,
 
+    # Any options related to the notification.
     [Parameter(ValueFromPipelineByPropertyName)]
     [Alias('NotificationOptions','NotificationParameter','NotificationParameters')]
     [PSObject]
@@ -248,10 +264,10 @@ function Set-Awtrix
                         $invokeSplat.Uri = "http://$ip/api/switch"
                         $invokeSplat.Body = @{name=$ApplicationName} | ConvertTo-Json                        
                     }
-                    $invokeSplat                                        
+                    $invokeSplat
                 }
                 
-                if ($NotificationText -or $NotificationOption) {
+                if ($NotificationText -or $NotificationOption -or $EffectName) {
                     if ($ApplicationName) {
                         $invokeSplat.Uri = "http://$ip/api/custom?name=$($ApplicationName)"
                     } else {
@@ -274,6 +290,8 @@ function Set-Awtrix
                     
                     if ($EffectOption) {
                         $invokeSplat.Body.effectSettings = $EffectOption
+                    } elseif ($EffectName) {
+                        # $invokeSplat.Body.effectSettings = @{speed=10;palette='Rainbow'}
                     }
 
                     if ($HoldNotification) {
@@ -286,11 +304,13 @@ function Set-Awtrix
                         if ($NotificationOption -is [Collections.IDictionary]) {
                             $NotificationOption = [PSCustomObject]$NotificationOption
                         }
+                        
                         foreach ($notificationProperty in $NotificationOption.psobject.properties) {
                             $invokeSplat.Body.$($notificationProperty.Name) = $notificationProperty.Value
                         }
                     }
-                    
+
+                    $invokeSplat                    
                 }
             )
 
