@@ -1,4 +1,5 @@
-:ToIncludeFiles foreach ($file in (Get-ChildItem -Path "$PSScriptRoot" -Filter "*-*.ps1" -Recurse)) {
+$commandsPath = Join-Path $PSScriptRoot Commands
+:ToIncludeFiles foreach ($file in (Get-ChildItem -Path "$commandsPath" -Filter "*-*.ps1" -Recurse)) {
     if ($file.Extension -ne '.ps1')      { continue }  # Skip if the extension is not .ps1
     foreach ($exclusion in '\.[^\.]+\.ps1$') {
         if (-not $exclusion) { continue }
@@ -32,13 +33,15 @@ $LightScript = $MyModule = $MyInvocation.MyCommand.ScriptBlock.Module
 $LightScript.pstypenames.insert(0,'LightScript')
 
 New-PSDrive -Name $MyModule.Name -PSProvider FileSystem -Scope Global -Root $PSScriptRoot -ErrorAction Ignore
+. ([ScriptBlock]::Create("function $($myModule.Name): {Push-Location '$($myModule.Name):'}"))
 
 if ($home) {
     $MyModuleProfileDirectory = Join-Path $home $MyModule.Name
     if (-not (Test-Path $MyModuleProfileDirectory)) {
         $null = New-Item -ItemType Directory -Path $MyModuleProfileDirectory -Force
     }
-    New-PSDrive -Name "My$($MyModule.Name)" -PSProvider FileSystem -Scope Global -Root $MyModuleProfileDirectory -ErrorAction Ignore    
+    New-PSDrive -Name "My$($MyModule.Name)" -PSProvider FileSystem -Scope Global -Root $MyModuleProfileDirectory -ErrorAction Ignore
+    . ([ScriptBlock]::Create("function My$($myModule.Name): {Push-Location 'My$($myModule.Name):'}"))
 }
 
 Export-ModuleMember -Function * -Alias * -Variable LightScript
