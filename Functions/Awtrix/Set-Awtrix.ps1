@@ -8,7 +8,11 @@ function Set-Awtrix
     .EXAMPLE
         Set-Awtrix -Brightness 1
     .EXAMPLE
-        Set-Awtrix -RGBColor "#4488ff"
+        Set-Awtrix -RGBColor "#4488ff" # Sets the Awtrix to a blue moodlight
+    .EXAMPLE
+        Set-Awtrix -NotificationText "Hello World"
+    .EXAMPLE
+        Set-Awtrix -Hue 180 -Saturation .5 -Brightness .25
     .LINK
         Get-Awtrix
     #>
@@ -48,6 +52,12 @@ function Set-Awtrix
     [Parameter(ValueFromPipelineByPropertyName)]
     [switch]
     $Off,
+
+    # If set, will reboot an Awtrix device.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [Alias('Reset')]
+    [switch]
+    $Reboot,
 
     # If provided, will change the Awtrix into a single RGB color.    
     [Parameter(ValueFromPipelineByPropertyName)]
@@ -216,7 +226,7 @@ function Set-Awtrix
                     $invokeSplat.Body = (@{
                         BRI = [byte]$realBrightness
                     } | ConvertTo-Json -Compress)
-                    $invokeSplat                    
+                    [Ordered]@{} + $invokeSplat                    
                     
                 } elseif ($paramCopy.ContainsKey("Brightness") -and 
                     $paramCopy.ContainsKey("Hue") -and 
@@ -231,14 +241,14 @@ function Set-Awtrix
                 if ($On -and -not $Off) {
                     $invokeSplat.Uri = "http://$ip/api/power"
                     $invokeSplat.Body = (@{power   = $true} | ConvertTo-Json -Compress)                    
-                    $invokeSplat
+                    [Ordered]@{} + $invokeSplat
                 }
 
                 if ($off) {
                     $invokeSplat.Uri = "http://$ip/api/power"
                     $invokeSplat.Body = (@{power   = $false} | ConvertTo-Json -Compress)
                     Invoke-RestMethod @invokeSplat
-                    $invokeSplat
+                    [Ordered]@{} + $invokeSplat
                 }
                 #endregion On/Off Switch
 
@@ -254,7 +264,7 @@ function Set-Awtrix
                     if ($Brightness) {
                         $invokeSplat.Body.brightness = [byte][Math]::Ceiling($Brightness * 255)
                     }                    
-                    $invokeSplat
+                    [Ordered]@{} + $invokeSplat
                 }
                 #endregion Color Temperature
                 
@@ -265,7 +275,7 @@ function Set-Awtrix
                     if ($paramCopy.ContainsKey("Brightness")) {
                         $invokeSplat.Body.brightness = [byte][Math]::Ceiling($Brightness * 255)
                     }
-                    $invokeSplat                             
+                    [Ordered]@{} + $invokeSplat                             
                 }
                 #endregion RGBColor
 
@@ -281,7 +291,7 @@ function Set-Awtrix
                         $invokeSplat.Uri = "http://$ip/api/switch"
                         $invokeSplat.Body = @{name=$ApplicationName} | ConvertTo-Json                        
                     }
-                    $invokeSplat
+                    [Ordered]@{} + $invokeSplat
                 }
                 
                 if ($NotificationText -or $NotificationOption -or $EffectName) {
@@ -342,6 +352,13 @@ function Set-Awtrix
                     }
 
                     $invokeSplat                    
+                }
+
+                if ($Reboot) {
+                    $invokeSplat.Uri = "http://$ip/api/reboot"
+                    $invokeSplat.Body = ""
+                    $invokeSplat.Method = "POST"
+                    [Ordered]@{} + $invokeSplat
                 }
             )
 
