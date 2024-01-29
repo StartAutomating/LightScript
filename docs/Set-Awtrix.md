@@ -26,7 +26,17 @@ Set-Awtrix -Brightness 1
 > EXAMPLE 2
 
 ```PowerShell
-Set-Awtrix -RGBColor "#4488ff"
+Set-Awtrix -RGBColor "#4488ff" # Sets the Awtrix to a blue moodlight
+```
+> EXAMPLE 3
+
+```PowerShell
+Set-Awtrix -NotificationText "Hello World"
+```
+> EXAMPLE 4
+
+```PowerShell
+Set-Awtrix -Hue 180 -Saturation .5 -Brightness .25
 ```
 
 ---
@@ -75,6 +85,13 @@ If set, will turn a Awtrix screen off.
 |Type      |Required|Position|PipelineInput        |
 |----------|--------|--------|---------------------|
 |`[Switch]`|false   |named   |true (ByPropertyName)|
+
+#### **Reboot**
+If set, will reboot an Awtrix device.
+
+|Type      |Required|Position|PipelineInput        |Aliases|
+|----------|--------|--------|---------------------|-------|
+|`[Switch]`|false   |named   |true (ByPropertyName)|Reset  |
 
 #### **RGBColor**
 If provided, will change the Awtrix into a single RGB color.
@@ -205,5 +222,5 @@ If the command sets a ```[ConfirmImpact("Medium")]``` which is lower than ```$co
 
 ### Syntax
 ```PowerShell
-Set-Awtrix [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [[-RGBColor] <String>] [[-ColorTemperature] <Int32>] [[-ApplicationName] <String>] [-SwitchTo] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-PercentComplete] <Int32>] [-Completed] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-HoldNotification] [[-EffectName] <String>] [[-EffectOption] <PSObject>] [[-EffectSpeed] <Int32>] [[-NotificationOption] <PSObject>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-Awtrix [[-IPAddress] <IPAddress[]>] [[-Brightness] <Single>] [[-Hue] <Double>] [[-Saturation] <Double>] [-On] [-Off] [-Reboot] [[-RGBColor] <String>] [[-ColorTemperature] <Int32>] [[-ApplicationName] <String>] [-SwitchTo] [-LastApplication] [-NextApplication] [[-NotificationText] <String[]>] [[-PercentComplete] <Int32>] [-Completed] [[-NotificationDuration] <TimeSpan>] [[-NotificationLoopCount] <Int32>] [-HoldNotification] [[-EffectName] <String>] [[-EffectOption] <PSObject>] [[-EffectSpeed] <Int32>] [[-NotificationOption] <PSObject>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
