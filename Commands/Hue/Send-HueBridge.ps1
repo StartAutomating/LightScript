@@ -88,6 +88,9 @@ function Send-HueBridge
 
         #region Invoke-RestMethod and decorate resultsa
         Write-Verbose "Sending command to $($splat.Uri)"
+        if ($splat.Method -ne 'GET' -and -not $splat.ContentType) {
+            $splat.ContentType = 'application/json'
+        }
         $invokeResult = Invoke-RestMethod @splat 2>&1
         # Always add a HueUserName and IPAddress to each result
         $userNameNoteProperty = [PSNoteProperty]::new('HueUserName', $HueUserName)
