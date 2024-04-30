@@ -134,6 +134,8 @@ Bedroom -On -ColorTemperature 425
 
 NanoLeaf is a flexible multipanel light with a built-in microphone for music effects.
 
+> [Don't have a NanoLeaf?](https://amzn.to/3QrzxeS)
+
 On Windows, you can Find-NanoLeaf to discover devices.  
 
 NanoLeaf devices tend to be a little slower to respond to SSDP requests, and so you may have to increase your timeout, depending on your network quality.
@@ -209,14 +211,15 @@ Register-EngineEvent -SourceIdentifier NanoLeaf.Touch.Down -Action {
 
 ## Twinkly
 
-Twinkly makes smart lights with per-LED control.
+Twinkly makes smart lights that let you control every single LED!
+
+> [Don't Have Twinkly?](https://amzn.to/3JEBu3R)
 
 The Twinkly app will show you the IP Address for a Twinkly device.  Once you know this, run:
 
 ~~~PowerShell
 Connect-Twinkly -IPAddress $TheTwinklyIPAddress
 ~~~
-
 
 Once authenticated, you can:
 
@@ -259,6 +262,8 @@ Get-Twinkly | Connect-Twinkly
 
 ## Pixoo64
 
+> [Don't Have Pixoo](https://amzn.to/4dnfYOO)
+
 The Pixoo App will let you know the device's IP address.  From there, you can:
 
 ~~~PowerShell
@@ -289,7 +294,9 @@ Set-Pixoo -Timer "00:01:00" # Set a timer for one minute
 Set-Pixoo -RedScore 1 -BlueScore 0 # Keep a scoreboard
 ~~~
 
-## Elgato Key Lighting
+## Elgato Key Light
+
+> [Don't Have an Elgato Key Light?](https://amzn.to/4betQc7)
 
 Elgato makes Key Lighting for video recording and streaming.
 

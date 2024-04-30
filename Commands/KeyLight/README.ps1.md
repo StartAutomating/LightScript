@@ -1,6 +1,6 @@
-This directory contains LightScript's functions for [Twinkly](https://www.twinkly.com/) lights.
+This directory contains LightScript's functions for [Elgato Key Light](https://www.elgato.com/us/en/p/key-light).
 
-> [Don't Have Twinkly?](https://amzn.to/3JEBu3R)
+> [Don't have an Elgato Key Light?](https://amzn.to/4betQc7)
 
 ~~~PipeScript {
     Import-Module ../../LightScript.psd1 -Global
