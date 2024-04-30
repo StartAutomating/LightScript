@@ -1,6 +1,6 @@
-This directory contains LightScript's functions for [NanoLeaf](https://nanoleaf.me/).
+This directory contains LightScript's functions for [LaMetric Time](https://lametric.com/en-US).
 
-> [Don't have a NanoLeaf?](https://amzn.to/3QrzxeS)
+> [Don't have a LaMetric Time?](https://amzn.to/44p3HF6)
 
 ~~~PipeScript {
     Import-Module ../../LightScript.psd1 -Global
