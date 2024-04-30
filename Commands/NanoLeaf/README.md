@@ -1,5 +1,7 @@
 This directory contains LightScript's functions for [NanoLeaf](https://nanoleaf.me/).
 
+> [Don't have a NanoLeaf?](https://amzn.to/3QrzxeS)
+
 
 |Name               |Verb      |Noun    |Source                                            |
 |-------------------|----------|--------|--------------------------------------------------|
