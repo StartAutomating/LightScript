@@ -1,5 +1,7 @@
 This directory contains LightScript's functions for [Twinkly](https://www.twinkly.com/) lights.
 
+> [Don't Have Twinkly?](https://amzn.to/3JEBu3R)
+
 
 |Name              |Verb      |Noun   |Source                                          |
 |------------------|----------|-------|------------------------------------------------|
