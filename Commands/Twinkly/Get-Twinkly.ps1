@@ -111,6 +111,12 @@
     [switch]
     $CurrentMusicDriver,
 
+    # Gets the available music driver sets.
+    [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName='/xled/v1/music/drivers/sets')]
+    [Alias('MusicDriverSets')]
+    [switch]
+    $MusicDriverSet,
+
     # If set, will output the network status.
     [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName='/xled/v1/network/status')]
     [switch]
