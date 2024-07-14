@@ -146,6 +146,13 @@ Gets the available music drivers.
 |----------|--------|--------|---------------------|
 |`[Switch]`|true    |named   |true (ByPropertyName)|
 
+#### **CurrentMusicDriver**
+Gets the current music driver.
+
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
+
 #### **NetworkStatus**
 If set, will output the network status.
 
@@ -225,6 +232,9 @@ Get-Twinkly [-IPAddress <IPAddress[]>] -Summary [<CommonParameters>]
 ```
 ```PowerShell
 Get-Twinkly [-IPAddress <IPAddress[]>] -MusicDriver [<CommonParameters>]
+```
+```PowerShell
+Get-Twinkly [-IPAddress <IPAddress[]>] -CurrentMusicDriver [<CommonParameters>]
 ```
 ```PowerShell
 Get-Twinkly [-IPAddress <IPAddress[]>] -NetworkStatus [<CommonParameters>]
