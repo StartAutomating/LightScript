@@ -102,9 +102,14 @@
     $Summary,
 
     # Gets the available music drivers.
-    [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName='/xled/v1/music/drivers/sets')]
+    [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName='/xled/v1/music/drivers')]
     [switch]
     $MusicDriver,
+
+    # Gets the current music driver.
+    [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName='/xled/v1/music/drivers/current')]
+    [switch]
+    $CurrentMusicDriver,
 
     # If set, will output the network status.
     [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName='/xled/v1/network/status')]
