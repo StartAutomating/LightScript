@@ -22,6 +22,7 @@
 
     # If set, will get the operation mode
     [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName='/xled/v1/led/mode')]
+    [Alias('CurrentMode')]
     [switch]
     $OperationMode,
 
