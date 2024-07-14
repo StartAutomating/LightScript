@@ -139,6 +139,13 @@ If set, will output the summary.
 |----------|--------|--------|---------------------|
 |`[Switch]`|true    |named   |true (ByPropertyName)|
 
+#### **MusicDriver**
+Gets the available music drivers.
+
+|Type      |Required|Position|PipelineInput        |
+|----------|--------|--------|---------------------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|
+
 #### **NetworkStatus**
 If set, will output the network status.
 
@@ -215,6 +222,9 @@ Get-Twinkly [-IPAddress <IPAddress[]>] -MQTTConfiguration [<CommonParameters>]
 ```
 ```PowerShell
 Get-Twinkly [-IPAddress <IPAddress[]>] -Summary [<CommonParameters>]
+```
+```PowerShell
+Get-Twinkly [-IPAddress <IPAddress[]>] -MusicDriver [<CommonParameters>]
 ```
 ```PowerShell
 Get-Twinkly [-IPAddress <IPAddress[]>] -NetworkStatus [<CommonParameters>]
