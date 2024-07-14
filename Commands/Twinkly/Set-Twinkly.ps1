@@ -84,6 +84,11 @@
     [string]
     $Mode,
 
+    # If set, will turn off the lights.
+    [Parameter(ValueFromPipelineByPropertyName)]
+    [switch]
+    $Off,
+
     # If provided, will set the device name.
     [Parameter(ValueFromPipelineByPropertyName)]
     [string]
@@ -283,7 +288,7 @@
                     } | ConvertTo-Json
                 )
 
-                Invoke-RestMethod -Uri "$twinklyUrl/xled/v1/movies/full" @Splat -Body $MovieData -ContentType application/octect-stream
+                Invoke-RestMethod -Uri "http://$ip/xled/v1/movies/full" @Splat -Body $MovieData -ContentType application/octect-stream
             }
             #endregion Set Movie
 
