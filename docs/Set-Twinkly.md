@@ -92,22 +92,24 @@ If -MovieFrameRate and
 
 #### **Mode**
 Will change the mode. Can be:
-* Off
 * Color
 * Demo
 * Effect
+* Off
 * Movie
-* Playlist
-* RT
+* MusicReactive
+* Playlist    
+* RT    
 Many operations require the mode to be set before they take effect.
 For instance, if you use -RGBColor, you will not see the changes if the mode is not set to 'color'.
 Valid Values:
 
-* off
 * color
 * demo
 * effect
+* off
 * movie
+* musicreactive
 * playlist
 * rt
 
