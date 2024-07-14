@@ -158,15 +158,34 @@
                     Write-Verbose "GET $uri"
                 }
 
-                Invoke-RestMethod -Uri $uri -Headers @{
-                    "X-Auth-Token" = $script:TwinklyCache["$ip"].authentication_token
-                } |
-                    & { process {
+                $restOutput = 
+                    try {
+                        Invoke-RestMethod -Uri $uri -Headers @{
+                            "X-Auth-Token" = $script:TwinklyCache["$ip"].authentication_token
+                        } -ErrorAction Stop *>&1  
+                    } catch {
+                        $ex = $_
+                        # Twinly API returns 401 when the token has expired or another device has logged in.
+                        if ($ex.Exception.StatusCode -eq 401) {
+                            # Reconnect and try again.
+                            $twinklyConnection = Connect-Twinkly -IPAddress $ip -PassThru
+                            Invoke-RestMethod -Uri $uri -Headers @{
+                                "X-Auth-Token" = $twinklyConnection.authentication_token
+                            }
+                        } else {
+                            $ex
+                        }                    
+                    } 
+                $restOutput |
+                    & { process {                        
                         $out = $_
-
-                        $out.pstypenames.clear()
-                        $out.pstypenames.add(($PSCmdlet.ParameterSetName -replace '/xled/v1/' -replace '/', '.'))
-                        $out
+                        if ($out -is [Management.Automation.ErrorRecord]) {
+                            $out
+                        } else {
+                            $out.pstypenames.clear()
+                            $out.pstypenames.add(($PSCmdlet.ParameterSetName -replace '/xled/v1/' -replace '/', '.'))
+                            $out
+                        }                        
                     } }
             }
         } elseif ($PSCmdlet.ParameterSetName -eq 'ListDevices') {
