@@ -37,9 +37,9 @@ One or more IP Addresses of Twinkly devices.
 #### **OperationMode**
 If set, will get the operation mode
 
-|Type      |Required|Position|PipelineInput        |
-|----------|--------|--------|---------------------|
-|`[Switch]`|true    |named   |true (ByPropertyName)|
+|Type      |Required|Position|PipelineInput        |Aliases    |
+|----------|--------|--------|---------------------|-----------|
+|`[Switch]`|true    |named   |true (ByPropertyName)|CurrentMode|
 
 #### **Layout**
 If set, will get the layout of the Twinkly lights.  This may take a bit.
