@@ -1,3 +1,4 @@
 @{
-    DeviceName = 'device_name'    
+    DeviceName = 'device_name'
+    LightCount = 'number_of_led'
 }
