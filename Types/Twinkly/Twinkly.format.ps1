@@ -1,0 +1,1 @@
+Write-FormatView -TypeName Twinkly -Property DeviceName, IPAddress, LightCount -Name Default
