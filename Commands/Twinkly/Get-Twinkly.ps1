@@ -160,6 +160,8 @@
                         if ([DateTime]::Now -ge $twinklyConnection.Authentication_ExpiresAt) { # then reconnect.
                             $twinklyConnection = Connect-Twinkly -IPAddress $twinklyConnection.IPAddress -PassThru
                         }
+                        $twinklyConnection.pstypenames.clear()
+                        $twinklyConnection.pstypenames.add('Twinkly')
                         $script:TwinklyCache["$($twinklyConnection.IPAddress)"] = $twinklyConnection
                     }
 
