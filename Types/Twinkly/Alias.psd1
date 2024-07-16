@@ -1,0 +1,3 @@
+@{
+    DeviceName = 'device_name'    
+}
