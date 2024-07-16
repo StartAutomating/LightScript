@@ -169,6 +169,37 @@
       </TableControl>
     </View>
     <View>
+      <Name>Default</Name>
+      <ViewSelectedBy>
+        <TypeName>Twinkly</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>DeviceName</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>IPAddress</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>LightCount</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
       <Name>Hue.Group</Name>
       <ViewSelectedBy>
         <TypeName>Hue.Group</TypeName>
