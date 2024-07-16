@@ -436,4 +436,13 @@ if ($hue -lt 0) { $hue = 360 + $hue }
       </ScriptProperty>
     </Members>
   </Type>
+  <Type>
+    <Name>Twinkly</Name>
+    <Members>
+      <AliasProperty>
+        <Name>DeviceName</Name>
+        <ReferencedMemberName>device_name</ReferencedMemberName>
+      </AliasProperty>
+    </Members>
+  </Type>
 </Types>
