@@ -443,6 +443,10 @@ if ($hue -lt 0) { $hue = 360 + $hue }
         <Name>DeviceName</Name>
         <ReferencedMemberName>device_name</ReferencedMemberName>
       </AliasProperty>
+      <AliasProperty>
+        <Name>LightCount</Name>
+        <ReferencedMemberName>number_of_led</ReferencedMemberName>
+      </AliasProperty>
     </Members>
   </Type>
 </Types>
