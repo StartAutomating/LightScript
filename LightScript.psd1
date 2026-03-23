@@ -9,7 +9,7 @@
     Copyright = '2021 Start-Automating'
     PrivateData = @{
         PSData = @{
-            Tags = 'IoT','Hue', 'Twinkly', 'NanoLeaf', 'Pixoo', 'Divoom','KeyLight','LaMetricTime'
+            Tags = 'IoT','Hue', 'Twinkly', 'NanoLeaf', 'Pixoo', 'Divoom','KeyLight','LaMetricTime','WLED'
             ProjectURI = 'https://github.com/StartAutomating/LightScript'
             LicenseURI = 'https://github.com/StartAutomating/LightScript/blob/main/LICENSE'
             IconURI    = 'https://github.com/StartAutomating/LightScript/blob/main/Assets/LightScript.png'
